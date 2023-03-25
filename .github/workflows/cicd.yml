@@ -19,7 +19,7 @@ jobs:
           ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
           
     
-    - name: excute script file
+    - name: execute script file
       run: ssh -f ubuntu@${{ secrets.SSH_HOST }} /home/ubuntu/teamboard/dev/dev.sh
 
   deploy-prod:
