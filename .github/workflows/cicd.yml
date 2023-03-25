@@ -1,6 +1,6 @@
 name: Laravel Deploy
 
-on: [push] #to any branch (dev or prod)
+on: [push] #to any branch (dev or prod - )
 
 jobs:
 
