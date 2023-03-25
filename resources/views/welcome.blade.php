@@ -1,2 +1,2 @@
-<h1>dev.teamboard.site</h1>
-<h2>coming soon .....</h2>
+<h1>TEAMBOARD</h1>
+<h2>dev.teamboard.site</h2>
