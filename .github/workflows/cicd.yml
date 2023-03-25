@@ -20,7 +20,7 @@ jobs:
           
     
     - name: excute script file
-      run: ssh -fvvv ubuntu@${{ secrets.SSH_HOST }} /home/ubuntu/teamboard/dev/dev.sh
+      run: ssh -f ubuntu@${{ secrets.SSH_HOST }} /home/ubuntu/teamboard/dev/dev.sh
 
   deploy-prod:
 
