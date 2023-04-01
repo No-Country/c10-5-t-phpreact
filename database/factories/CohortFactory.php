@@ -1,13 +1,13 @@
 <?php
 
-namespace Database\Factories\Profile;
+namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Profile\EnglishLevel>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Cohort>
  */
-class EnglishLevelFactory extends Factory
+class CohortFactory extends Factory
 {
     /**
      * Define the model's default state.
