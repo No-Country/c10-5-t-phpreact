@@ -12,24 +12,13 @@ class EnglishLevelSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void
-    {   
-        EnglishLevel::factory()->create([
-            'level' => 'A1',
-        ]);
-        EnglishLevel::factory()->create([
-            'level' => 'A2',
-        ]);
-        EnglishLevel::factory()->create([
-            'level' => 'B1',
-        ]);
-        EnglishLevel::factory()->create([
-            'level' => 'B2',
-        ]);
-        EnglishLevel::factory()->create([
-            'level' => 'C1',
-        ]);
-        EnglishLevel::factory()->create([
-            'level' => 'C2',
-        ]);
+    {
+        $levels = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+
+        foreach ($levels as $level) {
+            EnglishLevel::factory()->create([
+                'level' => $level,
+            ]);
+        }
     }
 }

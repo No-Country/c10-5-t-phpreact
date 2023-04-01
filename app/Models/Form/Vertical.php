@@ -9,5 +9,7 @@ class Vertical extends Model
 {
     use HasFactory;
 
+    protected $table = 'vertical';
+
     protected $fillable = ['name'];
 }

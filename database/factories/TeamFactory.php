@@ -16,8 +16,14 @@ class TeamFactory extends Factory
      */
     public function definition(): array
     {
+        $teams = [
+            'react-php',
+            'vuejs-python',
+            'angular-java'
+        ];
+
         return [
-            //
+            'name' => fake()->unique()->randomElement($teams)
         ];
     }
 }

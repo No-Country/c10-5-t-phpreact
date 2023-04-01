@@ -9,5 +9,7 @@ class RoleStack extends Model
 {
     use HasFactory;
 
+    protected $table = 'role_stacks';
+
     protected $fillable = ['name'];
 }

@@ -13,8 +13,6 @@ class TeamSeeder extends Seeder
      */
     public function run(): void
     {
-        Team::factory()->create([
-            'name' => 'php-react-5',
-        ]);
+        Team::factory(3)->create();
     }
 }

@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Cohort;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Form\Vertical;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class CohortSeeder extends Seeder
+class VerticalSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Cohort::factory(6)->create();
+        Vertical::factory(2)->create();
     }
 }

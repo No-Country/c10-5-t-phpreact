@@ -15,21 +15,21 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         User::factory()->create([
-            'full_name' => 'admin',
+            'full_name' => 'Administrador',
             'email' => 'admin@nocontry.com',
-            'password' => bcrypt('12345678')
+            'password' => bcrypt('adminpassword')
         ])->assignRole('Admin');
 
         User::factory()->create([
-            'full_name' => 'usuario',
+            'full_name' => 'Participante',
             'email' => 'user@nocontry.com',
-            'password' => bcrypt('12345678')
+            'password' => bcrypt('userpassword')
         ])->assignRole('User');
 
         User::factory()->create([
-            'full_name' => 'team leader',
+            'full_name' => 'Team Leader',
             'email' => 'tl@nocontry.com',
-            'password' => bcrypt('12345678')
+            'password' => bcrypt('tlpassword')
         ])->assignRole('TeamLeader');
     }
 }
