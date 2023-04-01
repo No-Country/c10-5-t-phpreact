@@ -14,12 +14,17 @@ return new class extends Migration
         Schema::create('profile_data', function (Blueprint $table) {
             $table->id();
             $table->string('specialty', 100);
-            $table->string('country', 50);
             $table->string('url');
             $table->string('linkedin');
             $table->string('github');
             $table->string('education');
             $table->timestamps();
+
+            $table->unsignedBigInteger('country_id');
+
+            $table->foreign('country_id')
+                ->references('id')
+                ->on('countries');
         });
     }
 
