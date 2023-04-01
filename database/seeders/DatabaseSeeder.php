@@ -14,6 +14,7 @@ use Database\Seeders\CountrySeeder;
 use Database\Seeders\VerticalSeeder;
 use Database\Seeders\RoleStackSeeder;
 use Database\Seeders\ExperienceSeeder;
+use Database\Seeders\TechnologySeeder;
 use Database\Seeders\EnglishLevelSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -25,6 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call(HorarySeeder::class);
         $this->call(RoleStackSeeder::class);
         $this->call(VerticalSeeder::class);
+        $this->call(TechnologySeeder::class);
 
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);

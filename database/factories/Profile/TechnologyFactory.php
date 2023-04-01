@@ -15,9 +15,15 @@ class TechnologyFactory extends Factory
      * @return array<string, mixed>
      */
     public function definition(): array
-    {
+    {   
+
+        $technologies = ["JavaScript",
+         "Python", "Java", "C++", "Ruby", "PHP", "Swift", 
+         "Objective-C", "TypeScript", "C#", "Go", "Kotlin", 
+         "Scala", "Rust", "Dart", "Lua"];
+
         return [
-            //
+            "name" => fake()->unique()->randomElement($technologies)
         ];
     }
 }
