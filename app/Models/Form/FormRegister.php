@@ -16,7 +16,9 @@ class FormRegister extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['full_name', 'email'];
+    
+    protected $table = 'form_register';
+    protected $guarded = [];
 
     public function horary(): BelongsTo
     {
