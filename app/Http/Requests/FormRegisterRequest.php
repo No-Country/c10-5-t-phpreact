@@ -23,14 +23,15 @@ class FormRegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "full_name" => "required|min:3|max:60",
-            "email" => "required|email|unique:users,email",
-            "role_stack_id" => "required",
-            "vertical_id" => "required",
-            "horary_id" => "required",
-            "experience_id" => "required",
-            "country_id" => "required",
-            "technology_id" => "required",
+            "name" => "required|min:3|string|max:60",
+            "lastname" => "required|min:3|string|max:60",
+            "email" => "required|email|unique:form_register,email",
+            "role_stack_id" => "required|integer",
+            "vertical_id" => "required|integer",
+            "horary_id" => "required|integer",
+            "experience_id" => "required|integer",
+            "country_id" => "required|integer",
+            "technology_id" => "required|integer"
         ];
     }
 }

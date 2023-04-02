@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('form_register', function (Blueprint $table) {
             $table->id();
-            $table->string('full_name', 60);
+            $table->string('name', 60);
+            $table->string('lastname', 60);
             $table->string('email');
 
             $table->unsignedBigInteger('role_stack_id');
