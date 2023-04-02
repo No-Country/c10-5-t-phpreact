@@ -10,7 +10,9 @@ use App\Models\Form\RoleStack;
 use App\Models\Form\Experience;
 use App\Models\form\FormRegister;
 use Illuminate\Routing\Controller;
+use App\Events\WelcomeInstructionsEvent;
 use App\Http\Requests\FormRegisterRequest;
+use App\Jobs\WelcomeInstructionsJob;
 
 class FormRegisterController extends Controller
 {
@@ -30,8 +32,18 @@ class FormRegisterController extends Controller
         ];
     }
     public function formRegister(FormRegisterRequest $request)
-    {   
-        FormRegister::create($request->validated());
-        return response()->json(["msg" => "Solucitud recibida. Te estaremos enviado las instrucciones por email."],201);
+    {
+        $userRegistered = FormRegister::create($request->validated());
+
+        WelcomeInstructionsJob::dispatch($userRegistered);
+
+        return response()->json([
+            "msg" => "Solucitud recibida. Te estaremos enviado las instrucciones por email."
+        ], 201);
+    }
+
+    public function confirmRegister(Request $request, $token)
+    {
+        // Logica para confirmar el registro luego la fecha indicada
     }
 }
