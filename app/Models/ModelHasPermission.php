@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Form\FormRegister;
+use App\Models\Permission;
 
-class Vertical extends Model
+class ModelHasPermissions extends Model
 {
     use HasFactory;
 
-    public function formRegister()
+    public function permission()
     {
-        return $this->hasOne(FormRegister::class);
+        return $this->belongsTo(Permission::class);
     }
 }
