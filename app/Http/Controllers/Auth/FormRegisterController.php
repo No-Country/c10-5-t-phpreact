@@ -40,6 +40,18 @@ class FormRegisterController extends Controller
         return response()->json([
             "msg" => "Solucitud recibida. Te estaremos enviado las instrucciones por email."
         ], 201);
+
+        // {
+        //     "name": "grupo-8",
+        //     "lastname": "current",
+        //     "email": "1@1.com",
+        //     "role_stack_id": 1,
+        //     "horary_id": 1,
+        //     "experience_id": 1,
+        //     "vertical_id": 1,
+        //     "technology_id": 1,
+        //     "country_id": 1
+        //   }
     }
 
     public function confirmRegister(Request $request, $token)

@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Team;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
 class Cohort extends Model
@@ -23,5 +24,5 @@ class Cohort extends Model
     {
         return $this->belongsToMany(Team::class, 'cohort_team');
     }
-    
+
 }
