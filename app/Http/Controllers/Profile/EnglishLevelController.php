@@ -2,26 +2,26 @@
 
 namespace App\Http\Controllers\Profile;
 
-use App\Models\Profile\Technology;
+use Illuminate\Http\JsonResponse;
+use App\Models\Profile\EnglishLevel;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Services\JsonResponseService;
-use App\Http\Requests\Profile\TechnologyRequest;
-use Illuminate\Http\JsonResponse as JsonResponse;
+use App\Http\Requests\Profile\EnglishLevelRequest;
 
-class TechnologyController extends Controller
+class EnglishLevelController extends Controller
 {
     /**
      * Crea un nuevo registro en database
      *
-     * @param TechnologyRequest $request
+     * @param EnglishLevelRequest $request
      * @param JsonResponseService $response
      * @return JsonResponse
      */
-    public function store(TechnologyRequest $request, JsonResponseService $response): JsonResponse
+    public function store(EnglishLevelRequest $request, JsonResponseService $response): JsonResponse
     {
         try {
-            Technology::create($request->validated());
+            EnglishLevel::create($request->validated());
 
             return $response->success('creado');
         } catch (GeneralException $e) {
@@ -32,15 +32,15 @@ class TechnologyController extends Controller
     /**
      * Actualiza el registro en database segun su id
      *
-     * @param TechnologyRequest $request
+     * @param EnglishLevelRequest $request
      * @param integer $id
      * @param JsonResponseService $response
      * @return JsonResponse
      */
-    public function update(TechnologyRequest $request, int $id, JsonResponseService $response): JsonResponse
+    public function update(EnglishLevelRequest $request, int $id, JsonResponseService $response): JsonResponse
     {
         try {
-            $technology = Technology::findOrFail($id);
+            $technology = EnglishLevel::findOrFail($id);
 
             $technology->update($request->validated());
 
@@ -60,7 +60,7 @@ class TechnologyController extends Controller
     public function delete(int $id, JsonResponseService $response): JsonResponse
     {
         try {
-            $technology = Technology::findOrFail($id);
+            $technology = EnglishLevel::findOrFail($id);
 
             $technology->delete();
 
