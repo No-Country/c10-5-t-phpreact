@@ -19,11 +19,13 @@ return new class extends Migration
 
             $table->foreign('cohort_id')
                 ->references('id')
-                ->on('cohorts');
+                ->on('cohorts')
+                ->onDelete('cascade');
 
             $table->foreign('team_id')
-            ->references('id')
-                ->on('teams');
+                ->references('id')
+                ->on('teams')
+                ->onDelete('cascade');
 
             $table->timestamps();
         });

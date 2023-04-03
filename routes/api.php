@@ -8,71 +8,23 @@ use App\Http\Controllers\Auth\FormRegisterController;
 use App\Http\Controllers\Team\TeamController;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Route::post('forms-user', [AuthController::class, 'FormUser']);
-Route::get('register', [AuthController::class, 'registerGet']);
-Route::post('register', [AuthController::class, 'registerPost']);
-Route::post('login', [AuthController::class, 'login']);
-
-Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('user-profile', [AuthController::class, 'userProfile']);
-    Route::get('logout', [AuthController::class, 'logout']);
-    Route::post('resetPassword', [AuthController::class, 'resetPassword']);
+Route::controller(AuthController::class)->group(function () {
+    Route::post('forms-user', 'FormUser');
+    Route::get('register', 'registerGet');
+    Route::post('register', 'registerPost');
+    Route::post('login', 'login');
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('user-profile', 'userProfile');
+        Route::get('logout', 'logout');
+        Route::post('resetPassword', 'resetPassword');
+    });
 });
-
-
-
-
-Route::get('forms', [FormRegisterController::class, 'index']);
-Route::post('forms', [FormRegisterController::class, 'formRegister']);
-
+ 
+Route::controller(FormRegisterController::class)->group(function () {
+    Route::get('forms', 'index');
+    Route::post('forms', 'formRegister');
+    Route::get('forms/confirm/{token}', 'confirmRegister')->name('confirmRegister');
+});
 
 Route::group([], function () {
     Route::apiResource('teams', TeamController::class);
@@ -83,6 +35,23 @@ Route::group([], function () {
 });
 
 
+Route::controller(SoftSkillsController::class)->group(function () {
+    Route::post('/soft-skill', 'store')->name('softSkill.store');
+    Route::put('/soft-skill/{id}', 'update')->name('softSkill.update');
+    Route::delete('/soft-skill/{id}', 'delete')->name('softSkill.delete');
+});
+
+Route::controller(TechnologyController::class)->group(function () {
+    Route::post('/technology', 'store')->name('technology.store');
+    Route::put('/technology/{id}', 'update')->name('technology.update');
+    Route::delete('/technology/{id}', 'delete')->name('technology.delete');
+});
+
+Route::controller(EnglishLevelController::class)->group(function () {
+    Route::post('/english-level', 'store')->name('englishLevel.store');
+    Route::put('/english-level/{id}', 'update')->name('englishLevel.update');
+    Route::delete('/english-level/{id}', 'delete')->name('englishLevel.delete');
+});
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
