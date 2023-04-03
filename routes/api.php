@@ -5,21 +5,78 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CohortsController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\FormRegisterController;
+use App\Http\Controllers\Team\TeamController;
 
 
-// Route::post('register', [AuthController::class, 'register']);
-// Route::post('login', [AuthController::class, 'login']);
 
-// Route::group(['middleware' => ['auth:sanctum']], function () {
-//     Route::get('user-profile', [AuthController::class, 'userProfile']);
-//     Route::get('logout', [AuthController::class, 'logout']);
-// });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Route::post('forms-user', [AuthController::class, 'FormUser']);
+Route::get('register', [AuthController::class, 'registerGet']);
+Route::post('register', [AuthController::class, 'registerPost']);
+Route::post('login', [AuthController::class, 'login']);
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('user-profile', [AuthController::class, 'userProfile']);
+    Route::get('logout', [AuthController::class, 'logout']);
+    Route::post('resetPassword', [AuthController::class, 'resetPassword']);
+});
+
 
 
 
 Route::get('forms', [FormRegisterController::class, 'index']);
 Route::post('forms', [FormRegisterController::class, 'formRegister']);
 
+
+Route::group([], function () {
+    Route::apiResource('teams', TeamController::class);
+});
 
 Route::group([], function () {
     Route::apiResource('cohorts', CohortsController::class);
