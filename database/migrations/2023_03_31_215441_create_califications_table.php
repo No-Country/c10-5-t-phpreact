@@ -16,6 +16,15 @@ return new class extends Migration
             $table->unsignedBigInteger('calified_profile_id');
             $table->unsignedBigInteger('califying_profile_id');
             $table->decimal('calification', 2, 2);
+
+            $table->foreign('calified_profile_id')
+                ->references('id')
+                ->on('profiles');
+
+            $table->foreign('califying_profile_id')
+                ->references('id')
+                ->on('profiles');
+
             $table->timestamps();
         });
     }
