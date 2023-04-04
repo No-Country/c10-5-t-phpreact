@@ -38,14 +38,9 @@ class Profile extends Model
         return $this->belongsToMany(Project::class, 'profile_project');
     }
 
-    public function calificationsReceived(): HasMany
+    public function califications(): HasMany
     {
-        return $this->hasMany(Calification::class, 'calified_profile_id');
-    }
-
-    public function calificationsGiven(): HasMany
-    {
-        return $this->hasMany(Calification::class, 'califying_profile_id');
+        return $this->hasMany(Calification::class, 'profile_id');
     }
 
     public function profileData(): BelongsTo

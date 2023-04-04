@@ -18,13 +18,13 @@ class Calification extends Model
         'calification'
     ];
 
-    public function califiedProfile(): BelongsTo
+    public function profile(): BelongsTo
     {
-        return $this->belongsTo(Profile::class, 'calified_profile_id');
+        return $this->belongsTo(Profile::class, 'profile_id');
     }
 
     public function califyingProfile(): BelongsTo
     {
-        return $this->belongsTo(Profile::class, 'califying_profile_id');
+        return $this->belongsTo(Profile::class, 'califiying_profile_id');
     }
 }
