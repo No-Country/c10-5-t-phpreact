@@ -3,19 +3,23 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Team;
+use App\Models\Cohort;
+use App\Models\UserControl;
+use App\Models\WeekResults;
+use App\Models\Profile\Profile;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Spatie\Permission\Traits\HasRoles;
-use App\Models\Cohort;
-use App\Models\Profile_data;
-use App\Models\Calification;
-use App\Models\WeekResults;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
-{   
+{
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes, HasRoles;
 
     protected $fillable = [
@@ -35,18 +39,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function weekResults()
+    public function cohorts(): BelongsToMany
     {
-        return $this->belongsToMany(WeekResults::class, 'user_control');
+        return $this->belongsToMany(Cohort::class, 'cohort_user');
     }
 
-    public function profileData()
+    public function teams(): BelongsToMany
     {
-        return $this->hasOne(Profile_data::class);
+        return $this->belongsToMany(Team::class, 'team_user');
     }
 
-    public function califications()
+    public function userControls(): HasMany
     {
-        return $this->hasMany(Calification::class);
+        return $this->hasMany(UserControl::class);
+    }
+
+    public function profile(): HasOne
+    {
+        return $this->hasOne(Profile::class);
     }
 }
