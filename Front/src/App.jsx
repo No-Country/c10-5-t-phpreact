@@ -8,9 +8,11 @@ function App() {
 
   return (
     <div className="App">
-       <h1 className="text-2xl font-bold underline">
+       <div className='bg-nuestros-perfiles'>
+       <h1 className="text-2xl font-['Geogrotesque'] text-primary">
       Hello world!
     </h1>
+       </div>
     </div>
   )
 }
