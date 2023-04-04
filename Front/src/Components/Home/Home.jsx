@@ -1,6 +1,6 @@
 
 import { useSelector, useDispatch } from 'react-redux'
-import { decrement, increment } from '../Redux/counter-test'
+import { decrement, increment } from '../../Redux/counter-test'
 import React from 'react'
 
 function Home() {
