@@ -27,6 +27,10 @@ module.exports = {
         'verticales': 'linear-gradient(180deg, rgb(255, 247, 180) 0%, rgba(228, 219, 137, 0) 86.98%)',
         'login-gradient': 'linear-gradient(156.78deg, rgb(54, 46, 189) 16.37%, rgb(95, 101, 208) 65.8%, rgb(137, 157, 228) 102.98%)'
         // 'test': 'linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%);'
+      },
+      boxShadow:{
+        'dark': '4px 4px 4px 0px rgba(0,0,0,0.25)',
+        'light': '4px 4px 4px 0px rgba(255,255,255,255.25)'
       }
     },
   },
