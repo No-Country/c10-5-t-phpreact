@@ -13,6 +13,7 @@ module.exports = {
       },
       colors:{
         'primary': '#362EBD',
+        'secondary': '#899DE4',
         'morado-1-nc': '#9E98FB',
         'morado-2-nc': '#B5AAF9',
         'verde-nc': '#71F8AE',

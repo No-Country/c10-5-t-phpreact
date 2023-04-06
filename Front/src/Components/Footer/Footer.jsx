@@ -25,7 +25,7 @@ function Footer() {
                                 <span className="flex w-full items-center font-Inter text-[20x] font-[500] text-text-color-white tracking-[-0.03em] py-[10px]">¡Suscríbete a nuestro Newsletter!</span>
                             </div>
                             <form action="" className="flex justify-between">
-                                <input type="text" placeholder="Email" className="w-[427px] h-[45px] rounded-[10px] shadow-dark" />
+                                <input type="text" placeholder="Email" className="w-[427px] h-[45px] rounded-[10px] shadow-dark indent-4" />
                                 <button className="bg-[#899DE4] w-[161px] h-[45px] rounded-[10px] shadow-dark font-Inter text-[15px] font-[500] text-text-color-white tracking-[-0.03em]">Aplicar</button>
                             </form>
                         </div>
