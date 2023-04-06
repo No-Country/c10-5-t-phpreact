@@ -29,7 +29,7 @@ module.exports = {
         // 'test': 'linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%);'
       },
       boxShadow:{
-        'dark': '4px 4px 4px 0px rgba(0,0,0,0.25)',
+        'dark': '0px 3px 8px rgba(0,0,0,0.24)',
         'light': '4px 4px 4px 0px rgba(255,255,255,255.25)'
       }
     },

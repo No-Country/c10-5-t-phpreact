@@ -2,6 +2,7 @@
 import { useSelector, useDispatch } from 'react-redux'
 import { decrement, increment } from '../../Redux/counter-test'
 import React from 'react'
+import Footer from '../Footer/Footer'
 
 function Home() {
     const count = useSelector((state) => state.dog.testValue)
@@ -21,6 +22,8 @@ function Home() {
         <button onClick={() => dispatch(decrement())}>Decrement</button>
       </div>
          </div>
+
+         <Footer />
       </div>
     )
   }
