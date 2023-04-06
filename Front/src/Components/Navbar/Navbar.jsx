@@ -18,7 +18,7 @@ function Navbar() {
 
                         <li>Preguntas Frecuentes</li>
 
-                        <button className="bg-[#5173EB] w-[161px] h-[56px] rounded-[12px] shadow-dark">Plataforma</button>
+                        <button className="bg-[#5173EB] w-[161px] h-[56px] rounded-[10px] shadow-dark">Plataforma</button>
                     </div>
                 </ul>
             </nav>
