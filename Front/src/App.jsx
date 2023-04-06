@@ -4,6 +4,7 @@ import viteLogo from '/vite.svg'
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import './App.css'
 import Home from './Components/Home/Home'
+import Dashboard from './Components/Dashboard/Dashboard';
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
+          <Route  path='/dashboard' element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
     </div>

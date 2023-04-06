@@ -16,6 +16,7 @@ module.exports = {
         'secondary': '#899DE4',
         'morado-1-nc': '#9E98FB',
         'morado-2-nc': '#B5AAF9',
+        'morado-3-nc': 'rgba(54, 46, 189, 0.15)',
         'verde-nc': '#71F8AE',
         'gris-desactivado': '#9D9D9D',
         'verde-activado': '#2E9F47',
