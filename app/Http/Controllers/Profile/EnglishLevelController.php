@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Profile;
 
 use Illuminate\Http\JsonResponse;
 use App\Models\Profile\EnglishLevel;
-use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Services\JsonResponseService;
 use App\Http\Requests\Profile\EnglishLevelRequest;
@@ -15,17 +14,17 @@ class EnglishLevelController extends Controller
      * Crea un nuevo registro en database
      *
      * @param EnglishLevelRequest $request
-     * @param JsonResponseService $response
+     * @param 
      * @return JsonResponse
      */
-    public function store(EnglishLevelRequest $request, JsonResponseService $response): JsonResponse
+    public function store(EnglishLevelRequest $request, ): JsonResponse
     {
         try {
             EnglishLevel::create($request->validated());
 
-            return $response->success('creado');
-        } catch (GeneralException $e) {
-            return $response->catch($e->getMessage());
+            return $this->response->success('creado');
+        } catch (\Exception $e) {
+            return $this->response->catch($e->getMessage(), 500);
         }
     }
 
@@ -34,19 +33,19 @@ class EnglishLevelController extends Controller
      *
      * @param EnglishLevelRequest $request
      * @param integer $id
-     * @param JsonResponseService $response
+     * @param 
      * @return JsonResponse
      */
-    public function update(EnglishLevelRequest $request, int $id, JsonResponseService $response): JsonResponse
+    public function update(EnglishLevelRequest $request, int $id, ): JsonResponse
     {
         try {
             $technology = EnglishLevel::findOrFail($id);
 
             $technology->update($request->validated());
 
-            return $response->success('actualizado');
-        } catch (GeneralException $e) {
-            return $response->catch($e->getMessage());
+            return $this->response->success('actualizado');
+        } catch (\Exception $e) {
+            return $this->response->catch($e->getMessage(), 500);
         }
     }
 
@@ -54,19 +53,19 @@ class EnglishLevelController extends Controller
      * Elimina un registro en database segun su id
      *
      * @param integer $id
-     * @param JsonResponseService $response
+     * @param 
      * @return JsonResponse
      */
-    public function delete(int $id, JsonResponseService $response): JsonResponse
+    public function delete(int $id, ): JsonResponse
     {
         try {
             $technology = EnglishLevel::findOrFail($id);
 
             $technology->delete();
 
-            return $response->success('eliminado');
-        } catch (GeneralException $e) {
-            return $response->catch($e->getMessage());
+            return $this->response->success('eliminado');
+        } catch (\Exception $e) {
+            return $this->response->catch($e->getMessage(), 500);
         }
     }
 }

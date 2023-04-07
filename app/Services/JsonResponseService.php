@@ -23,19 +23,12 @@ class JsonResponseService
         return response()->json(['error' => "El {$type} es incorrecto o no existe, vuelve a intentarlo"]);
 
     }
-    public function errorResponse(string $message, int $code):  JsonResponse
+    public function catch(string $message, int $code):  JsonResponse
     {
         Log::error('Ocurrió un error: ' . $message);
         return response()->json(['error' => 'Hubo un error inesperado'], $code);
     }
 
-
-    public function catch(string $error): JsonResponse
-    {
-        return response()->json([
-            'error' => $error
-        ], Response::HTTP_INTERNAL_SERVER_ERROR);
-    }
 
     public function authSucces(string $type = null, $token = null, $email = null): JsonResponse
     {

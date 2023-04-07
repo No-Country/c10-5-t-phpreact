@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Exception;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -11,7 +10,6 @@ use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Jobs\RegisterInstructionsJob;
-use App\Services\JsonResponseService;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Jobs\ResetPasswordInstructionsJob;
 use App\Http\Requests\Auth\FormUserRequest;
@@ -26,13 +24,12 @@ class AuthController extends Controller
      * se pasan los datos del posible usuario a usuario
      *
      * @param FormUserRequest $request
-     * @param JsonResponseService $response
      * @return JsonResponse
      * 
      * @throws ModelNotFoundException si el usuario no es encontrado por su id
      * @throws Exception si ocurre un error inesperado
      */
-    public function FormUser(FormUserRequest $request, JsonResponseService $response): JsonResponse
+    public function FormUser(FormUserRequest $request): JsonResponse
     {
         try {
             $formRegisterId = $request->input('form_register_id');
@@ -45,11 +42,11 @@ class AuthController extends Controller
 
             RegisterInstructionsJob::dispatch($user);
 
-            return $response->authSucces('creado');
+            return $this->response->authSucces('creado');
         } catch (ModelNotFoundException $e) {
-            return $response->ModelError($e->getMessage(), "id formRegister");
+            return $this->response->ModelError($e->getMessage(), "id formRegister");
         } catch (\Exception $e) {
-            return $response->errorResponse($e->getMessage(), 500);
+            return $this->response->catch($e->getMessage(), 500);
         }
     }
      /**
@@ -94,13 +91,13 @@ class AuthController extends Controller
      * se retorta el email del ususario para que pueda agregar una contraseña
      *
      * @param Request $request
-     * @param JsonResponseService $response
+     * @param 
      * @return JsonResponse
      * 
      * @throws ModelNotFoundException si el usuario no es encontrado por su remember_token
      * @throws Exception si ocurre un error inesperado
      */
-    public function registerGet(Request $request, JsonResponseService $response): JsonResponse
+    public function registerGet(Request $request): JsonResponse
     {
         try {
             $token = $request->input('token');
@@ -109,25 +106,25 @@ class AuthController extends Controller
 
             $email = $user->email;
 
-            return $response->authSucces($email);
+            return $this->response->authSucces($email);
         } catch (ModelNotFoundException $e) {
-            return $response->ModelError($e->getMessage(), "token");
+            return $this->response->ModelError($e->getMessage(), "token");
         } catch (\Exception $e) {
-            return $response->errorResponse($e->getMessage(), 500);
+            return $this->response->catch($e->getMessage(), 500);
         }
     }
     /**
      * se guarda la contraseña del usuario en la base de datos
      *
      * @param RegisterRequest $request
-     * @param JsonResponseService $response
+     * @param 
      * @return JsonResponse
      *
      * @throws ModelNotFoundException si el usuario no es encontrado por su remember_token
      * @throws Exception si ocurre un error inesperado
      */
     
-    public function registerPost(RegisterRequest $request, JsonResponseService $response): JsonResponse
+    public function registerPost(RegisterRequest $request): JsonResponse
     {
         try {
             $token = $request->input('token');
@@ -139,11 +136,11 @@ class AuthController extends Controller
             $user->email_verified_at = now();
             $user->save();
 
-            return $response->authSucces('registrado');
+            return $this->response->authSucces('registrado');
         } catch (ModelNotFoundException $e) {
-            return $response->ModelError($e->getMessage(), "token");
+            return $this->response->ModelError($e->getMessage(), "token");
         } catch (\Exception $e) {
-            return $response->errorResponse($e->getMessage(), 500);
+            return $this->response->catch($e->getMessage(), 500);
         }
     }
 
@@ -151,12 +148,12 @@ class AuthController extends Controller
      * login del usuario
      *
      * @param LoginRequest $request
-     * @param JsonResponseService $response
+     * @param 
      * @return JsonResponse
      *
      * @throws Exception si ocurre un error inesperado
      */
-    public function login(LoginRequest $request, JsonResponseService $response): JsonResponse
+    public function login(LoginRequest $request): JsonResponse
     {
         try {
             $email = $request->input('email');
@@ -170,22 +167,22 @@ class AuthController extends Controller
 
             $token = $user->createToken('auth_token')->plainTextToken;
 
-            return $response->authSucces('secion iniciada', $token);
+            return $this->response->authSucces('secion iniciada', $token);
         } catch (\Exception $e) {
-            return $response->errorResponse($e->getMessage(), 500);
+            return $this->response->catch($e->getMessage(), 500);
         }
     }
     /**
      * cambia la contraseña del usuario
      *
      * @param ForgetPasswordRequest $request
-     * @param JsonResponseService $response
+     * @param 
      * @return JsonResponse
      * 
      * @throws ModelNotFoundException si el usuario no es encontrado por su email
      * @throws Exception si ocurre un error inesperado
      */
-    public function forgetPassword(ForgetPasswordRequest $request, JsonResponseService $response): JsonResponse
+    public function forgetPassword(ForgetPasswordRequest $request): JsonResponse
     {
         try {
             $email = $request->input('email');
@@ -200,22 +197,22 @@ class AuthController extends Controller
 
             return response()->json(['message' => 'revisa tu email para poder cambiar tu contraseña']);
         } catch (ModelNotFoundException $e) {
-            return $response->ModelError($e->getMessage(), "email");
+            return $this->response->ModelError($e->getMessage(), "email");
         } catch (\Exception $e) {
-            return $response->errorResponse($e->getMessage(), 500);
+            return $this->response->catch($e->getMessage(), 500);
         }
     }
     /**
      * Se recibe el token correcto para poder cambiar el token
      *
      * @param ResetPasswordRequest $request
-     * @param JsonResponseService $response
+     * @param 
      * @return JsonResponse
      * 
      * @throws ModelNotFoundException si el usuario no es encontrado por su token
      * @throws Exception si ocurre un error inesperado
      */
-    public function resetPassword(ResetPasswordRequest $request, JsonResponseService $response): JsonResponse
+    public function resetPassword(ResetPasswordRequest $request, ): JsonResponse
     {
         try {
             $token = $request->input('token');
@@ -234,22 +231,22 @@ class AuthController extends Controller
 
             $user->save();
 
-            return $response->authSucces('contraseña cambiada');
+            return $this->response->authSucces('contraseña cambiada');
         } catch (ModelNotFoundException $e) {
-            return $response->ModelError($e->getMessage(), "token");
+            return $this->response->ModelError($e->getMessage(), "token");
         } catch (\Exception $e) {
-            return $response->errorResponse($e->getMessage(), 500);
+            return $this->response->catch($e->getMessage(), 500);
         }
     }
     
     /** Se recibe el token correcto para poder cambiar el token
      *
-     * @param JsonResponseService $response
+     * @param 
      * @return JsonResponse
      * 
      * @throws Exception si ocurre un error inesperado
      */
-    public function userProfile(JsonResponseService $response): JsonResponse
+    public function userProfile(): JsonResponse
     {
         try {
             return response()->json([
@@ -257,16 +254,16 @@ class AuthController extends Controller
                 'data' => auth()->user()
             ]);
         } catch (\Exception $e) {
-            return $response->errorResponse($e->getMessage(), 500);
+            return $this->response->catch($e->getMessage(), 500);
         }
     }
-    public function logout(JsonResponseService $response): JsonResponse
+    public function logout(): JsonResponse
     {
         try {
             auth()->user()->tokens()->delete();
-            return $response->authSucces('secion cerrada');
+            return $this->response->authSucces('secion cerrada');
         } catch (\Exception $e) {
-            return $response->errorResponse($e->getMessage(), 500);
+            return $this->response->catch($e->getMessage(), 500);
         }
     }
 }
