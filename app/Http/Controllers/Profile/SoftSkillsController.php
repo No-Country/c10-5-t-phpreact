@@ -11,56 +11,53 @@ use App\Http\Resources\Profile\SoftSkillCollection;
 
 class SoftSkillsController extends Controller
 {
-    /**
-     * Crea un nuevo registro en database
-     * @param SoftSkillRequest $request
-     * @param 
-     * @return JsonResponse
-     */
-    public function store(SoftSkillRequest $request, ): JsonResponse {
-            return $this->response->success('creado');
+    public function index(): JsonResponse|SoftSkillCollection
+    {
+        try {
+            $technologies = SoftSkill::select('id', 'name', 'created_at')->get();
+
+            return SoftSkillCollection::make($technologies);
         } catch (\Exception $e) {
-            return $this->response->catch($e->getMessage(), 500);
+            return $this->response->catch($e->getMessage());
         }
     }
 
-    /**
-     * Actualiza el registro en database segun su id
-     *
-     * @param SoftSkillRequest $request
-     * @param integer $id
-     * @param 
-     * @return JsonResponse
-     */
-    public function update(SoftSkillRequest $request, int $id, ): JsonResponse
+    public function store(SoftSkillRequest $request): JsonResponse
+    {
+        try {
+            $softSkill = SoftSkill::create($request->validated());
+
+            $softSkill = new SoftSkillResource($softSkill);
+
+            return $this->response->success('creado', $softSkill);
+        } catch (\Exception $e) {
+            return $this->response->catch($e->getMessage());
+        }
+    }
+
+    public function update(SoftSkillRequest $request, int $id): JsonResponse
     {
         try {
             $softSkill = SoftSkill::findOrFail($id);
 
             $softSkill->update($request->validated());
 
-            return $this->response->success('actualizado');
+            $softSkill = new SoftSkillResource($softSkill);
+
+            return $this->response->success('actualizado', $softSkill);
         } catch (\Exception $e) {
-            return $this->response->catch($e->getMessage(), 500);
+            return $this->response->catch($e->getMessage());
         }
     }
 
-    /**
-     * Elimina un registro en database segun su id
-     *
-     * @param integer $id
-     * @param 
-     * @return JsonResponse
-     */
-    public function delete(int $id, ): JsonResponse
+    public function destroy(int $id): JsonResponse
     {
         try {
             SoftSkill::findOrFail($id)->delete();
 
-            $softSkill->delete();
-
             return $this->response->success('eliminado');
         } catch (\Exception $e) {
-            return $this->response->catch($e->getMessage(), 500);
+            return $this->response->catch($e->getMessage());
         }
+    }
 }

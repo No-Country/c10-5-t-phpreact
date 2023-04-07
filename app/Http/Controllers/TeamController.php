@@ -11,16 +11,15 @@ use App\Http\Resources\TeamCollection;
 
 class TeamController extends Controller
 {
-   /**
-     * retorna los teams
-     *
-     * @param Team $team
-     * @param JsonResponseService 
-     * @return  TeamCollection|JsonResponse
-     */
-    public function index(): TeamCollection|JsonResponse 
-    {           
+    public function index(): TeamCollection|JsonResponse
+    {
+        try {
+            $technologies = Team::select('id', 'name', 'created_at')->get();
 
+            return TeamCollection::make($technologies);
+        } catch (\Exception $e) {
+            return $this->response->catch($e->getMessage());
+        }
     }
 
     public function show(int $id)

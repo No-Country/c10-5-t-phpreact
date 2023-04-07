@@ -21,12 +21,19 @@ class JsonResponseService
     public function ModelError(string $message, string $type): JsonResponse
     {
         Log::error('Ocurrió un error: ' . $message);
-        return response()->json(['error' => "El {$type} es incorrecto o no existe, vuelve a intentarlo"]);
+
+        return response()->json([
+            'error' => "El {$type} es incorrecto o no existe, vuelve a intentarlo"
+        ]);
     }
-    public function catch(string $message, int $code):  JsonResponse
+
+    public function catch(string $message): JsonResponse
     {
         Log::error('Ocurrió un error: ' . $message);
-        return response()->json(['error' => 'Hubo un error inesperado'], $code);
+
+        return response()->json([
+            'error' => 'Problema inesperado al procesar la solicitud.'
+        ], Response::HTTP_INTERNAL_SERVER_ERROR);
     }
 
     public function missingImage(): JsonResponse
