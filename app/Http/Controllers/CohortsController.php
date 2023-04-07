@@ -3,31 +3,71 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cohort;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\CohortRequest;
 use App\Http\Resources\CohortResource;
-use App\Http\Resources\CohortColletion;
+use App\Http\Resources\CohortCollection;
 
 class CohortsController extends Controller
 {
-    public function index(){
-        // se oculta los timestamps para no recibirlos en la respuesta json
-        $cohorts = Cohort::all()->makeHidden(['created_at', 'updated_at']);
-        return new CohortColletion($cohorts);
+    public function index()
+    {
+        try {
+            $cohorts = Cohort::select('id', 'name', 'created_at')->get();
+
+            return CohortCollection::make($cohorts);
+        } catch (\Exception $e) {
+            return $this->response->catch($e->getMessage());
+        }
     }
-    public function show(Cohort $cohort){
-        return new CohortResource($cohort);
+
+    public function show(int $id)
+    {
+        try {
+            $cohort = Cohort::findOrFail($id);
+
+            return new CohortResource($cohort);
+        } catch (\Exception $e) {
+            return $this->response->catch($e->getMessage());
+        }
     }
-    public function store(CohortRequest $request){
-        Cohort::create($request->validated());
-        return response()->json(['msg' =>'coherte creado']);
+
+    public function store(CohortRequest $request)
+    {
+        try {
+            $cohort = Cohort::create($request->validated());
+
+            $cohort = new CohortResource($cohort);
+
+            return $this->response->success('creado', $cohort);
+        } catch (\Exception $e) {
+            return $this->response->catch($e->getMessage());
+        }
     }
-    public function update(CohortRequest $request, Cohort $cohort){
-        $cohort->update($request->validated());
-        return response()->json(['msg' =>'coherte actualizado']);
+
+    public function update(CohortRequest $request, int $id)
+    {
+        try {
+            $cohort = Cohort::findOrFail($id);
+
+            $cohort->update($request->validated());
+
+            $cohort = new CohortResource($cohort);
+
+            return $this->response->success('actualizado', $cohort);
+        } catch (\Exception $e) {
+            return $this->response->catch($e->getMessage());
+        }
     }
-    public function destroy(Cohort $cohort){
-        $cohort->delete();
-        return response()->json(['msg' =>'coherte eliminado']);
+
+    public function destroy(int $id)
+    {
+        try {
+            Cohort::findOrFail($id)->delete();
+
+            return $this->response->success('eliminado');
+        } catch (\Exception $e) {
+            return $this->response->catch($e->getMessage());
+        }
     }
 }

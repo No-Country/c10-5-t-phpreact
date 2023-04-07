@@ -22,8 +22,8 @@ class CohortRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [    
-            "name" => ["required", "min:3"],
+        return [
+            "name" => 'required|max:60|string',
         ];
     }
 }

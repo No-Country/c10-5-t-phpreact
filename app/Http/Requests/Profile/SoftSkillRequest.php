@@ -22,8 +22,7 @@ class SoftSkillRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'string|required|max:60',
-            'level' => 'required|integer|between:1,10'
+            'name' => 'string|required|max:60'
         ];
     }
 }

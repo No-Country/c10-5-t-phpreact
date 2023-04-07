@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Profile;
 
 use Illuminate\Http\JsonResponse;
 use App\Models\Profile\Technology;
-use App\Exceptions\\Exception;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Profile\TechnologyRequest;
 use App\Http\Resources\Profile\TechnologyResource;
@@ -47,7 +46,7 @@ class TechnologyController extends Controller
 
             $technology = new TechnologyResource($technology);
 
-            return $this->response->success('creado', 'technology', $technology);
+            return $this->response->success('creado', $technology);
         } catch (\Exception $e) {
             return $this->response->catch($e->getMessage());
         }
@@ -62,7 +61,6 @@ class TechnologyController extends Controller
      */
     public function update(TechnologyRequest $request, int $id): JsonResponse
     {
-
         try {
             $technology = Technology::findOrFail($id);
 
@@ -72,7 +70,11 @@ class TechnologyController extends Controller
 
             $technology = new TechnologyResource($technology);
 
+<<<<<<< HEAD
             return $this->response->success('actualizado', 'technology', $technology);
+=======
+            return $this->response->success('actualizado', $technology);
+>>>>>>> 025966563f1e8c6ccd6950684a273c3c7a44e68d
         } catch (\Exception $e) {
             return $this->response->catch($e->getMessage());
         }
@@ -84,7 +86,7 @@ class TechnologyController extends Controller
      * @param integer $id
      * @return JsonResponse
      */
-    public function delete(int $id): JsonResponse
+    public function destroy(int $id): JsonResponse
     {
         try {
             $technology = Technology::findOrFail($id);

@@ -6,21 +6,18 @@ use App\Models\Profile\SoftSkill;
 use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Profile\SoftSkillRequest;
+use App\Http\Resources\Profile\SoftSkillResource;
+use App\Http\Resources\Profile\SoftSkillCollection;
 
 class SoftSkillsController extends Controller
 {
     /**
      * Crea un nuevo registro en database
-     *
      * @param SoftSkillRequest $request
      * @param 
      * @return JsonResponse
      */
-    public function store(SoftSkillRequest $request, ): JsonResponse
-    {
-        try {
-            SoftSkill::create($request->validated());
-
+    public function store(SoftSkillRequest $request, ): JsonResponse {
             return $this->response->success('creado');
         } catch (\Exception $e) {
             return $this->response->catch($e->getMessage(), 500);
@@ -58,7 +55,7 @@ class SoftSkillsController extends Controller
     public function delete(int $id, ): JsonResponse
     {
         try {
-            $softSkill = SoftSkill::findOrFail($id);
+            SoftSkill::findOrFail($id)->delete();
 
             $softSkill->delete();
 
@@ -66,5 +63,4 @@ class SoftSkillsController extends Controller
         } catch (\Exception $e) {
             return $this->response->catch($e->getMessage(), 500);
         }
-    }
 }

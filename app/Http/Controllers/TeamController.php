@@ -2,17 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
 use App\Models\Team;
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 use App\Http\Requests\TeamRequest;
+use App\Http\Controllers\Controller;
 use App\Http\Resources\TeamResource;
-use App\Services\JsonResponseService;
 use App\Http\Resources\TeamCollection;
 
 class TeamController extends Controller
 {
+<<<<<<< HEAD
    /**
      * retorna los teams
      *
@@ -22,83 +20,55 @@ class TeamController extends Controller
      */
     public function index(): TeamCollection|JsonResponse
     {
-        try {
-            // se oculta los timestamps para no recibirlos en la respuesta json
-            $team = Team::all()->makeHidden(['created_at', 'updated_at']);
-            return new TeamCollection($team);
-        } catch (\Exception $e) {
-            return $this->response->catch($e->getMessage(), 500);
-        }
-    }
 
-    /**
-     * retorna un team
-     *
-     * @param Team $team
-     * @param 
-     * @return JsonResponse|TeamResource
-     */
-    public function show(Team $team): JsonResponse|TeamResource
+    public function show(int $id)
     {
         try {
+            $team = Team::findOrFail($id);
+
             return new TeamResource($team);
         } catch (\Exception $e) {
-            return $this->response->catch($e->getMessage(), 500);
+            return $this->response->catch($e->getMessage());
         }
     }
 
-    /**
-     * crear un team
-     *
-     * @param TeamRequest $request
-     * @param 
-     * @return JsonResponse
-     */
-    public function store(TeamRequest $request): JsonResponse
+    public function store(TeamRequest $request)
     {
         try {
-            Team::create($request->validated());
+            $team = Team::create($request->validated());
 
-            return $this->response->success('creado');
+            $team = new TeamResource($team);
+
+            return $this->response->success('creado', $team);
         } catch (\Exception $e) {
-            return $this->response->catch($e->getMessage(), 500);
+            return $this->response->catch($e->getMessage());
         }
     }
 
-    /**
-     * Actializar un team
-     *
-     * @param TeamRequest $request
-     * @param Team $team
-     * @param 
-     * @return JsonResponse
-     */
-    public function update(TeamRequest $request, Team $team, ): JsonResponse
+    public function update(TeamRequest $request, int $id)
     {
         try {
+            $team = Team::findOrFail($id);
+
             $team->update($request->validated());
 
-            return $this->response->success('actualizado');
+            $team = new TeamResource($team);
+
+            return $this->response->success('actualizado', $team);
         } catch (\Exception $e) {
-            return $this->response->catch($e->getMessage(), 500);
+            return $this->response->catch($e->getMessage());
         }
     }
 
-    /**
-     * delete un team
-     *
-     * @param Team $team
-     * @param 
-     * @return JsonResponse
-     */
-    public function destroy(Team $team, ): JsonResponse
+    public function destroy(int $id)
     {
         try {
-            $team->delete();
+            Team::findOrFail($id)->delete();
 
             return $this->response->success('eliminado');
         } catch (\Exception $e) {
-            return $this->response->catch($e->getMessage(), 500);
+            return $this->response->catch($e->getMessage());
+>>>>>>> 025966563f1e8c6ccd6950684a273c3c7a44e68d
         }
     }
 }
