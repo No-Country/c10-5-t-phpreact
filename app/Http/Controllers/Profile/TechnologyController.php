@@ -70,7 +70,7 @@ class TechnologyController extends Controller
 
             $technology = new TechnologyResource($technology);
 
-            return $this->response->success('actualizado', 'technology', $technology);
+            return $this->response->success('actualizado', $technology);
         } catch (\Exception $e) {
             return $this->response->catch($e->getMessage());
         }
