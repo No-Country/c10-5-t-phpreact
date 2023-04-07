@@ -34,8 +34,9 @@ Route::group([], function () {
     Route::apiResource('/teams', TeamController::class);
 });
 
-Route::group([], function () {
-    Route::apiResource('/cohorts', CohortsController::class);
+Route::controller(CohortController::class)->group(function () {
+    Route::get('/cohorts', 'index')->name('cohort.index');
+    Route::get('/cohorts/{id}', 'index')->name('cohort.show');
 });
 
 Route::controller(SoftSkillsController::class)->group(function () {

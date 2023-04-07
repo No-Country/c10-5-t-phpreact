@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class CohortResource extends JsonResource
@@ -15,10 +16,15 @@ class CohortResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'type' => 'cohort',
             'id' => $this->id,
-            'name' => $this->name,
-            //para retornar rutas json
-            // 'name' => route('cohorts.show', $this->name),
+            'attributes' => [
+                'name' => $this->name,
+                'created_at' => Carbon::parse($this->created_at)->format('d/m/Y'),
+            ],
+            'links' => [
+                'self' => route('cohort.show', $this->id)
+            ]
         ];
     }
 }
