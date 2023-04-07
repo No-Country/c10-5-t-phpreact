@@ -19,7 +19,7 @@ class TeamResource extends JsonResource
                 'created_at' => Carbon::parse($this->created_at)->format('d/m/Y'),
             ],
             'links' => [
-                'self' => route('team.show', $this->resource)
+                'self' => route('teams.show', $this->resource)
             ]
         ];
     }

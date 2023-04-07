@@ -17,7 +17,7 @@ class CohortCollection extends JsonResource
         return [
             'data' => $this->resource,
             'links' => [
-                'self' => route('cohort.index')
+                'self' => route('cohorts.index')
             ]
         ];
     }

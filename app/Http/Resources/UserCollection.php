@@ -17,7 +17,7 @@ class UserColletion extends JsonResource
         return [
             'data' => $this->resource,
             'links' => [
-                'self' => route('user.index')
+                'self' => route('users.index')
             ]
         ];
     }

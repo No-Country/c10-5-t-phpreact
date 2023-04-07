@@ -23,7 +23,7 @@ class CohortResource extends JsonResource
                 'created_at' => Carbon::parse($this->created_at)->format('d/m/Y'),
             ],
             'links' => [
-                'self' => route('cohort.show', $this->id)
+                'self' => route('cohorts.show', $this->id)
             ]
         ];
     }

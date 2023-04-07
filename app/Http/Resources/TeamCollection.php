@@ -12,7 +12,7 @@ class TeamCollection extends JsonResource
         return [
             'data' => $this->resource,
             'links' => [
-                'self' => route('team.index')
+                'self' => route('teams.index')
             ]
         ];
     }

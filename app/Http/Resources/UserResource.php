@@ -25,7 +25,7 @@ class UserResource extends JsonResource
                 'created_at' => Carbon::parse($this->created_at)->format('d/m/Y'),
             ],
             'links' => [
-                'self' => route('user.show', $this->resource)
+                'self' => route('users.show', $this->resource)
             ]
         ];
     }
