@@ -3,9 +3,9 @@
 namespace App\Models\Form;
 
 use App\Models\Form\FormRegister;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class RoleStack extends Model
 {
@@ -15,8 +15,7 @@ class RoleStack extends Model
 
     protected $fillable = ['name'];
 
-    
-    public function formRegister()
+    public function formRegister(): HasOne
     {
         return $this->hasOne(FormRegister::class);
     }

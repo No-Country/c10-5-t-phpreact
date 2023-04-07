@@ -17,7 +17,6 @@ return new class extends Migration
             $table->integer('simulations_quantity');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('profile_data_id');
-            $table->unsignedBigInteger('calification_id');
 
             $table->foreign('user_id')
                 ->references('id')
@@ -26,11 +25,6 @@ return new class extends Migration
             $table->foreign('profile_data_id')
                 ->references('id')
                 ->on('profile_data')
-                ->onDelete('cascade');
-
-            $table->foreign('calification_id')
-                ->references('id')
-                ->on('califications')
                 ->onDelete('cascade');
 
             $table->timestamps();

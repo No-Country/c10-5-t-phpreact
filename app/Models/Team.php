@@ -8,15 +8,15 @@ use App\Models\Cohort;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Team extends Model
 {
     use HasFactory;
-    protected $fillable = ['id', 'name', 'active'];
 
+    protected $fillable = ['name', 'active'];
 
-    public function cohorts()
+    public function cohorts(): BelongsToMany
     {
         return $this->belongsToMany(Cohort::class, 'cohort_team');
     }
@@ -26,7 +26,3 @@ class Team extends Model
         return $this->belongsToMany(WeekResults::class, 'team_week');
     }
 }
-
-   
-
-

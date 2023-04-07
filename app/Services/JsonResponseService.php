@@ -8,11 +8,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 class JsonResponseService
 {
-    public function success(string $action): JsonResponse
+    public function success(string $action, string $key = null, mixed $value = null): JsonResponse
     {
-        return response()->json([
-            'msg' => "Se ha {$action} satisfactoriamente."
-        ], Response::HTTP_OK);
+        $data = [
+            'msg' => "Se ha {$action} satisfactoriamente.",
+            ($key === null && $value === null) ?: $key => $value,
+        ];
+
+        return response()->json(array_filter($data), Response::HTTP_OK);
     }
     public function ModelError(string $message, string $type):  JsonResponse
     {
@@ -52,5 +55,11 @@ class JsonResponseService
         return response()->json([
             'msg' => "{$type} satisfactoriamente"
         ], Response::HTTP_OK);
+    }
+    public function missingImage(): JsonResponse
+    {
+        return response()->json([
+            'error' => 'Falta una imagen.'
+        ], Response::HTTP_BAD_REQUEST);
     }
 }

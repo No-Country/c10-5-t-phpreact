@@ -2,10 +2,11 @@
 
 namespace App\Models\Form;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use App\Models\Form\FormRegister;
 use App\Models\Profile\ProfileData;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Country extends Model
 {
@@ -13,13 +14,13 @@ class Country extends Model
 
     protected $fillable = ['name'];
 
-    public function formRegister()
+    public function formRegister(): HasMany
     {
-        return $this->hasOne(FormRegister::class);
+        return $this->hasMany(FormRegister::class);
     }
 
-    public function profileData()
+    public function profileData(): HasMany
     {
-        return $this->hasOne(ProfileData::class);
-    }   
+        return $this->hasMany(ProfileData::class);
+    }
 }

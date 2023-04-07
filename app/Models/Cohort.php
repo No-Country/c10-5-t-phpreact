@@ -5,9 +5,8 @@ namespace App\Models;
 use App\Models\User;
 use App\Models\Team;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Cohort extends Model
 {
@@ -15,12 +14,12 @@ class Cohort extends Model
 
     protected $fillable = ['name'];
 
-    public function users()
+    public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'cohort_user');
     }
 
-    public function teams()
+    public function teams(): BelongsToMany
     {
         return $this->belongsToMany(Team::class, 'cohort_team');
     }

@@ -13,9 +13,20 @@ return new class extends Migration
     {
         Schema::create('califications', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('calified_profile_id');
-            $table->unsignedBigInteger('califying_profile_id');
-            $table->decimal('calification', 2, 2);
+            $table->unsignedBigInteger('profile_id');
+            $table->unsignedBigInteger('califiying_profile_id');
+            $table->integer('calification');
+
+            $table->foreign('profile_id')
+                ->references('id')
+                ->on('profiles')
+                ->onDelete('cascade');
+
+            $table->foreign('califiying_profile_id')
+                ->references('id')
+                ->on('profiles')
+                ->onDelete('cascade');
+
             $table->timestamps();
         });
     }
