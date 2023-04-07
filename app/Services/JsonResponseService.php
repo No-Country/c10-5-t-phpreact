@@ -8,27 +8,27 @@ use Symfony\Component\HttpFoundation\Response;
 
 class JsonResponseService
 {
-    public function success(string $action, string $key = null, mixed $value = null): JsonResponse
+    public function success(string $action, mixed $value = null): JsonResponse
     {
         $data = [
             'msg' => "Se ha {$action} satisfactoriamente.",
-            ($key === null && $value === null) ?: $key => $value,
+            ($value === null) ?: 'data' => $value,
         ];
 
         return response()->json(array_filter($data), Response::HTTP_OK);
     }
-    public function ModelError(string $message, string $type):  JsonResponse
+
+    public function ModelError(string $message, string $type): JsonResponse
     {
         Log::error('Ocurrió un error: ' . $message);
         return response()->json(['error' => "El {$type} es incorrecto o no existe, vuelve a intentarlo"]);
-
     }
-    public function errorResponse(string $message, int $code):  JsonResponse
+
+    public function errorResponse(string $message, int $code): JsonResponse
     {
         Log::error('Ocurrió un error: ' . $message);
         return response()->json(['error' => 'Hubo un error inesperado'], $code);
     }
-
 
     public function catch(string $error): JsonResponse
     {
@@ -56,6 +56,7 @@ class JsonResponseService
             'msg' => "{$type} satisfactoriamente"
         ], Response::HTTP_OK);
     }
+
     public function missingImage(): JsonResponse
     {
         return response()->json([

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Profile;
 
 use Illuminate\Http\JsonResponse;
 use App\Models\Profile\Technology;
-use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Profile\TechnologyRequest;
 use App\Http\Resources\Profile\TechnologyResource;
@@ -23,7 +22,7 @@ class TechnologyController extends Controller
             $technologies = Technology::select('id', 'name', 'created_at')->get();
 
             return TechnologyCollection::make($technologies);
-        } catch (GeneralException $e) {
+        } catch (\Exception $e) {
             return $this->response->catch($e->getMessage());
         }
     }
@@ -47,8 +46,8 @@ class TechnologyController extends Controller
 
             $technology = new TechnologyResource($technology);
 
-            return $this->response->success('creado', 'technology', $technology);
-        } catch (GeneralException $e) {
+            return $this->response->success('creado', $technology);
+        } catch (\Exception $e) {
             return $this->response->catch($e->getMessage());
         }
     }
@@ -62,7 +61,6 @@ class TechnologyController extends Controller
      */
     public function update(TechnologyRequest $request, int $id): JsonResponse
     {
-
         try {
             $technology = Technology::findOrFail($id);
 
@@ -72,8 +70,8 @@ class TechnologyController extends Controller
 
             $technology = new TechnologyResource($technology);
 
-            return $this->response->success('actualizado', 'technology', $technology);
-        } catch (GeneralException $e) {
+            return $this->response->success('actualizado', $technology);
+        } catch (\Exception $e) {
             return $this->response->catch($e->getMessage());
         }
     }
@@ -84,7 +82,7 @@ class TechnologyController extends Controller
      * @param integer $id
      * @return JsonResponse
      */
-    public function delete(int $id): JsonResponse
+    public function destroy(int $id): JsonResponse
     {
         try {
             $technology = Technology::findOrFail($id);
@@ -94,7 +92,7 @@ class TechnologyController extends Controller
             $technology->delete();
 
             return $this->response->success('eliminado');
-        } catch (GeneralException $e) {
+        } catch (\Exception $e) {
             return $this->response->catch($e->getMessage());
         }
     }
