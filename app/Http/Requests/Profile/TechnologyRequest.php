@@ -22,7 +22,8 @@ class TechnologyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'string|required|max:60'
+            'name' => 'string|required|max:60',
+            'image' => 'sometimes|file|mimes:jpeg,png,jpg,gif,webp|max:2048'
         ];
     }
 }

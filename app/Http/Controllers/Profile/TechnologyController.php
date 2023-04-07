@@ -2,30 +2,56 @@
 
 namespace App\Http\Controllers\Profile;
 
+use Illuminate\Http\JsonResponse;
 use App\Models\Profile\Technology;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
-use App\Services\JsonResponseService;
 use App\Http\Requests\Profile\TechnologyRequest;
-use Illuminate\Http\JsonResponse as JsonResponse;
+use App\Http\Resources\Profile\TechnologyCollection;
 
 class TechnologyController extends Controller
 {
     /**
+     * Obtener collection de Technologies
+     *
+     * @return JsonResponse|TechnologyCollection
+     */
+    public function index(): JsonResponse|TechnologyCollection
+    {
+        try {
+            $technologies = Technology::select('id', 'name', 'created_at')->get();
+
+            return TechnologyCollection::make($technologies);
+        } catch (GeneralException $e) {
+            return $this->response->catch($e->getMessage());
+        }
+    }
+
+    /**
      * Crea un nuevo registro en database
      *
      * @param TechnologyRequest $request
-     * @param JsonResponseService $response
      * @return JsonResponse
      */
-    public function store(TechnologyRequest $request, JsonResponseService $response): JsonResponse
+    public function store(TechnologyRequest $request): JsonResponse
     {
         try {
-            Technology::create($request->validated());
+            if (!$request->hasFile('image')) {
+                return $this->response->missingImage();
+            }
 
-            return $response->success('creado');
+            $technology = Technology::create($request->validated());
+
+            $this->image->create($request, 'technologies', $technology);
+
+            $technology = $technology
+                ->with(['images' => fn ($q) => $q->select('url', 'imageable_id')])
+                ->findOrFail($technology->id)
+                ->makeHidden(['created_at', 'updated_at']);
+
+            return $this->response->success('creado', 'technology', $technology);
         } catch (GeneralException $e) {
-            return $response->catch($e->getMessage());
+            return $this->response->catch($e->getMessage());
         }
     }
 
@@ -34,19 +60,26 @@ class TechnologyController extends Controller
      *
      * @param TechnologyRequest $request
      * @param integer $id
-     * @param JsonResponseService $response
      * @return JsonResponse
      */
-    public function update(TechnologyRequest $request, int $id, JsonResponseService $response): JsonResponse
+    public function update(TechnologyRequest $request, int $id): JsonResponse
     {
+
         try {
             $technology = Technology::findOrFail($id);
 
+            $this->image->update($request, 'technologies', $technology);
+
             $technology->update($request->validated());
 
-            return $response->success('actualizado');
+            $technology = $technology
+                ->with(['images' => fn ($q) => $q->select('url', 'imageable_id')])
+                ->findOrFail($technology->id)
+                ->makeHidden(['created_at', 'updated_at']);
+
+            return $this->response->success('actualizado', 'technology', $technology);
         } catch (GeneralException $e) {
-            return $response->catch($e->getMessage());
+            return $this->response->catch($e->getMessage());
         }
     }
 
@@ -54,19 +87,20 @@ class TechnologyController extends Controller
      * Elimina un registro en database segun su id
      *
      * @param integer $id
-     * @param JsonResponseService $response
      * @return JsonResponse
      */
-    public function delete(int $id, JsonResponseService $response): JsonResponse
+    public function delete(int $id): JsonResponse
     {
         try {
             $technology = Technology::findOrFail($id);
 
+            $this->image->delete($technology);
+
             $technology->delete();
 
-            return $response->success('eliminado');
+            return $this->response->success('eliminado');
         } catch (GeneralException $e) {
-            return $response->catch($e->getMessage());
+            return $this->response->catch($e->getMessage());
         }
     }
 }

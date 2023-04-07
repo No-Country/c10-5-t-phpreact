@@ -4,8 +4,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CohortsController;
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\Auth\FormRegisterController;
 use App\Http\Controllers\Team\TeamController;
+use App\Http\Controllers\Auth\FormRegisterController;
+use App\Http\Controllers\Profile\SoftSkillsController;
+use App\Http\Controllers\Profile\TechnologyController;
+use App\Http\Controllers\Profile\EnglishLevelController;
 
 
 Route::controller(AuthController::class)->group(function () {
@@ -19,7 +22,7 @@ Route::controller(AuthController::class)->group(function () {
         Route::post('resetPassword', 'resetPassword');
     });
 });
- 
+
 Route::controller(FormRegisterController::class)->group(function () {
     Route::get('forms', 'index');
     Route::post('forms', 'formRegister');
@@ -42,8 +45,9 @@ Route::controller(SoftSkillsController::class)->group(function () {
 });
 
 Route::controller(TechnologyController::class)->group(function () {
-    Route::post('/technology', 'store')->name('technology.store');
-    Route::put('/technology/{id}', 'update')->name('technology.update');
+    Route::get('/technologies', 'index')->name('technology.index');
+    Route::post('/technologies', 'store')->name('technology.store');
+    Route::post('/technology/{id}', 'update')->name('technology.update');
     Route::delete('/technology/{id}', 'delete')->name('technology.delete');
 });
 
@@ -51,8 +55,4 @@ Route::controller(EnglishLevelController::class)->group(function () {
     Route::post('/english-level', 'store')->name('englishLevel.store');
     Route::put('/english-level/{id}', 'update')->name('englishLevel.update');
     Route::delete('/english-level/{id}', 'delete')->name('englishLevel.delete');
-});
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
 });
