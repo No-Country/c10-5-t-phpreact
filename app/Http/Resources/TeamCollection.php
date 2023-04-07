@@ -3,9 +3,9 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class TeamCollection extends JsonResource
+class TeamCollection extends ResourceCollection
 {
     public function toArray(Request $request): array
     {
