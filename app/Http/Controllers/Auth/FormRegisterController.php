@@ -17,7 +17,7 @@ use App\Jobs\WelcomeInstructionsJob;
 class FormRegisterController extends Controller
 {
     public function index()
-    {
+    {   
         $horary = Horary::select('id', 'name')->get();
         $country = Country::select('id', 'name')->get();
         $roleStack = RoleStack::select('id', 'name')->get();
