@@ -37,7 +37,7 @@ class JsonResponseService
         ], Response::HTTP_INTERNAL_SERVER_ERROR);
     }
 
-    public function authSucces(string $type, $token = null, $email = null): JsonResponse
+    public function authSucces(string $type = null, $token = null, $email = null): JsonResponse
     {
         if ($token) {
             return response()->json([

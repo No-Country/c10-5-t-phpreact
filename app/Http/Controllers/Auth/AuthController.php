@@ -16,7 +16,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Jobs\ResetPasswordInstructionsJob;
 use App\Http\Requests\Auth\FormUserRequest;
 use App\Http\Requests\Auth\RegisterRequest;
-use App\Http\Requests\Auth\ResetPassword;
+use App\Http\Requests\Auth\ResetPasswordRequest;
 use App\Http\Requests\Auth\ForgetPasswordRequest;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -77,7 +77,7 @@ class AuthController extends Controller
      *
      * @param object $formData Datos del usuario a crear
      * @param string $rememberToken Token de recordar contraseña
-     * @return \App\Models\User Usuario creado
+     * @return User Usuario creado
      */
     private function createUser(object $formData, string $rememberToken)
     {
@@ -109,7 +109,7 @@ class AuthController extends Controller
 
             $email = $user->email;
 
-            return response()->json(["email" => $email]);
+            return $response->authSucces($email);
         } catch (ModelNotFoundException $e) {
             return $response->ModelError($e->getMessage(), "token");
         } catch (\Exception $e) {
@@ -208,14 +208,14 @@ class AuthController extends Controller
     /**
      * Se recibe el token correcto para poder cambiar el token
      *
-     * @param CodeResetPassword $request
+     * @param ResetPasswordRequest $request
      * @param JsonResponseService $response
      * @return JsonResponse
      * 
      * @throws ModelNotFoundException si el usuario no es encontrado por su token
      * @throws Exception si ocurre un error inesperado
      */
-    public function resetPassword(ResetPassword $request, JsonResponseService $response): JsonResponse
+    public function resetPassword(ResetPasswordRequest $request, JsonResponseService $response): JsonResponse
     {
         try {
             $token = $request->input('token');
