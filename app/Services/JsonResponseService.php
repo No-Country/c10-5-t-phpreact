@@ -29,25 +29,6 @@ class JsonResponseService
         return response()->json(['error' => 'Hubo un error inesperado'], $code);
     }
 
-    public function catch(string $error): JsonResponse
-    {
-        return response()->json([
-                'msg' => "{$type} satisfactoriamente",
-                'access_token' => $token
-            ], Response::HTTP_OK);
-        }
-
-        if ($email) {
-            return response()->json([
-                'email_user' => $email
-            ], Response::HTTP_OK);
-        }
-
-        return response()->json([
-            'msg' => "{$type} satisfactoriamente"
-        ], Response::HTTP_OK);
-    }
-
     public function missingImage(): JsonResponse
     {
         return response()->json([

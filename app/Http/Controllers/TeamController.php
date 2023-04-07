@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Team;
+use Illuminate\Http\JsonResponse;
 use App\Http\Requests\TeamRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TeamResource;
@@ -10,7 +11,6 @@ use App\Http\Resources\TeamCollection;
 
 class TeamController extends Controller
 {
-<<<<<<< HEAD
    /**
      * retorna los teams
      *
@@ -18,8 +18,10 @@ class TeamController extends Controller
      * @param JsonResponseService 
      * @return  TeamCollection|JsonResponse
      */
-    public function index(): TeamCollection|JsonResponse
-    {
+    public function index(): TeamCollection|JsonResponse 
+    {           
+
+    }
 
     public function show(int $id)
     {
@@ -68,7 +70,6 @@ class TeamController extends Controller
             return $this->response->success('eliminado');
         } catch (\Exception $e) {
             return $this->response->catch($e->getMessage());
->>>>>>> 025966563f1e8c6ccd6950684a273c3c7a44e68d
         }
     }
 }
