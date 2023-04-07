@@ -7,6 +7,7 @@ use App\Models\Profile\Technology;
 use App\Exceptions\GeneralException;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Profile\TechnologyRequest;
+use App\Http\Resources\Profile\TechnologyResource;
 use App\Http\Resources\Profile\TechnologyCollection;
 
 class TechnologyController extends Controller
@@ -44,10 +45,7 @@ class TechnologyController extends Controller
 
             $this->image->create($request, 'technologies', $technology);
 
-            $technology = $technology
-                ->with(['images' => fn ($q) => $q->select('url', 'imageable_id')])
-                ->findOrFail($technology->id)
-                ->makeHidden(['created_at', 'updated_at']);
+            $technology = new TechnologyResource($technology);
 
             return $this->response->success('creado', 'technology', $technology);
         } catch (GeneralException $e) {
@@ -72,10 +70,7 @@ class TechnologyController extends Controller
 
             $technology->update($request->validated());
 
-            $technology = $technology
-                ->with(['images' => fn ($q) => $q->select('url', 'imageable_id')])
-                ->findOrFail($technology->id)
-                ->makeHidden(['created_at', 'updated_at']);
+            $technology = new TechnologyResource($technology);
 
             return $this->response->success('actualizado', 'technology', $technology);
         } catch (GeneralException $e) {
