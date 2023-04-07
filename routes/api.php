@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CohortsController;
 use App\Http\Controllers\Auth\AuthController;
-use App\Http\Controllers\Team\TeamController;
+use App\Http\Controllers\TeamController;
 use App\Http\Controllers\Auth\FormRegisterController;
 use App\Http\Controllers\Profile\SoftSkillsController;
 use App\Http\Controllers\Profile\TechnologyController;
@@ -30,30 +30,11 @@ Route::controller(FormRegisterController::class)->group(function () {
     Route::get('/forms/confirm/{token}', 'confirmRegister')->name('confirmRegister');
 });
 
-Route::group([], function () {
-    Route::apiResource('/teams', TeamController::class);
-});
 
-Route::controller(CohortController::class)->group(function () {
-    Route::get('/cohorts', 'index')->name('cohort.index');
-    Route::get('/cohorts/{id}', 'index')->name('cohort.show');
-});
+Route::apiResource('teams', TeamController::class)->names('teams');
 
-Route::controller(SoftSkillsController::class)->group(function () {
-    Route::post('/soft-skill', 'store')->name('softSkill.store');
-    Route::put('/soft-skill/{id}', 'update')->name('softSkill.update');
-    Route::delete('/soft-skill/{id}', 'delete')->name('softSkill.delete');
-});
+Route::apiResource('cohorts', CohortsController::class)->names('cohorts');
 
-Route::controller(TechnologyController::class)->group(function () {
-    Route::get('/technologies', 'index')->name('technology.index');
-    Route::post('/technologies', 'store')->name('technology.store');
-    Route::post('/technology/{id}', 'update')->name('technology.update');
-    Route::delete('/technology/{id}', 'delete')->name('technology.delete');
-});
+Route::apiResource('soft-skill', SoftSkillsController::class)->names('softSkills');
 
-Route::controller(EnglishLevelController::class)->group(function () {
-    Route::post('/english-level', 'store')->name('englishLevel.store');
-    Route::put('/english-level/{id}', 'update')->name('englishLevel.update');
-    Route::delete('/english-level/{id}', 'delete')->name('englishLevel.delete');
-});
+Route::apiResource('technologies', TechnologyController::class)->except(['show'])->names('technology');
