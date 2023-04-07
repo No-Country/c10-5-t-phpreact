@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('soft_skills', function (Blueprint $table) {
             $table->id();
             $table->string('name', 60);
-            $table->integer('level');
             $table->timestamps();
         });
     }

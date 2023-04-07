@@ -11,7 +11,7 @@ class SoftSkill extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'level'];
+    protected $fillable = ['name'];
 
     public function profiles(): BelongsToMany
     {
