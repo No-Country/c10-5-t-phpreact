@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Team;
 use App\Models\Cohort;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CohortRequest;
 use App\Http\Resources\CohortResource;
 use App\Http\Resources\CohortCollection;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class CohortsController extends Controller
-{
+{   
     public function index()
-    {
+    {   
         try {
             $cohorts = Cohort::select('id', 'name', 'created_at')->get();
 
@@ -27,7 +29,7 @@ class CohortsController extends Controller
             $cohort = Cohort::findOrFail($id);
 
             return new CohortResource($cohort);
-        } catch (\Exception $e) {
+        }  catch (\Exception $e) {
             return $this->response->catch($e->getMessage());
         }
     }
@@ -66,6 +68,17 @@ class CohortsController extends Controller
             Cohort::findOrFail($id)->delete();
 
             return $this->response->success('eliminado');
+        } catch (\Exception $e) {
+            return $this->response->catch($e->getMessage());
+        }
+    }
+
+    public function getAllTeams(int $cohort_id)
+    {
+        try { 
+            $teams = Team::where('cohort_id', $cohort_id)->get();
+
+            return $this->response->success('buscado los teams', $teams);
         } catch (\Exception $e) {
             return $this->response->catch($e->getMessage());
         }

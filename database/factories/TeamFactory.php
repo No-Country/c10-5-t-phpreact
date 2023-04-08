@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Cohort;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -23,7 +24,8 @@ class TeamFactory extends Factory
         ];
 
         return [
-            'name' => fake()->unique()->randomElement($teams)
+            'name' => fake()->unique()->randomElement($teams),
+            'cohort_id' => Cohort::all()->random()->id,
         ];
     }
 }

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Profile\SoftSkillRequest;
 use App\Http\Resources\Profile\SoftSkillResource;
 use App\Http\Resources\Profile\SoftSkillCollection;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class SoftSkillsController extends Controller
 {
@@ -16,8 +17,8 @@ class SoftSkillsController extends Controller
         try {
             $technologies = SoftSkill::select('id', 'name', 'created_at')->get();
 
-            return SoftSkillCollection::make($technologies);
-        } catch (\Exception $e) {
+            return new SoftSkillCollection($technologies);
+        }  catch (\Exception $e) {
             return $this->response->catch($e->getMessage());
         }
     }
@@ -45,7 +46,7 @@ class SoftSkillsController extends Controller
             $softSkill = new SoftSkillResource($softSkill);
 
             return $this->response->success('actualizado', $softSkill);
-        } catch (\Exception $e) {
+        } catch (\Exception $e)  {
             return $this->response->catch($e->getMessage());
         }
     }

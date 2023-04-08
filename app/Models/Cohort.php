@@ -18,10 +18,4 @@ class Cohort extends Model
     {
         return $this->belongsToMany(User::class, 'cohort_user');
     }
-
-    public function teams(): BelongsToMany
-    {
-        return $this->belongsToMany(Team::class, 'cohort_team');
-    }
-
 }

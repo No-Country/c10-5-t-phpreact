@@ -16,12 +16,12 @@ class Team extends Model
 
     protected $fillable = ['name', 'active'];
 
-    public function cohorts(): BelongsToMany
+    public function cohorts(): BelongsTo
     {
-        return $this->belongsToMany(Cohort::class, 'cohort_team');
+        return $this->belongsTo(Cohort::class, 'cohort_id');
     }
 
-    public function weekResults()
+    public function weekResults() : BelongsToMany
     {
         return $this->belongsToMany(WeekResults::class, 'team_week');
     }

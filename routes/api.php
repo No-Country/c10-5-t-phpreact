@@ -9,6 +9,11 @@ use App\Http\Controllers\Profile\SoftSkillsController;
 use App\Http\Controllers\Profile\TechnologyController;
 
 
+// DB::listen(function($query){
+//     echo "<pre>{$query->sql}</pre>";
+// });
+
+
 Route::controller(AuthController::class)->group(function () {
     Route::post('/forms-user', 'FormUser');
     Route::get('/register', 'registerGet');
@@ -32,7 +37,10 @@ Route::apiResource('teams', TeamController::class)->names('teams');
 
 Route::apiResource('cohorts', CohortsController::class)->names('cohorts');
 
+Route::get('/cohorts/{cohortId}/teams', [CohortsController::class, 'getAllTeams'])->name('cohorts.getAllTeams');
+
 Route::apiResource('soft-skills', SoftSkillsController::class)->except(['show'])->names('softSkills');
 
 Route::apiResource('technologies', TechnologyController::class)->except(['show', 'update'])->names('technology');
 Route::post('technologies/{id}', [TechnologyController::class, 'update'])->name('technology.update');
+

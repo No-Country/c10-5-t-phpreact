@@ -20,6 +20,7 @@ class CohortResource extends JsonResource
             'id' => $this->id,
             'attributes' => [
                 'name' => $this->name,
+                'active' => $this->active,
                 'created_at' => Carbon::parse($this->created_at)->format('d/m/Y'),
             ],
             'links' => [

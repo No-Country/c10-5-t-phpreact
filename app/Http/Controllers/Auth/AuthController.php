@@ -42,7 +42,7 @@ class AuthController extends Controller
 
             RegisterInstructionsJob::dispatch($user);
 
-            return $this->response->authSucces('creado');
+            return $this->response->success('creado');
         } catch (ModelNotFoundException $e) {
             return $this->response->ModelError($e->getMessage(), "id formRegister");
         } catch (\Exception $e) {
@@ -106,7 +106,7 @@ class AuthController extends Controller
 
             $email = $user->email;
 
-            return $this->response->authSucces($email);
+            return $this->response->success($email);
         } catch (ModelNotFoundException $e) {
             return $this->response->ModelError($e->getMessage(), "token");
         } catch (\Exception $e) {
@@ -132,11 +132,11 @@ class AuthController extends Controller
             $user = $this->getUserColumn("remember_token", $token);
 
             $user->remember_token = "";
-            $user->password = bcrypt($request->input('password'));
+            $user->password = $request->input('password');
             $user->email_verified_at = now();
             $user->save();
 
-            return $this->response->authSucces('registrado');
+            return $this->response->success('registrado');
         } catch (ModelNotFoundException $e) {
             return $this->response->ModelError($e->getMessage(), "token");
         } catch (\Exception $e) {
@@ -167,7 +167,7 @@ class AuthController extends Controller
 
             $token = $user->createToken('auth_token')->plainTextToken;
 
-            return $this->response->authSucces('secion iniciada', $token);
+            return $this->response->success('secion iniciada', $token);
         } catch (\Exception $e) {
             return $this->response->catch($e->getMessage(), 500);
         }
@@ -225,13 +225,14 @@ class AuthController extends Controller
 
             $user->remember_token = "";
 
-            $user->password =  bcrypt($request->input('newPassword'));
+            $user->password =  $request->input('newPassword');
+            $user->password =  $request->newPassword;
 
             $user->email_verified_at =  now();
 
             $user->save();
 
-            return $this->response->authSucces('contraseña cambiada');
+            return $this->response->success('contraseña cambiada');
         } catch (ModelNotFoundException $e) {
             return $this->response->ModelError($e->getMessage(), "token");
         } catch (\Exception $e) {
@@ -261,7 +262,7 @@ class AuthController extends Controller
     {
         try {
             auth()->user()->tokens()->delete();
-            return $this->response->authSucces('secion cerrada');
+            return $this->response->success('secion cerrada');
         } catch (\Exception $e) {
             return $this->response->catch($e->getMessage(), 500);
         }

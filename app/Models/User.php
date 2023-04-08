@@ -39,6 +39,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    
+
+    public function setPasswordAttributes($password)
+    {
+        return $this->attributes['password'] = bcrypt($password);
+    }
+
     public function cohorts(): BelongsToMany
     {
         return $this->belongsToMany(Cohort::class, 'cohort_user');

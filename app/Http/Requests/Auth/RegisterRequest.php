@@ -17,7 +17,7 @@ class RegisterRequest extends FormRequest
     {
         return [
             'token_password' => 'required',
-            'password' => 'required|min:8',
+            'password' => 'required|min:8|confirmed',
         ];
     }
 }
