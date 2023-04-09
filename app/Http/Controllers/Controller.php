@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\CacheService;
 use App\Services\ImageService;
 use App\Services\JsonResponseService;
 use Illuminate\Routing\Controller as BaseController;
@@ -14,10 +15,12 @@ class Controller extends BaseController
 
     protected JsonResponseService $response;
     protected ImageService $image;
+    protected CacheService $cache;
 
     public function __construct()
     {
         $this->response = new JsonResponseService;
         $this->image = new ImageService;
+        $this->cache = new CacheService;
     }
 }
