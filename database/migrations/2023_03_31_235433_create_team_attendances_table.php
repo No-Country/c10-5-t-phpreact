@@ -11,21 +11,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cohort_team', function (Blueprint $table) {
+        Schema::create('team_attendances', function (Blueprint $table) {
             $table->id();
+            $table->date('date');
+            $table->tinyInteger('week');
+            $table->boolean('attended')->default(false);
+            $table->boolean('justification')->default(false);
 
-            $table->unsignedBigInteger('cohort_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('team_id');
 
-            $table->foreign('cohort_id')
+            $table->foreign('user_id')
                 ->references('id')
-                ->on('cohorts')
-                ->onDelete('cascade');
+                ->on('users');
 
             $table->foreign('team_id')
                 ->references('id')
-                ->on('teams')
-                ->onDelete('cascade');
+                ->on('teams');
 
             $table->timestamps();
         });
@@ -36,6 +38,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cohort_team');
+        Schema::dropIfExists('team_attendances');
     }
 };

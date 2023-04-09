@@ -2,33 +2,34 @@
 
 namespace App\Models;
 
+use App\Models\Team;
 use App\Models\User;
-use App\Models\WeekResults;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class UserControl extends Model
+class TeamAttendance extends Model
 {
     use HasFactory;
 
-    protected $table = 'user_controls';
+    protected $table = 'team_attendances';
 
     protected $fillable = [
+        'week',
         'date',
-        'attendance',
+        'attended',
         'justification',
         'user_id',
-        'week_result_id'
+        'team_id'
     ];
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
 
-    public function weekResult(): BelongsTo
+    public function team(): BelongsTo
     {
-        return $this->belongsTo(WeekResults::class);
+        return $this->belongsTo(Team::class);
     }
 }
