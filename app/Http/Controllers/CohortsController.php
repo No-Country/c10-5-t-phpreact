@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cache\CohortCache;
 use App\Models\Cohort;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CohortRequest;
@@ -9,11 +10,21 @@ use App\Http\Resources\CohortResource;
 use App\Http\Resources\CohortCollection;
 
 class CohortsController extends Controller
-{
+{   
+    private $cohortCache;
+
+    public function __construct(CohortCache $cohortCache)
+    {
+        parent::__construct(); // llamada al constructor del controlador padre
+        $this->cohortCache = $cohortCache;
+    }
+
     public function index()
     {
         try {
-            $cohorts = Cohort::select('id', 'name', 'created_at')->get();
+            $model = New Cohort;
+
+            $cohorts = $this->cohortCache->select($model);
 
             return CohortCollection::make($cohorts);
         } catch (\Exception $e) {
@@ -24,7 +35,7 @@ class CohortsController extends Controller
     public function show(int $id)
     {
         try {
-            $cohort = Cohort::findOrFail($id);
+            $cohort = $this->cohortCache->get($id);
 
             return new CohortResource($cohort);
         } catch (\Exception $e) {
@@ -34,8 +45,10 @@ class CohortsController extends Controller
 
     public function store(CohortRequest $request)
     {
-        try {
-            $cohort = Cohort::create($request->validated());
+        try {  
+            $model = new Cohort($request->validated());
+
+            $cohort = $this->cohortCache->save($model);
 
             $cohort = new CohortResource($cohort);
 
@@ -45,12 +58,12 @@ class CohortsController extends Controller
         }
     }
 
-    public function update(CohortRequest $request, int $id)
+    public function update(CohortRequest $request, Cohort $cohort)
     {
         try {
-            $cohort = Cohort::findOrFail($id);
+            $cohort->fill($request->validated());
 
-            $cohort->update($request->validated());
+            $cohort = $this->cohortCache->save($cohort);
 
             $cohort = new CohortResource($cohort);
 
@@ -60,12 +73,12 @@ class CohortsController extends Controller
         }
     }
 
-    public function destroy(int $id)
+    public function destroy(Cohort $cohort)
     {
         try {
-            Cohort::findOrFail($id)->delete();
+            $this->cohortCache->destroy($cohort);
 
-            return $this->response->success('eliminado');
+            return $this->response->success('eliminado', $cohort);
         } catch (\Exception $e) {
             return $this->response->catch($e->getMessage());
         }

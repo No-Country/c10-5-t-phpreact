@@ -42,4 +42,10 @@ class JsonResponseService
             'error' => 'Falta una imagen.'
         ], Response::HTTP_BAD_REQUEST);
     }
+
+    
+    public function showData( string $value, $data): JsonResponse
+    {    
+        return response()->json([$value => $data], Response::HTTP_OK);
+    }
 }
