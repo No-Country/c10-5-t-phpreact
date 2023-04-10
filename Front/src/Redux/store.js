@@ -1,9 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { testCounterSlice } from './counter-test'
+import { currentCoursesSlice } from './currentCourses'
+import { finishedCoursesSlice } from './finishedCourses'
 
 export const store = configureStore({
   reducer: {
-    dog: testCounterSlice.reducer
+    dog: testCounterSlice.reducer,
+    current: currentCoursesSlice.reducer,
+    finished: finishedCoursesSlice.reducer
   },
 })
 
