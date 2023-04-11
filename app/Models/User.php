@@ -5,8 +5,8 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Team;
 use App\Models\Cohort;
-use App\Models\UserControl;
-use App\Models\WeekResults;
+use App\Models\TeamRating;
+use App\Models\TeamAttendance;
 use App\Models\Profile\Profile;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
@@ -53,12 +53,17 @@ class User extends Authenticatable
 
     public function teams(): BelongsToMany
     {
-        return $this->belongsToMany(Team::class, 'team_user');
+        return $this->belongsToMany(Team::class)->withTimestamps();
     }
 
-    public function userControls(): HasMany
+    public function teamAttendances(): HasMany
     {
-        return $this->hasMany(UserControl::class);
+        return $this->hasMany(TeamAttendance::class);
+    }
+
+    public function teamRatings(): HasMany
+    {
+        return $this->hasMany(TeamRating::class);
     }
 
     public function profile(): HasOne

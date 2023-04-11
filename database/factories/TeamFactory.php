@@ -25,7 +25,7 @@ class TeamFactory extends Factory
 
         return [
             'name' => fake()->unique()->randomElement($teams),
-            'cohort_id' => Cohort::all()->random()->id,
+            'cohort_id' => Cohort::all()->random()->id
         ];
     }
 }

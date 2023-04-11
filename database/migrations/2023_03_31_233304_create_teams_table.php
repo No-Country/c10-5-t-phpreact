@@ -15,9 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 60);
             $table->enum('active', ['current', 'terminated']);
-
             $table->unsignedBigInteger('cohort_id');
-
             $table->foreign('cohort_id')
                 ->references('id')
                 ->on('cohorts');
