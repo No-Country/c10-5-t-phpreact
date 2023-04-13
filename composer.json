@@ -26,7 +26,11 @@
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
+            "Database\\Seeders\\": "database/seeders/",
+            "App\\Cache\\": "app/Cache/",
+            "App\\Contracts\\": "app/Contracts/",
+            "App\\Repositories\\": "app/Repositories/",
+            "App\\Http\\Resources\\": "app/Http/Resources/"
         }
     },
     "autoload-dev": {

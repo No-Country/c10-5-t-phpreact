@@ -1,10 +1,11 @@
 <?php
 
+namespace App\Http\Controllers\Auth;
 
-use App\repositories\AuthRepository;
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\repositories\AuthRepository;
+use Illuminate\Http\JsonResponse;
 use App\Jobs\RegisterInstructionsJob;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Jobs\ResetPasswordInstructionsJob;
@@ -197,3 +198,4 @@ class AuthController extends Controller
         }
     }
 }
+

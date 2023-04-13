@@ -22,6 +22,9 @@ class TeamAttendance extends Model
         'user_id',
         'team_id'
     ];
+    
+    const week_values = ['1', '2', '3', '4'];
+
 
     public function user(): BelongsTo
     {

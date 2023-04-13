@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Team;
+use App\Cache\TeamCache;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\TeamRequest;
 use App\Http\Controllers\Controller;
@@ -11,12 +12,21 @@ use App\Http\Resources\TeamCollection;
 
 class TeamController extends Controller
 {
+    protected $teamCache;
+
+    public function __construct(TeamCache $teamCache)
+    {   
+        parent::__construct();
+        $this->teamCache = $teamCache;
+    }
+
+
     public function index(): TeamCollection|JsonResponse
     {
         try {
-            $technologies = Team::select('id', 'name', 'created_at')->get();
-
-            return TeamCollection::make($technologies);
+            $team = $this->teamCache->selectTeam();
+            
+            return new TeamCollection($team);
         } catch (\Exception $e) {
             return $this->response->catch($e->getMessage());
         }
@@ -25,7 +35,7 @@ class TeamController extends Controller
     public function show(int $id)
     {
         try {
-            $team = Team::findOrFail($id);
+            $team = $this->teamCache->get($id);
 
             return new TeamResource($team);
         } catch (\Exception $e) {
@@ -36,7 +46,9 @@ class TeamController extends Controller
     public function store(TeamRequest $request)
     {
         try {
-            $team = Team::create($request->validated());
+            $model = new Team($request->validated());
+
+            $team = $this->teamCache->save($model);
 
             $team = new TeamResource($team);
 
@@ -46,12 +58,12 @@ class TeamController extends Controller
         }
     }
 
-    public function update(TeamRequest $request, int $id)
+    public function update(TeamRequest $request, Team $team)
     {
         try {
-            $team = Team::findOrFail($id);
+            $team->fill($request->validated());
 
-            $team->update($request->validated());
+            $team = $this->teamCache->save($team);
 
             $team = new TeamResource($team);
 
@@ -61,10 +73,10 @@ class TeamController extends Controller
         }
     }
 
-    public function destroy(int $id)
+    public function destroy(Team $team)
     {
         try {
-            Team::findOrFail($id)->delete();
+            $this->teamCache->destroy($team);
 
             return $this->response->success('eliminado');
         } catch (\Exception $e) {

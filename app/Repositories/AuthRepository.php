@@ -1,14 +1,22 @@
 <?php
 
-namespace App\repositories;
+namespace App\Repositories;
+
 
 use App\Models\User;
 use Illuminate\Support\Str;
 use App\Models\Form\FormRegister;
 use Illuminate\Support\Facades\Auth;
 
-class AuthRepository
-{
+class AuthRepository extends BaseRepository
+{      
+    protected $user;
+    
+    public function __construct(User $user)
+    {   
+        parent::__construct($user);
+    }
+
     private function createUser(object $formData, string $rememberToken)
     {
         return User::create([
@@ -25,11 +33,7 @@ class AuthRepository
         return Str::random(15);
     }
 
-    public function getUserColumn(string $column, string $value): User
-    {
-        return  User::where($column, $value)->firstOrFail();
-    }
-
+ 
 
     public  function getFormId($id)
     {
@@ -42,7 +46,7 @@ class AuthRepository
 
     public  function getEmail($token)
     {
-        $user = $this->getUserColumn("remember_token", $token);
+        $user = $this->where("remember_token", $token);
 
         $email = $user->email;
 
@@ -51,7 +55,7 @@ class AuthRepository
 
     public  function putPassword($token, $password)
     {
-        $user = $this->getUserColumn("remember_token", $token);
+        $user = $this->where("remember_token", $token);
 
         $user->remember_token = "";
         $user->password = bcrypt($password);
@@ -65,7 +69,7 @@ class AuthRepository
             return response()->json(['error' => 'Credenciales incorrectas, vuelve a intentarlo']);
         };
 
-        $user = $this->getUserColumn("email", $email);
+        $user = $this->where("email", $email);
 
         $tokenLogin = $user->createToken('auth_token')->plainTextToken;
 
@@ -74,7 +78,7 @@ class AuthRepository
 
     public  function forgetPassword($email)
     {
-        $user = $this->getUserColumn("email", $email);
+        $user = $this->where("email", $email);
 
         $user->remember_token = $this->genarateToken();
 
@@ -86,7 +90,7 @@ class AuthRepository
     public  function resetPassword($token, $newPassword)
     {
         
-        if (!$user = $this->getUserColumn("remember_token", $token)) {
+        if (!$user = $this->where("remember_token", $token)) {
             return response()->json(['message' => 'Token incorrecto, vuelve a intentarlo']);
         }
 

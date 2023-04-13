@@ -30,6 +30,11 @@ class BaseRepository implements BaseRepositoryInterface
         return $this->model->findOrFail($id);
     }
 
+    public function where(string $column, string $value)
+    {
+        return  $this->model::where($column, $value)->firstOrFail();
+    }
+
     public function save(Model $model)
     {
         $model->save();

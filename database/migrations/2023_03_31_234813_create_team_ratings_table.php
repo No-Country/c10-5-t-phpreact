@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('team_ratings', function (Blueprint $table) {
             $table->id();
 
-            $table->tinyInteger('week');
+            $table->enum('week', ['1', '2', '3', '4'])->default('1');
             $table->date('date');
 
             $table->boolean('compromise')->default(false);

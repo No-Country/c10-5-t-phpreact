@@ -26,6 +26,7 @@ class FormRegisterController extends Controller
 
         return [
             'horario' => $horary,
+            'country' => $country,
             'roleStack'  => $roleStack,
             'vertical'   =>  $vertical,
             'experience' =>   $experience

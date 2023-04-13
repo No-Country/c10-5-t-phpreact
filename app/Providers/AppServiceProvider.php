@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Cache\CohortCache;
+use App\Cache\TeamCalificationCache;
 use Illuminate\Support\ServiceProvider;
 use App\Contracts\EjemploRepositoryInterface;
+use App\Contracts\TeamCalificationRepositoryInterface;
 
 class AppServiceProvider extends ServiceProvider
 {   
@@ -18,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(EjemploRepositoryInterface::class, CohortCache::class);
+        $this->app->bind(TeamCalificationRepositoryInterface::class, TeamCalificationCache::class);
     }
 
     /**

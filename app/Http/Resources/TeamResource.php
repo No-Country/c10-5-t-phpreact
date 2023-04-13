@@ -16,6 +16,7 @@ class TeamResource extends JsonResource
             'attributes' => [
                 'name' => $this->name,
                 'active' => $this->active,
+                'cohort_id' => $this->cohort_id,
                 'created_at' => Carbon::parse($this->created_at)->format('d/m/Y'),
             ],
             'links' => [

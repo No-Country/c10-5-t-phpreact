@@ -15,7 +15,8 @@ class TeamRequest extends FormRequest
     {
         return [
             "name" => "required|string|max:60",
-            "active" => "required|in:1,2"
+            "active" => "required|in:1,2",
+            "cohort_id" => "required|integer"
         ];
     }
 }

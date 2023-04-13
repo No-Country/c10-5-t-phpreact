@@ -21,12 +21,14 @@ class TeamRating extends Model
         'initiative',
         'proactivity',
         'organization',
-        'aspect_6',
         'collaboration',
+        'feedback',
         'sprint_rating',
         'user_id',
         'team_id'
     ];
+
+    const week_values = ['1', '2', '3', '4'];
 
     public function user(): BelongsTo
     {

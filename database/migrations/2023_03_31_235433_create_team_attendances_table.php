@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('team_attendances', function (Blueprint $table) {
             $table->id();
             $table->date('date');
-            $table->tinyInteger('week');
+            $table->enum('week', ['1', '2', '3', '4'])->default('1');
             $table->boolean('attended')->default(false);
             $table->boolean('justification')->default(false);
 

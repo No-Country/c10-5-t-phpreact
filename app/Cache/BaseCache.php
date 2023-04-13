@@ -1,6 +1,6 @@
 <?php  
 
-namespace App\cache;
+namespace App\Cache;
 
 use Illuminate\Support\Facades\Cache;
 use App\Contracts\BaseRepositoryInterface;
