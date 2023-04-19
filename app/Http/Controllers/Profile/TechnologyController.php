@@ -35,14 +35,14 @@ class TechnologyController extends Controller
      */
     public function store(TechnologyRequest $request): JsonResponse
     {
-        try {
+        try {   
             if (!$request->hasFile('image')) {
                 return $this->response->missingImage();
             }
 
             $technology = Technology::create($request->validated());
 
-            $this->image->create($request, 'technologies', $technology);
+            $this->image->create($request, $technology, 'technologies');
 
             $technology = new TechnologyResource($technology);
 
@@ -63,8 +63,8 @@ class TechnologyController extends Controller
     {
         try {
             $technology = Technology::findOrFail($id);
-
-            $this->image->update($request, 'technologies', $technology);
+            
+            $this->image->update($request, $technology, 'technologies');
 
             $technology->update($request->validated());
 

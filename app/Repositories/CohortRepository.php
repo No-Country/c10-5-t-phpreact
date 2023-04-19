@@ -2,12 +2,10 @@
 
 namespace App\Repositories;
 
-use App\Contracts\EjemploRepositoryInterface;
 use App\Models\Cohort;
 use App\Repositories\BaseRepository;
 
-class CohortRepository extends BaseRepository implements EjemploRepositoryInterface
-{
+class CohortRepository extends BaseRepository {
     protected $cohort;
 
     public function __construct(Cohort $cohort)

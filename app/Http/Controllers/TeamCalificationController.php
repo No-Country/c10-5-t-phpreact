@@ -7,10 +7,10 @@ use App\Models\TeamRating;
 use Illuminate\Http\Request;
 use App\Models\TeamAttendance;
 use Illuminate\Http\JsonResponse;
-use App\Cache\TeamCalificationCache;
+use App\Http\Resources\TeamCalificationResource;
 use App\Http\Requests\postTeamCalificationRequest;
 use App\Http\Resources\TeamCalificationCollection;
-use App\Http\Resources\TeamCalificationResource;
+use App\Contracts\TeamCalificationRepositoryInterface;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class TeamCalificationController extends Controller
@@ -18,7 +18,7 @@ class TeamCalificationController extends Controller
 
     protected $teamCalification;
 
-    public function __construct(TeamCalificationCache $teamCalification)
+    public function __construct(TeamCalificationRepositoryInterface $teamCalification)
     {
         parent::__construct();
         $this->teamCalification = $teamCalification;

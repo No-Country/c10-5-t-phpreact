@@ -18,9 +18,16 @@ class TeamFactory extends Factory
     public function definition(): array
     {
         $teams = [
-            'react-php',
-            'vuejs-python',
-            'angular-java'
+            'laravel-node',
+            'django-react',
+            'emberjs-ruby',
+            'spring-boot-angular',
+            'expressjs-mongodb',
+            'symfony-php',
+            'flask-python',
+            'graphql-java',
+            'nextjs-typescript',
+            'nestjs-postgres',
         ];
 
         return [

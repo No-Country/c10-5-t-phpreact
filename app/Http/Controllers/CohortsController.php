@@ -2,18 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Cache\CohortCache;
 use App\Models\Cohort;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CohortRequest;
 use App\Http\Resources\CohortResource;
 use App\Http\Resources\CohortCollection;
+use App\Repositories\CohortRepository;
 
 class CohortsController extends Controller
 {   
     private $cohortCache;
 
-    public function __construct(CohortCache $cohortCache)
+    public function __construct(CohortRepository $cohortCache)
     {
         parent::__construct(); // llamada al constructor del controlador padre
         $this->cohortCache = $cohortCache;

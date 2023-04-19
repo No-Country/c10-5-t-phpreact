@@ -169,33 +169,5 @@ class AuthController extends Controller
         }
     }
 
-    /** Se recibe el token correcto para poder cambiar el token
-     *
-     * @return JsonResponse
-     * 
-     * @throws Exception si ocurre un error inesperado
-     */
-
-    public function userProfile(): JsonResponse
-    {
-        try {
-            return response()->json([
-                'message' => 'profile',
-                'data' => auth()->user()
-            ]);
-        } catch (\Exception $e) {
-            return $this->response->catch($e->getMessage(), 500);
-        }
-    }
-    
-    public function logout(): JsonResponse
-    {
-        try {
-            auth()->user()->tokens()->delete();
-            return $this->response->success('secion cerrada');
-        } catch (\Exception $e) {
-            return $this->response->catch($e->getMessage(), 500);
-        }
-    }
 }
 

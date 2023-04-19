@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class UserResource extends JsonResource
+class FormsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,17 +16,22 @@ class UserResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'type' => 'user',
+            'type' => 'forms',
             'id' => $this->id,
             'attributes' => [
-                'name' => $this->name,
-                'lastname' => $this->lastname,
-                'email' => $this->email,
+                "name" => $this->name,
+                "lastname" => $this->lastname,
+                "email" => $this->email,
+                "role_stack_id" => $this->roleStack->name,
+                "horary_id" => $this->horary->name,
+                "experience_id" => $this->country->name,
+                "vertical_id" => $this->vertical->name,
+                "technology_id" => $this->experience->name,
                 'created_at' => Carbon::parse($this->created_at)->format('d/m/Y'),
             ],
             'links' => [
-                'self' => route('userOnly', $this->resource)
+                'self' => route('formsOnly', $this->id)
             ]
         ];
     }
-}
+} 

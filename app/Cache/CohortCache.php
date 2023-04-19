@@ -2,12 +2,11 @@
 
 namespace App\Cache;
 
-use App\cache\BaseCache;
-use App\repositories\CohortRepository;
+use App\Cache\BaseCache;
+use App\Repositories\CohortRepository;
 use Illuminate\Database\Eloquent\Model;
-use App\Contracts\EjemploRepositoryInterface;
 
-class CohortCache extends BaseCache implements EjemploRepositoryInterface
+class CohortCache extends BaseCache
 {
     protected $cohortRepository;
 

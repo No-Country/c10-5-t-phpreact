@@ -2,32 +2,40 @@
 
 namespace App\Models\Profile;
 
-use App\Models\User;
-use App\Models\Image;
+use App\Models\Form\Horary;
+use App\Models\Form\Country;
+use App\Models\Form\Vertical;
 use App\Models\Profile\Project;
 use App\Models\Profile\SoftSkill;
 use App\Models\Profile\Technology;
-use App\Models\Profile\ProfileData;
 use App\Models\Profile\Calification;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Profile extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'led_teams_quantity',
-        'simulations_quantity',
-        'user_id',
-        'profile_data_id',
-        'calification_id'
-    ];
+    protected $table = 'profiles';
 
+    protected $guarded = [];
+
+    public function country(): BelongsTo
+    {
+        return $this->belongsTo(Country::class, 'country_id');
+    }
+    public function horary(): BelongsTo
+    {
+        return $this->belongsTo(Horary::class, 'horary_id');
+    }
+    public function vertical(): BelongsTo
+    {
+        return $this->belongsTo(Vertical::class, 'vertical_id');
+    }
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -41,11 +49,6 @@ class Profile extends Model
     public function califications(): HasMany
     {
         return $this->hasMany(Calification::class, 'profile_id');
-    }
-
-    public function profileData(): BelongsTo
-    {
-        return $this->belongsTo(ProfileData::class);
     }
 
     public function technologies(): BelongsToMany

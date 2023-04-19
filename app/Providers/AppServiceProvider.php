@@ -2,25 +2,22 @@
 
 namespace App\Providers;
 
-use App\Cache\CohortCache;
-use App\Cache\TeamCalificationCache;
 use Illuminate\Support\ServiceProvider;
-use App\Contracts\EjemploRepositoryInterface;
 use App\Contracts\TeamCalificationRepositoryInterface;
+use App\Contracts\TeamRepositoryInterface;
+use App\Repositories\TeamCalificationRepository;
+use App\Repositories\TeamRepository;
 
 class AppServiceProvider extends ServiceProvider
 {   
-    protected $binding = [
-        
-    ];
-    
+   
     /**
      * Register any application services.
      */
     public function register(): void
     {
-        $this->app->bind(EjemploRepositoryInterface::class, CohortCache::class);
-        $this->app->bind(TeamCalificationRepositoryInterface::class, TeamCalificationCache::class);
+        $this->app->bind(TeamRepositoryInterface::class, TeamRepository::class);
+        $this->app->bind(TeamCalificationRepositoryInterface::class, TeamCalificationRepository::class);
     }
 
     /**

@@ -10,9 +10,6 @@ use App\Contracts\TeamCalificationRepositoryInterface;
 
 class TeamCalificationRepository extends BaseRepository implements TeamCalificationRepositoryInterface
 {      
-    protected $teamRating;
-    protected $teamAttendance;
-    
     public function __construct(TeamRating $teamRating, TeamAttendance $teamAttendance)
     {   
         parent::__construct($teamAttendance, $teamRating);

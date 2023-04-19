@@ -1,18 +1,18 @@
 <?php
 
-namespace Database\Seeders;
+namespace Database\Seeders\Profile;
 
-use App\Models\Team;
+use App\Models\Profile\SoftSkill;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class TeamSeeder extends Seeder
+class SoftSkillSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Team::factory(10)->create();
+        SoftSkill::factory(5)->create();
     }
 }

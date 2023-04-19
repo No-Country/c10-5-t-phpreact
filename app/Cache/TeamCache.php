@@ -3,11 +3,12 @@
 namespace App\Cache;
 
 use App\Models\Team;
-use App\cache\BaseCache;
+use App\Cache\BaseCache;
 use App\repositories\TeamRepository;
 use Illuminate\Database\Eloquent\Model;
+use App\Contracts\TeamRepositoryInterface;
 
-class TeamCache extends BaseCache
+class TeamCache extends BaseCache implements TeamRepositoryInterface
 {
     protected $TeamRepository;
 

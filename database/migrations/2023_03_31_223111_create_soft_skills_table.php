@@ -13,8 +13,16 @@ return new class extends Migration
     {
         Schema::create('soft_skills', function (Blueprint $table) {
             $table->id();
+
+            $table->unsignedBigInteger('profile_id')->nullable();
             $table->string('name', 60);
+            $table->integer('level');
+
             $table->timestamps();
+
+            $table->foreign('profile_id')
+                ->references('id')
+                ->on('profiles');
         });
     }
 

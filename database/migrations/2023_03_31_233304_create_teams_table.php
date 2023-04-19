@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
             $table->string('name', 60);
-            $table->enum('active', ['current', 'terminated']);
+            $table->enum('active', ['current', 'terminated'])->default('current');
             $table->unsignedBigInteger('cohort_id');
             $table->foreign('cohort_id')
                 ->references('id')

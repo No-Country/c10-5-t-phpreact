@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Team;
+use App\Models\Form\FormRegister;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class TeamSeeder extends Seeder
+class FormRegisterSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Team::factory(10)->create();
+        FormRegister::factory(5)->create();
     }
 }

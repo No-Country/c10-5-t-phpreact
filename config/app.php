@@ -159,7 +159,8 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
-        
+        'Intervention\Image\ImageServiceProvider',
+
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
@@ -212,6 +213,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'Img' => 'Intervention\Image\Facades\Image',
         'Redis' => Illuminate\Support\Facades\Redis::class,
     ])->toArray(),
 

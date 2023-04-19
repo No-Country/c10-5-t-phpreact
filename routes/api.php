@@ -5,6 +5,7 @@ use App\Http\Controllers\TeamController;
 use App\Http\Controllers\CohortsController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\FormRegisterController;
+use App\Http\Controllers\Profile\ProfileController;
 use App\Http\Controllers\Profile\SoftSkillsController;
 use App\Http\Controllers\Profile\TechnologyController;
 use App\Http\Controllers\TeamCalificationController;
@@ -16,11 +17,20 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/login', 'login');
     Route::post('/forget-password', 'forgetPassword');
     Route::post('/reset-password', 'resetPassword');
+});
+
+
+Route::controller(ProfileController::class)->group(function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::get('/user-profile', 'userProfile');
         Route::get('/logout', 'logout');
     });
+    Route::get('/profile', 'profile');
+    Route::get('/user-only/{id}', 'userOnly')->name('userOnly');
+    Route::get('/user-all', 'userAll')->name('userAll');
 });
+
+
 Route::controller(TeamCalificationController::class)->group(function () {
     Route::get('/team-calification', 'getTeamCalification');
     Route::post('/team-calification', 'postTeamCalification');
@@ -31,12 +41,15 @@ Route::controller(TeamCalificationController::class)->group(function () {
 });
 
 Route::controller(FormRegisterController::class)->group(function () {
-    Route::get('/forms', 'index');
-    Route::post('/forms', 'formRegister');
-    Route::get('/forms/confirm/{token}', 'confirmRegister')->name('confirmRegister');
+    Route::get('/forms/{id}', 'formsOnly')->name('formsOnly');
+    Route::post('/forms', 'dateForms');
+    Route::post('/forms-register', 'formRegister');
+    Route::get('/forms-all', 'formsAll')->name('formsAll');
 });
 
 Route::apiResource('teams', TeamController::class)->names('teams');
+Route::get('teams-users/{id}', [TeamController::class, 'searchUsersTeams'])->name('searchUsersTeams');
+Route::get('teams-cohorts/{id}', [TeamController::class, 'searchUserscCohorts'])->name('searchUserscCohorts');
 
 Route::apiResource('cohorts', CohortsController::class)->names('cohorts');
 

@@ -16,6 +16,7 @@ class Technology extends Model
     
     protected $fillable = ['name'];
 
+
     public function formRegister()
     {
         return $this->hasOne(FormRegister::class);

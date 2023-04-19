@@ -4,9 +4,9 @@ namespace App\Repositories;
 
 use App\Models\Team;
 use App\Repositories\BaseRepository;
-use Illuminate\Database\Eloquent\Model;
+use App\Contracts\TeamRepositoryInterface;
 
-class TeamRepository extends BaseRepository
+class TeamRepository extends BaseRepository implements TeamRepositoryInterface
 {      
     protected $Team;
  
@@ -18,7 +18,6 @@ class TeamRepository extends BaseRepository
     
     public function selectTeam()
     {   
-        $model = $this->Team;
-        return $model->select('id', 'name', 'active', 'cohort_id', 'created_at')->get();
+        return Team::select('id', 'name', 'active', 'cohort_id', 'created_at')->get();
     }
 }

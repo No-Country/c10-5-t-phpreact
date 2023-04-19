@@ -5,20 +5,27 @@ namespace App\Repositories;
 
 use App\Models\User;
 use Illuminate\Support\Str;
+use App\Models\Profile\Profile;
 use App\Models\Form\FormRegister;
+use App\Models\Profile\ProfileData;
 use Illuminate\Support\Facades\Auth;
 
 class AuthRepository extends BaseRepository
-{      
+{
     protected $user;
-    
+
     public function __construct(User $user)
-    {   
+    {
         parent::__construct($user);
+    }
+    private function genarateToken(): string
+    {
+        return Str::random(15);
     }
 
     private function createUser(object $formData, string $rememberToken)
     {
+
         return User::create([
             'name' => $formData->name,
             'lastname' => $formData->lastname,
@@ -28,20 +35,28 @@ class AuthRepository extends BaseRepository
         ]);
     }
 
-    private function genarateToken(): string
+    private function createProfilUser($formData, User $user)
     {
-        return Str::random(15);
+        $profile = Profile::create([ 'user_id' => $user->id, 'country_id' => $formData->country_id,
+        'vertical_id' => $formData->vertical_id, 'horary_id' => $formData->horary_id]);
+
+        $technologyId = $formData->technology_id;
+
+        $profile->technologies()->sync([$technologyId]);
     }
 
- 
 
     public  function getFormId($id)
     {
-        $formRegisterData = FormRegister::select('name', 'lastname', 'email')->findOrFail($id);
+        $formRegisterData = FormRegister::findOrFail($id);
 
         $rememberToken = $this->genarateToken();
 
-        return $this->createUser($formRegisterData, $rememberToken);
+        $user = $this->createUser($formRegisterData, $rememberToken);
+
+        $this->createProfilUser($formRegisterData, $user);
+
+        return $user;
     }
 
     public  function getEmail($token)
@@ -50,7 +65,7 @@ class AuthRepository extends BaseRepository
 
         $email = $user->email;
 
-        return $email;  
+        return $email;
     }
 
     public  function putPassword($token, $password)
@@ -89,7 +104,7 @@ class AuthRepository extends BaseRepository
 
     public  function resetPassword($token, $newPassword)
     {
-        
+
         if (!$user = $this->where("remember_token", $token)) {
             return response()->json(['message' => 'Token incorrecto, vuelve a intentarlo']);
         }

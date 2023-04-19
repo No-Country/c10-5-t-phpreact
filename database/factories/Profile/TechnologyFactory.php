@@ -8,22 +8,21 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Profile\Technology>
  */
 class TechnologyFactory extends Factory
-{
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+{    
+    private $technologies = [
+        "JavaScript", "Python", "Java", "C++", "Ruby", "PHP", "Swift", 
+        "Objective-C", "TypeScript", "C#", "Go", "Kotlin", "Scala", 
+        "Rust", "Dart", "Lua"
+    ];
+
     public function definition(): array
-    {   
-
-        $technologies = ["JavaScript",
-         "Python", "Java", "C++", "Ruby", "PHP", "Swift", 
-         "Objective-C", "TypeScript", "C#", "Go", "Kotlin", 
-         "Scala", "Rust", "Dart", "Lua"];
-
+    {
+        static $order = 1;
+        $name = $this->technologies[($order - 1) % count($this->technologies)];
+        $order++;
+        
         return [
-            "name" => fake()->unique()->randomElement($technologies)
+            'name' => $name,
         ];
     }
 }

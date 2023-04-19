@@ -4,6 +4,7 @@ namespace App\Services;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image as Img;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,9 +17,19 @@ class ImageService
      * @param mixed $file
      * @return string
      */
-    private function save(string $path, mixed $file): string
+    private function save(mixed $file, $path): string
     {
-        return Storage::put($path, $file);
+        if (!Storage::exists($path)) {
+            Storage::disk('public')->makeDirectory($path, 0755, true);
+        }
+        
+        $nameImage = Str::random(15);
+
+        $img_png = Img::make($file)->fit(800, 800)->encode('png', 80);
+
+        Storage::disk('public')->put($path . '/' . $nameImage . '.png', (string)$img_png, 'public');
+
+        return $nameImage;
     }
 
     /**
@@ -29,9 +40,11 @@ class ImageService
      */
     private function deleteStorage(Model $model): void
     {
-        $path = Str::after($model->images->url, '/storage');
+        $path = public_path($model->images->url);
 
-        Storage::delete($path);
+        if (file_exists($path)) {
+            unlink($path);
+        }
     }
 
     /**
@@ -55,12 +68,13 @@ class ImageService
      * @param Model $model
      * @return void
      */
-    public function create(Request $request, string $path, Model $model): void
+    public function create(Request $request, Model $model, $path): void
     {
-        $path = $this->save($path, $request->file('image'));
+        $path_img = "img/{$path}";
+        $nameImage = $this->save($request->file('image'), $path_img);
 
         $model->images()->create([
-            'url' => url("storage/{$path}"),
+            'url' => "/storage/{$path_img}/{$nameImage}.png",
         ]);
     }
 
@@ -72,15 +86,18 @@ class ImageService
      * @param Model $model
      * @return void
      */
-    public function update(Request $request, string $path, Model $model): void
+    public function update(Request $request, Model $model, $path): void
     {
         if ($request->hasFile('image')) {
             $this->deleteStorage($model);
 
-            $path = $this->save($path, $request->file('image'));
+            $path_img = "img/{$path}";
+
+            $nameImage = $this->save($request->file('image'), $path_img);
+
 
             $model->images()->update([
-                'url' => url("storage/{$path}"),
+                'url' => "/storage/{$path_img}/{$nameImage}.png",
             ]);
         }
     }

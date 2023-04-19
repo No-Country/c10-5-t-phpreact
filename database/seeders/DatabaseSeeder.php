@@ -16,6 +16,8 @@ use Database\Seeders\RoleStackSeeder;
 use Database\Seeders\ExperienceSeeder;
 use Database\Seeders\TechnologySeeder;
 use Database\Seeders\EnglishLevelSeeder;
+use Database\Seeders\Profile\ProfileSeeder;
+use Database\Seeders\Profile\SoftSkillSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -29,9 +31,12 @@ class DatabaseSeeder extends Seeder
         $this->call(TechnologySeeder::class);
 
         $this->call(RoleSeeder::class);
-        $this->call(UserSeeder::class);
-        $this->call(EnglishLevelSeeder::class);
         $this->call(CohortSeeder::class);
         $this->call(TeamSeeder::class);
+        $this->call(UserSeeder::class);
+        $this->call(EnglishLevelSeeder::class);
+        $this->call(FormRegisterSeeder::class);
+        $this->call(ProfileSeeder::class);
+        $this->call(SoftSkillSeeder::class);
     }
 }

@@ -15,8 +15,17 @@ use App\Http\Requests\FormRegisterRequest;
 use App\Jobs\WelcomeInstructionsJob;
 
 class FormRegisterController extends Controller
-{
-    public function index()
+{      
+    public function formsOnly(int $id)
+    {
+        $forms = FormRegister::findOrFail($id);
+
+        return [
+            'formulario' => $forms
+        ];
+    }
+    
+    public function dateForms()
     {   
         $horary = Horary::select('id', 'name')->get();
         $country = Country::select('id', 'name')->get();
@@ -32,6 +41,7 @@ class FormRegisterController extends Controller
             'experience' =>   $experience
         ];
     }
+
     public function formRegister(FormRegisterRequest $request)
     {
         $userRegistered = FormRegister::create($request->validated());
@@ -55,8 +65,15 @@ class FormRegisterController extends Controller
         //   }
     }
 
-    public function confirmRegister(Request $request, $token)
+    public function formsAll()
     {
-        // Logica para confirmar el registro luego la fecha indicada
+        $forms = FormRegister::all();
+
+
+        return [
+            'formularios' => $forms
+        ];
     }
+
+   
 }
