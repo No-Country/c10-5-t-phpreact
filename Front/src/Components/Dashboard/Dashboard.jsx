@@ -109,7 +109,7 @@ function Dashboard() {
             <div className="flex flex-row w-11/12 h-[600px] justify-between py-[30px] items-center">
                 <div className="flex flex-col items-center w-[650px] h-[500px] rounded-[10px] border-2 border-morado-3-nc py-[10px]">
 
-                    <div className="grid grid-cols-3 gap-4 w-full place-items-center h-full border-2 border-black">
+                    <div className="grid grid-cols-3 gap-4 w-full place-items-center h-full">
                    
                         <h2 className="font-Inter text-[16px] font-[600] tracking-[-0.03em] leading-[19px]">Participantes</h2>
                         <h2 className="font-Inter text-[16px] font-[600] tracking-[-0.03em] leading-[19px]">Justificación</h2>
@@ -120,7 +120,7 @@ function Dashboard() {
                             <label for="student_1" className="font-Inter text-[16px] font-[400] tracking-[-0.03em] leading-[19px]">
                                 Student_1
                             </label>
-                            <input type="checkbox" className="w-[20px] h-[20px] items-center"/>
+                            <input type="checkbox" className="w-[20px] h-[20px] cursor-pointer appearance-none border-2 border-primary"/>
                             <div className="w-[18px] h-[18px] bg-gris-desactivado rounded-full items-center"></div>
                             
                       
