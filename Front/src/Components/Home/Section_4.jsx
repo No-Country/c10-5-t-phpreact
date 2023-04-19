@@ -2,7 +2,7 @@ import React from "react";
 
 function Section_4() {
     return (
-        <div className="flex flex-col w-full h-[1200px] justify-around px-[20px] py-[30px] items-center bg-verticales">
+        <div id="section_4" className="flex flex-col w-full h-[1200px] justify-around px-[20px] py-[30px] items-center bg-verticales">
 
             <div className="flex flex-col justify-center items-center">
                 <div>

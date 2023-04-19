@@ -4,7 +4,7 @@ import React from "react";
 function Section_2() {
 
     return (
-        <div className="flex flex-col w-full px-[20px] py-[30px] items-center bg-nuestros-perfiles">
+        <div id="section_2" className="flex flex-col w-full px-[20px] py-[30px] items-center bg-nuestros-perfiles">
             <div className="flex flex-col justify-center items-center">
                 <div>
                     <p className="font-Roboto text-[56px] font-[600] tracking-[0.01em] leading-[84x] whitespace-normal">Nuestros Perfiles</p>
