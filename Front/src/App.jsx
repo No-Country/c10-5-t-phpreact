@@ -9,6 +9,7 @@ import Reportes from './Components/Reportes/Reportes';
 import Chart_1 from './Components/Reportes/Chart_1';
 import Donut from './Components/Reportes/Donut/Donut';
 import SuperDashboard from './Components/Superadmin/SuperDashboard';
+import Equipos from './Components/Equipos/Equipos';
 // import Users from './Components/Superadmin/Users';
 
 function App() {
@@ -23,6 +24,8 @@ function App() {
           <Route path='/donut' element={<Donut />}/>
 
           <Route path='/superDashboard' element={<SuperDashboard />} />
+
+          <Route path='/equipos' element={<Equipos />} />
         </Routes>
       </BrowserRouter>
     </div>

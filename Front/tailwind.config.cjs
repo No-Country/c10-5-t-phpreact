@@ -25,9 +25,11 @@ module.exports = {
       backgroundImage:{
         'azul-verde': 'linear-gradient(90deg, rgba(61, 141, 229) 30.79%, rgba(113, 248, 174) 89.01%)',
         'azul-morado':'linear-gradient(180deg, rgb(103, 48, 201) 0%, rgb(82, 71, 241) 50.52%, rgb(139, 38, 218) 100%);',
+        'azul-morado-2':'linear-gradient(264.47deg, rgb(103, 48, 201) 0%, rgb(82, 71, 241) 50.52%, rgb(139, 38, 218) 100%);',
         'nuestros-perfiles': 'linear-gradient(180deg, rgb(137, 157, 228) 26.04%, rgba(137, 157, 228, 0) 100%);',
         'verticales': 'linear-gradient(180deg, rgb(255, 247, 180) 0%, rgba(228, 219, 137, 0) 86.98%)',
-        'login-gradient': 'linear-gradient(156.78deg, rgb(54, 46, 189) 16.37%, rgb(95, 101, 208) 65.8%, rgb(137, 157, 228) 102.98%)'
+        'login-gradient': 'linear-gradient(156.78deg, rgb(54, 46, 189) 16.37%, rgb(95, 101, 208) 65.8%, rgb(137, 157, 228) 102.98%)',
+        'verde-degradado': 'linear-gradient(rgb(61, 141, 229) 100%, rgb(113, 248, 174) 100%);',
         // 'test': 'linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%);'
       },
       boxShadow:{
