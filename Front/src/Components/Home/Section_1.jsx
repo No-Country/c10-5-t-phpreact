@@ -16,14 +16,16 @@ function Section_1() {
                     </p>
                 </div>
 
-                <button className="bg-primary w-[161px] h-[45px] rounded-[10px] shadow-dark font-Inter text-[15px] font-[500] text-text-color-white tracking-[-0.03em]">
-                    Aplicar
-                </button>
+                <a href="/formulario">
+                    <button className="bg-primary w-[161px] h-[45px] rounded-[10px] shadow-dark font-Inter text-[15px] font-[500] text-text-color-white tracking-[-0.03em]">
+                        Aplicar
+                    </button>
+                </a>
             </div>
 
 
             <div>
-                <img src="../../src/assets/section_1.png" alt="" />
+                <img src="../../src/assets/section_1.png" alt="s1" />
             </div>
         </div>
     )

@@ -1,6 +1,21 @@
 import React from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 
 function Footer() {
+
+    const [email, setEmail] = useState("")
+    const dispatch = useDispatch()
+
+    function handleInput(e){
+        e.preventDefault()
+        setEmail(e.target.value)
+    }
+
+    function handleSubmit(e){
+        e.preventDefault()
+    }
+    
     return (
         <div>
             <footer className="flex bg-primary w-full h-[200px] px-[25px]">
@@ -24,9 +39,9 @@ function Footer() {
                             <div>
                                 <span className="flex w-full items-center font-Inter text-[20x] font-[500] text-text-color-white tracking-[-0.03em] py-[10px]">¡Suscríbete a nuestro Newsletter!</span>
                             </div>
-                            <form action="" className="flex justify-between">
-                                <input type="text" placeholder="Email" className="w-[427px] h-[45px] rounded-[10px] shadow-dark indent-4" />
-                                <button className="bg-[#899DE4] w-[161px] h-[45px] rounded-[10px] shadow-dark font-Inter text-[15px] font-[500] text-text-color-white tracking-[-0.03em]">Aplicar</button>
+                            <form action="" className="flex justify-between" onSubmit={handleSubmit}>
+                                <input type="text" placeholder="Email" className="w-[427px] h-[45px] rounded-[10px] shadow-dark indent-4" onChange={handleInput}/>
+                                <button className="bg-[#899DE4] w-[161px] h-[45px] rounded-[10px] shadow-dark font-Inter text-[15px] font-[500] text-text-color-white tracking-[-0.03em]">Enviar</button>
                             </form>
                         </div>
 
