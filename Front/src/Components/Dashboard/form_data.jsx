@@ -25,5 +25,79 @@ const studentNames =
         "Jose Luis Hernandez Rodriguez"
     ];
 
+const studentNames2 =
+    [
+        {
+            nombre: "Sofia Martinez Garcia",
+            justificacion: null,
+            asistencia: null
+        },
+        {
+            nombre: "Alejandro Rodriguez Perez",
+            justificacion: null,
+            asistencia: null
+        },
+        {
+            nombre: "Isabella Gonzalez Hernandez",
+            justificacion: null,
+            asistencia: null
+        },
+        {
+            nombre: "Mateo Sanchez Garcia",
+            justificacion: null,
+            asistencia: null
+        },
+        {
+            nombre: "Camila Torres Ramirez",
+            justificacion: null,
+            asistencia: null
+        },
+        {
+            nombre: "Lucas Gonzalez Gomez",
+            justificacion: null,
+            asistencia: null
+        },
+        {
+            nombre: "Valentina Flores Diaz",
+            justificacion: null,
+            asistencia: null
+        },
+        {
+            nombre: "Juan Pablo Martinez Ramirez",
+            justificacion: null,
+            asistencia: null
+        },
+        {
+            nombre: "Ana Maria Lopez Perez",
+            justificacion: null,
+            asistencia: null
+        },
+        {
+            nombre: "Carlos Eduardo Ramirez Ruiz",
+            justificacion: null,
+            asistencia: null
+        },
+        {
+            nombre: "Natalia Alvarez Flores",
+            justificacion: null,
+            asistencia: null
+        },
+        {
+            nombre: "Jose Luis Hernandez Rodriguez",
+            justificacion: null,
+            asistencia: null
+        },
+    ]
 
-export { aspectos, studentNames };
+function getIndex(arr, key, value) {
+
+    for (var i = 0; i < arr.length; i++) {
+
+        if (arr[i][key] == value) {
+            return i;
+        }
+    }
+    return null;
+}
+
+export { aspectos, studentNames, studentNames2, getIndex };

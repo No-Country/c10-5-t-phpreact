@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { aspectos, studentNames } from "./form_data";
+import { aspectos, studentNames, studentNames2, getIndex } from "./form_data";
 import Ratings from 'react-ratings-declarative';
 import StarRatings from 'react-star-ratings';
 import './Dashboard.css'
@@ -10,6 +10,7 @@ function Dashboard() {
     const [rating, setRating] = useState(0)
     const [input, setInput] = useState({
         aspectos: [],
+        participantes: [...studentNames2],
         feedback: "",
         observaciones: ""
     })
@@ -20,6 +21,43 @@ function Dashboard() {
             [e.target.name]: e.target.value
         })
     }
+
+    function handleJustification(e){
+        let index = getIndex(input.participantes, "nombre", e.target.name)
+        
+        if(e.target.checked){
+            let item = input.participantes[index].justificacion = true
+            setInput({
+                ...input,
+                participantes: [...input.participantes],
+            })
+           } else{
+            let item = input.participantes[index].justificacion = false
+            setInput({
+                ...input,
+                participantes: [...input.participantes],
+            })
+           }
+    }
+
+    function handleAssistance(e){
+        let index = getIndex(input.participantes, "nombre", e.target.name)
+        
+        if(e.target.checked){
+            let item = input.participantes[index].asistencia = true
+            setInput({
+                ...input,
+                participantes: [...input.participantes],
+            })
+           } else{
+            let item = input.participantes[index].asistencia = false
+            setInput({
+                ...input,
+                participantes: [...input.participantes],
+            })
+           }
+    }
+
 
     function getChecked(e){
        if(e.target.checked){
@@ -64,8 +102,7 @@ function Dashboard() {
         }
     }
 
-    console.log(rating)
-
+    console.log(input.participantes)
 
     return (
         <div className="flex flex-col w-full h-auto justify-around px-[20px] py-[30px] items-center">
@@ -97,7 +134,7 @@ function Dashboard() {
                         Aspectos a Evaluar
                     </h2>
 
-                   <form className="grid grid-cols-3 gap-4 justify-center items-center">
+                   <form id="main-form" className="grid grid-cols-3 gap-4 justify-center items-center">
                        
                    {aspectos.map((e, index) => (
                     <div className="flex flex-row items-center" key={index}>
@@ -108,41 +145,7 @@ function Dashboard() {
                     </div>
                    ))}
 
-                        {/* <div className="flex flex-row items-center">
-                            <input type="checkbox" className="w-[20px] h-[20px]" />
-                            <label for="student_1" className="font-Inter text-[16px] font-[400] tracking-[-0.03em] ml-[10px]">
-                                Comunicación
-                            </label>
-                        </div>
-
-                        <div className="flex flex-row items-center">
-                            <input type="checkbox" className="w-[20px] h-[20px]" />
-                            <label for="student_1" className="font-Inter text-[16px] font-[400] tracking-[-0.03em] ml-[10px]">
-                                Iniciativa
-                            </label>
-                        </div>
-
-                        <div className="flex flex-row items-center">
-                            <input type="checkbox" className="w-[20px] h-[20px]" />
-                            <label for="student_1" className="font-Inter text-[16px] font-[400] tracking-[-0.03em] ml-[10px]">
-                                Proactividad
-                            </label>
-                        </div>
-
-                        <div className="flex flex-row items-center">
-                            <input type="checkbox" className="w-[20px] h-[20px]" />
-                            <label for="student_1" className="font-Inter text-[16px] font-[400] tracking-[-0.03em] ml-[10px]">
-                                Organización
-                            </label>
-                        </div>
-
-                        <div className="flex flex-row items-center">
-                            <input type="checkbox" className="w-[20px] h-[20px]" />
-                            <label for="student_1" className="font-Inter text-[16px] font-[400] tracking-[-0.03em] ml-[10px]">
-                                Colaboración
-                            </label>
-                        </div> */}
-                       
+                     
                    </form>
 
                 </div>
@@ -178,7 +181,7 @@ function Dashboard() {
             <div className="flex flex-row w-11/12 h-[600px] justify-between py-[30px] items-center">
                 <div className="flex flex-col items-center w-[650px] h-[500px] rounded-[10px] border-2 border-morado-3-nc py-[10px]">
 
-                    <form className="relative overflow-x-auto w-full">
+                    <div className="relative overflow-x-auto w-full">
                         <table className="w-full text-sm text-center dark:text-gray-400">
                             <thead className="font-Inter text-[16px] font-[600] tracking-[-0.03em] leading-[19px]">
                                 <tr>
@@ -194,22 +197,22 @@ function Dashboard() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {studentNames.map((e, index) => (
+                                {studentNames2.map((e, index) => (
                                     <tr className="" key={index}>
                                     <th scope="row" className="px-6 py-4 font-Inter text-[16px] font-[400] tracking-[-0.03em] leading-[19px]">
-                                        {e}
+                                        {e.nombre}
                                     </th>
                                     <td className="px-6 py-4">
-                                        <input type="checkbox" className="w-[20px] h-[20px] cursor-pointer" />
+                                        <input type="checkbox" form="main-form" className="w-[20px] h-[20px] cursor-pointer" name={e.nombre} onChange={handleJustification} />
                                     </td>
                                     <td className="px-6 py-4">
-                                        <input type="checkbox" className="checkbox-round" />
+                                        <input type="checkbox" form="main-form" className="checkbox-round" name={e.nombre} onChange={handleAssistance} />
                                     </td>
                                 </tr>
                                 ))}
                             </tbody>
                         </table>
-                    </form>
+                    </div>
                 
                  </div>   
 
@@ -225,12 +228,12 @@ function Dashboard() {
 
                         <div className="flex flex-col">
                             <label className="font-Inter text-[14px] font-[500] tracking-[-0.03em]">Feedback Semanal</label>
-                            <textarea name="feedback" value={input.feedback} onChange={handleText} cols="30" rows="10" className="h-[108px] w-[550px] rounded-[4px] border-2 border-desactivado"></textarea>
+                            <textarea name="feedback" form="main-form" value={input.feedback} onChange={handleText} cols="30" rows="10" className="h-[108px] w-[550px] rounded-[4px] border-2 border-desactivado"></textarea>
                         </div>
 
                         <div className="flex flex-col">
                             <label className="font-Inter text-[14px] font-[500] tracking-[-0.03em]">Objetivos para proximo sprint</label>
-                            <textarea name="observaciones" value={input.observaciones} onChange={handleText} cols="30" rows="10" className="h-[108px] w-[550px] rounded-[4px] border-2 border-desactivado"></textarea>
+                            <textarea name="observaciones" form="main-form" value={input.observaciones} onChange={handleText} cols="30" rows="10" className="h-[108px] w-[550px] rounded-[4px] border-2 border-desactivado"></textarea>
                         </div>
                     </div>
 
@@ -247,13 +250,7 @@ function Dashboard() {
                                 starEmptyColor={'grey'}
                                 starHoverColor={'#3D8DE5'}
                                 starDimension={'40px'}
-                                
                             />
-                            {/* <img src="../../src/assets/star_white.png" alt="star" />
-                            <img src="../../src/assets/star_white.png" alt="star" />
-                            <img src="../../src/assets/star_white.png" alt="star" />
-                            <img src="../../src/assets/star_white.png" alt="star" />
-                            <img src="../../src/assets/star_white.png" alt="star" /> */}
                             </div>
                         </div>
                     </div>
