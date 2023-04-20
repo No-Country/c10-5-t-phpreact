@@ -7,12 +7,13 @@ import './Dashboard.css'
 function Dashboard() {
 
     
-    const [rating, setRating] = useState(0)
+    // const [rating, setRating] = useState(0)
     const [input, setInput] = useState({
         aspectos: [],
         participantes: [...studentNames2],
         feedback: "",
-        observaciones: ""
+        observaciones: "",
+        rating: 0
     })
 
     function handleText(e){
@@ -74,6 +75,16 @@ function Dashboard() {
  
     }
 
+    function handleSubmit(e){
+        e.preventDefault()
+        console.log(input)
+    }
+
+    function handleCancel(e){
+        e.preventDefault()
+        window.location.reload(false);
+    }
+
     const [color, setColor] = useState("")
     const styles = {
         empty:{
@@ -95,14 +106,13 @@ function Dashboard() {
     }
 
     function stars(e){
-        if(rating === 1 && e === 1){
-            setRating(0)
+        if(input.rating === 1 && e === 1){
+            input.rating = 0
         } else {
-            setRating(e)
+            input.rating = e
         }
+        console.log(input)
     }
-
-    console.log(input.participantes)
 
     return (
         <div className="flex flex-col w-full h-auto justify-around px-[20px] py-[30px] items-center">
@@ -114,15 +124,15 @@ function Dashboard() {
 
                     <div className="flex flex-row w-full justify-between">
                     <select name="" id="" className="flex flex-row h-[40px] w-[100px] border-[1px] border-primary items-center rounded-[10px]">
-                        <option selected className="flex flex-row items-center justify-around border-2 border-primary">Fecha</option>
+                        <option defaultValue={false} className="flex flex-row items-center justify-around border-2 border-primary">Fecha</option>
                     </select>
 
                     <select name="" id="" className="flex flex-row h-[40px] w-[100px] items-center border-[1px] border-primary rounded-[10px]">
-                        <option selected className="flex flex-row items-center justify-around">Grupo</option>
+                        <option defaultValue={false} className="flex flex-row items-center justify-around">Grupo</option>
                     </select>
 
                     <select name="" id="" className="flex flex-row h-[40px] w-[100px] items-center border-[1px] border-primary rounded-[10px]">
-                        <option selected className="flex flex-row items-center justify-around">Semana</option>
+                        <option defaultValue={false} className="flex flex-row items-center justify-around">Semana</option>
                     </select>
 
                     </div>
@@ -251,6 +261,8 @@ function Dashboard() {
                                 starHoverColor={'#3D8DE5'}
                                 starDimension={'40px'}
                             />
+
+                
                             </div>
                         </div>
                     </div>
@@ -260,13 +272,21 @@ function Dashboard() {
 
 
             <div className="flex justify-evenly mr-auto w-[380px] py-[5px] ml-[45px]">
-                <button className="bg-white w-[161px] h-[45px] rounded-[10px] shadow-dark font-Inter text-[15px] font-[500] text-primary tracking-[-0.03em] ">
-                    Cancelar
-                </button>
+                <input 
+                    onClick={handleCancel}
+                    form="main-form"
+                    value="Cancelar"
+                    type="reset"
+                    className="bg-white w-[161px] h-[45px] rounded-[10px] shadow-dark font-Inter text-[15px] font-[500] text-primary tracking-[-0.03em] cursor-pointer"
+                />
 
-                <button className="bg-primary w-[161px] h-[45px] rounded-[10px] shadow-dark font-Inter text-[15px] font-[500] text-text-color-white tracking-[-0.03em]">
-                    Enviar
-                </button>
+                <input
+                    onClick={handleSubmit}
+                    form="main-form"
+                    value="Enviar"
+                    type="submit"
+                    className="bg-primary w-[161px] h-[45px] rounded-[10px] shadow-dark font-Inter text-[15px] font-[500] text-text-color-white tracking-[-0.03em] cursor-pointer" 
+                />
             </div>
 
         </div>
