@@ -19,7 +19,7 @@ function handleSubmit(e){
 }
     
     return(        
-        <div className="flex flex-row justify-evenly items-center py-[15px] w-[280px] border-2 border-blue-500">
+        <div className="flex flex-row justify-evenly items-center py-[15px] w-[280px]">
             <input 
             className="w-[180px] h-[45px] rounded-[10px] shadow-dark indent-4"
             type="text" 

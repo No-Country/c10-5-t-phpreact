@@ -1,6 +1,72 @@
-import React from "react";
+import React, { useState } from "react";
+import { aspectos, studentNames } from "./form_data";
+import Ratings from 'react-ratings-declarative';
+import StarRatings from 'react-star-ratings';
+import './Dashboard.css'
 
 function Dashboard() {
+
+    
+    const [rating, setRating] = useState(0)
+    const [input, setInput] = useState({
+        aspectos: [],
+        feedback: "",
+        observaciones: ""
+    })
+
+    function handleText(e){
+        setInput({
+            ...input,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    function getChecked(e){
+       if(e.target.checked){
+        setInput({
+            ...input,
+            aspectos:[...input.aspectos, e.target.name]
+        })
+       } else{
+        setInput({
+            ...input,
+            aspectos: input.aspectos.filter((v) => v !== e.target.name),
+        })
+       }
+ 
+    }
+
+    const [color, setColor] = useState("")
+    const styles = {
+        empty:{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            width: '200px',
+            border: '1px solid black'
+        },
+
+        filled:{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            width: '200px',
+            // color: '#3D8DE5',
+        // border: '1px solid black'
+        }
+    }
+
+    function stars(e){
+        if(rating === 1 && e === 1){
+            setRating(0)
+        } else {
+            setRating(e)
+        }
+    }
+
+    console.log(rating)
+
+
     return (
         <div className="flex flex-col w-full h-auto justify-around px-[20px] py-[30px] items-center">
             <div className="flex flex-row justify-around items-center w-11/12 h-[180px] bg-morado-3-nc rounded-[10px]">
@@ -27,54 +93,57 @@ function Dashboard() {
 
 
                 <div className="flex flex-col w-[480px] h-[130px]">
-                    <h2 className="font-Inter text-[14px] font-[600] tracking-[-0.03em] leading-[45px] px-[15px]">
+                    <h2 className="font-Inter text-[14px] font-[600] tracking-[-0.03em] leading-[45px]">
                         Aspectos a Evaluar
                     </h2>
 
-                   <div className="grid grid-cols-3 gap-4 justify-center items-center">
-                        <div className="flex flex-row justify-evenly items-center">
-                            <input type="checkbox" className="w-[20px] h-[20px]" />
-                            <label for="student_1" className="font-Inter text-[16px] font-[400] tracking-[-0.03em]">
-                                Colaboración
-                            </label>
-                        </div>
-
-                        <div className="flex flex-row justify-evenly items-center">
-                            <input type="checkbox" className="w-[20px] h-[20px]" />
-                            <label for="student_1" className="font-Inter text-[16px] font-[400] tracking-[-0.03em]">
-                                Colaboración
-                            </label>
-                        </div>
-
-                        <div className="flex flex-row justify-evenly items-center">
-                            <input type="checkbox" className="w-[20px] h-[20px]" />
-                            <label for="student_1" className="font-Inter text-[16px] font-[400] tracking-[-0.03em]">
-                                Colaboración
-                            </label>
-                        </div>
-
-                        <div className="flex flex-row justify-evenly items-center">
-                            <input type="checkbox" className="w-[20px] h-[20px]" />
-                            <label for="student_1" className="font-Inter text-[16px] font-[400] tracking-[-0.03em]">
-                                Colaboración
-                            </label>
-                        </div>
-
-                        <div className="flex flex-row justify-evenly items-center">
-                            <input type="checkbox" className="w-[20px] h-[20px]" />
-                            <label for="student_1" className="font-Inter text-[16px] font-[400] tracking-[-0.03em]">
-                                Colaboración
-                            </label>
-                        </div>
-
-                        <div className="flex flex-row justify-evenly items-center">
-                            <input type="checkbox" className="w-[20px] h-[20px]" />
-                            <label for="student_1" className="font-Inter text-[16px] font-[400] tracking-[-0.03em]">
-                                Colaboración
-                            </label>
-                        </div>
+                   <form className="grid grid-cols-3 gap-4 justify-center items-center">
                        
-                   </div>
+                   {aspectos.map((e, index) => (
+                    <div className="flex flex-row items-center" key={index}>
+                        <input type="checkbox" className="w-[20px] h-[20px]" name={e} onChange={getChecked} />
+                        <label htmlFor={e} className="font-Inter text-[16px] font-[400] tracking-[-0.03em] ml-[10px]">
+                            {e}
+                        </label>
+                    </div>
+                   ))}
+
+                        {/* <div className="flex flex-row items-center">
+                            <input type="checkbox" className="w-[20px] h-[20px]" />
+                            <label for="student_1" className="font-Inter text-[16px] font-[400] tracking-[-0.03em] ml-[10px]">
+                                Comunicación
+                            </label>
+                        </div>
+
+                        <div className="flex flex-row items-center">
+                            <input type="checkbox" className="w-[20px] h-[20px]" />
+                            <label for="student_1" className="font-Inter text-[16px] font-[400] tracking-[-0.03em] ml-[10px]">
+                                Iniciativa
+                            </label>
+                        </div>
+
+                        <div className="flex flex-row items-center">
+                            <input type="checkbox" className="w-[20px] h-[20px]" />
+                            <label for="student_1" className="font-Inter text-[16px] font-[400] tracking-[-0.03em] ml-[10px]">
+                                Proactividad
+                            </label>
+                        </div>
+
+                        <div className="flex flex-row items-center">
+                            <input type="checkbox" className="w-[20px] h-[20px]" />
+                            <label for="student_1" className="font-Inter text-[16px] font-[400] tracking-[-0.03em] ml-[10px]">
+                                Organización
+                            </label>
+                        </div>
+
+                        <div className="flex flex-row items-center">
+                            <input type="checkbox" className="w-[20px] h-[20px]" />
+                            <label for="student_1" className="font-Inter text-[16px] font-[400] tracking-[-0.03em] ml-[10px]">
+                                Colaboración
+                            </label>
+                        </div> */}
+                       
+                   </form>
 
                 </div>
 
@@ -109,56 +178,44 @@ function Dashboard() {
             <div className="flex flex-row w-11/12 h-[600px] justify-between py-[30px] items-center">
                 <div className="flex flex-col items-center w-[650px] h-[500px] rounded-[10px] border-2 border-morado-3-nc py-[10px]">
 
-                    <div className="grid grid-cols-3 gap-4 w-full place-items-center h-full">
-                   
-                        <h2 className="font-Inter text-[16px] font-[600] tracking-[-0.03em] leading-[19px]">Participantes</h2>
-                        <h2 className="font-Inter text-[16px] font-[600] tracking-[-0.03em] leading-[19px]">Justificación</h2>
-                        <h2 className="font-Inter text-[16px] font-[600] tracking-[-0.03em] leading-[19px]">Asistencia</h2>
-     
-                        
-                        
-                            <label for="student_1" className="font-Inter text-[16px] font-[400] tracking-[-0.03em] leading-[19px]">
-                                Student_1
-                            </label>
-                            <input type="checkbox" className="w-[20px] h-[20px] cursor-pointer appearance-none border-2 border-primary"/>
-                            <div className="w-[18px] h-[18px] bg-gris-desactivado rounded-full items-center"></div>
-                            
-                      
+                    <form className="relative overflow-x-auto w-full">
+                        <table className="w-full text-sm text-center dark:text-gray-400">
+                            <thead className="font-Inter text-[16px] font-[600] tracking-[-0.03em] leading-[19px]">
+                                <tr>
+                                    <th scope="col" className="px-6 py-5">
+                                        Participantes
+                                    </th>
+                                    <th scope="col" className="px-6 py-5">
+                                        Justificación
+                                    </th>
+                                    <th scope="col" className="px-6 py-5">
+                                        Asistencia
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {studentNames.map((e, index) => (
+                                    <tr className="" key={index}>
+                                    <th scope="row" className="px-6 py-4 font-Inter text-[16px] font-[400] tracking-[-0.03em] leading-[19px]">
+                                        {e}
+                                    </th>
+                                    <td className="px-6 py-4">
+                                        <input type="checkbox" className="w-[20px] h-[20px] cursor-pointer" />
+                                    </td>
+                                    <td className="px-6 py-4">
+                                        <input type="checkbox" className="checkbox-round" />
+                                    </td>
+                                </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </form>
+                
+                 </div>   
 
-                            <label for="student_1" className="font-Inter text-[16px] font-[400] tracking-[-0.03em] leading-[19px]">
-                                Student_1
-                            </label>
-                            <input type="checkbox" className="w-[20px] h-[20px]"/>
-                            <div className="w-[18px] h-[18px] bg-gris-desactivado rounded-full"></div>
-                       
 
-                        
-                            <label for="student_1" className="font-Inter text-[16px] font-[400] tracking-[-0.03em] leading-[19px]">
-                                Student_1
-                            </label>
-                            <input type="checkbox" className="w-[20px] h-[20px]"/>
-                            <div className="w-[18px] h-[18px] bg-gris-desactivado rounded-full"></div>
-                            
-                       
 
-                            <label for="student_1" className="font-Inter text-[16px] font-[400] tracking-[-0.03em] leading-[19px]">
-                                Student_1
-                            </label>
-                            <input type="checkbox" className="w-[20px] h-[20px]"/>
-                            <div className="w-[18px] h-[18px] bg-gris-desactivado rounded-full"></div>
-                            
-                     
-                        
-                            <label for="student_1" className="font-Inter text-[16px] font-[400] tracking-[-0.03em] leading-[19px]">
-                                Student_1
-                            </label>
-                            <input type="checkbox" className="w-[20px] h-[20px]"/>
-                            <div className="w-[18px] h-[18px] bg-gris-desactivado rounded-full"></div>
-                            
-                            
-                        
-                    </div>
-                </div>
+
 
                 <div className="flex flex-col justify-between items-center w-[650px] h-[500px] rounded-[10px]">
                     <div className="flex flex-col justify-evenly items-center w-[650px] h-[390px] rounded-[10px] border-2 border-morado-3-nc">
@@ -168,12 +225,12 @@ function Dashboard() {
 
                         <div className="flex flex-col">
                             <label className="font-Inter text-[14px] font-[500] tracking-[-0.03em]">Feedback Semanal</label>
-                            <textarea name="" id="" cols="30" rows="10" className="h-[108px] w-[550px] rounded-[4px] border-2 border-desactivado"></textarea>
+                            <textarea name="feedback" value={input.feedback} onChange={handleText} cols="30" rows="10" className="h-[108px] w-[550px] rounded-[4px] border-2 border-desactivado"></textarea>
                         </div>
 
                         <div className="flex flex-col">
                             <label className="font-Inter text-[14px] font-[500] tracking-[-0.03em]">Objetivos para proximo sprint</label>
-                            <textarea name="" id="" cols="30" rows="10" className="h-[108px] w-[550px] rounded-[4px] border-2 border-desactivado"></textarea>
+                            <textarea name="observaciones" value={input.observaciones} onChange={handleText} cols="30" rows="10" className="h-[108px] w-[550px] rounded-[4px] border-2 border-desactivado"></textarea>
                         </div>
                     </div>
 
@@ -182,11 +239,21 @@ function Dashboard() {
                         <div className="flex flex-row w-full h-full justify-evenly items-center">
                             <h2 className="font-Inter text-[16px] font-[600] tracking-[-0.03em] leading-[19px">Valoracion del sprint finalizado</h2>
                             <div className="flex flex-row items-center">
+                          
+                            <StarRatings 
+                                changeRating={stars}
+                                numberOfStars={5}
+                                starRatedColor={'#3D8DE5'}
+                                starEmptyColor={'grey'}
+                                starHoverColor={'#3D8DE5'}
+                                starDimension={'40px'}
+                                
+                            />
+                            {/* <img src="../../src/assets/star_white.png" alt="star" />
                             <img src="../../src/assets/star_white.png" alt="star" />
                             <img src="../../src/assets/star_white.png" alt="star" />
                             <img src="../../src/assets/star_white.png" alt="star" />
-                            <img src="../../src/assets/star_white.png" alt="star" />
-                            <img src="../../src/assets/star_white.png" alt="star" />
+                            <img src="../../src/assets/star_white.png" alt="star" /> */}
                             </div>
                         </div>
                     </div>

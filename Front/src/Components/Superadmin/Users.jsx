@@ -13,7 +13,7 @@ function Users() {
             </div>
 
 
-            <div className="border-2 border-red-500 w-full">
+            <div className=" w-full">
                 <SearchBar />
             </div>
 
