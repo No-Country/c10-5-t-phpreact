@@ -9,7 +9,7 @@ function Navbar() {
                     <a href="/">
                         <div className="flex flex-row items-center">
                         <img src="../../src/assets/Puzzle_NC.png" alt="NC_Logo" className="px-[10px]"/>
-                        <li className="font-Geogrotesque text-[60px] font-[600] text-white px-[10px] tracking-[-0.03em]">No Country</li>
+                        <li className="font-Geogrotesque text-[60px] font-[600] text-white px-[10px] tracking-[-0.03em]">TeamBoard</li>
                         </div>
                     </a>
 

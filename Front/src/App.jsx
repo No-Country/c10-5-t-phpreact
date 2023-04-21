@@ -10,6 +10,7 @@ import Chart_1 from './Components/Reportes/Chart_1';
 import Donut from './Components/Reportes/Donut/Donut';
 import SuperDashboard from './Components/Superadmin/SuperDashboard';
 import Equipos from './Components/Equipos/Equipos';
+import Login from './Components/Login/Login';
 // import Users from './Components/Superadmin/Users';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route  path='/dashboard/:id' element={<Dashboard />} />
           <Route path='/reportes' element={<Reportes />} />
           <Route path='/donut' element={<Donut />}/>
+          <Route path='/login' element={<Login />}/>
 
           <Route path='/superDashboard' element={<SuperDashboard />} />
 
