@@ -47,9 +47,9 @@ function Navbar() {
                                     <button className="bg-[#5173EB] w-[161px] h-[56px] rounded-[10px] shadow-dark">Cerrar Sesion</button>
                                 </a>
 
-                                <a href="/superDashboard">
+                                {/* <a href="/superDashboard">
                                     <button className="bg-verde-nc text-black w-[161px] h-[56px] rounded-[10px] shadow-dark">Admin</button>
-                                </a>
+                                </a> */}
                             </div>
                             
                             :
