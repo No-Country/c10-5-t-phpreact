@@ -20,7 +20,7 @@ function Section_2() {
           
             <div className="flex flex-col justify-evenly items-center bg-[#F4F4F4] w-[270px] h-[520px] rounded-[10px] shadow-dark">
                 <div>
-                    <img src="../../public/diseñador.png" alt="profile" width={"150px"} height={"150px"}/>
+                    <img src="../../diseñador.png" alt="profile" width={"150px"} height={"150px"}/>
                 </div>
                 <span className="font-Inter text-[14px] font-[600] tracking-[0.01em] leading-[17px]">Diseñador UX/UI</span>
                 <p className="font-Inter text-[14px] font-[500] tracking-[0.01em] leading-[17px] text-justify mx-[15px]">Un diseñador de UX/UI es un profesional que se especializa en crear la experiencia de usuario (UX) y la interfaz de usuario (UI) de productos digitales, como sitios web, aplicaciones móviles y software.</p>
@@ -30,7 +30,7 @@ function Section_2() {
 
             <div className="flex flex-col justify-evenly items-center bg-[#F4F4F4] w-[270px] h-[520px] rounded-[10px] shadow-dark">
                 <div>
-                    <img src="../../public/product_manager.png" alt="profile" width={"150px"} height={"150px"}/>
+                    <img src="../../product_manager.png" alt="profile" width={"150px"} height={"150px"}/>
                 </div>
                 <span className="font-Inter text-[14px] font-[600] tracking-[0.01em] leading-[17px]">Product Manager</span>
                 <p className="font-Inter text-[14px] font-[500] tracking-[0.01em] leading-[17px] text-justify mx-[15px]">Un Product Manager es un profesional responsable de liderar un equipo y administrar los recursos y actividades necesarios para completar un proyecto específico dentro de un marco de tiempo y presupuesto establecidos.</p>
@@ -40,7 +40,7 @@ function Section_2() {
 
             <div className="flex flex-col justify-evenly items-center bg-[#F4F4F4] w-[270px] h-[520px] rounded-[10px] shadow-dark">
                 <div>
-                    <img src="../../public/frontend.png" alt="profile" width={"150px"} height={"150px"}/>
+                    <img src="../../frontend.png" alt="profile" width={"150px"} height={"150px"}/>
                 </div>
                 <span className="font-Inter text-[14px] font-[600] tracking-[0.01em] leading-[17px]">Desarrollo Front End</span>
                 <p className="font-Inter text-[14px] font-[500] tracking-[0.01em] leading-[17px] text-justify mx-[15px]">Es un profesional de tecnología de la información que se enfoca en el diseño, desarrollo y mantenimiento de la parte visual y funcional de un sitio web o aplicación.</p>
@@ -50,7 +50,7 @@ function Section_2() {
 
             <div className="flex flex-col justify-evenly items-center bg-[#F4F4F4] w-[270px] h-[520px] rounded-[10px] shadow-dark">
                 <div>
-                    <img src="../../public/backend.png" alt="profile" width={"150px"} height={"150px"}/>
+                    <img src="../../backend.png" alt="profile" width={"150px"} height={"150px"}/>
                 </div>
                 <span className="font-Inter text-[14px] font-[600] tracking-[0.01em] leading-[17px]">Desarrollo Back End</span>
                 <p className="font-Inter text-[14px] font-[500] tracking-[0.01em] leading-[17px] text-justify mx-[15px]">Un desarrollador backend es un profesional de tecnología de la información que se enfoca en la creación y mantenimiento de la lógica del servidor de una aplicación o sitio web.</p>
@@ -60,7 +60,7 @@ function Section_2() {
 
             <div className="flex flex-col justify-evenly items-center bg-[#F4F4F4] w-[270px] h-[520px] rounded-[10px] shadow-dark">
                 <div>
-                    <img src="../../public/qa_tester.png" alt="profile" width={"150px"} height={"150px"}/>
+                    <img src="../../qa_tester.png" alt="profile" width={"150px"} height={"150px"}/>
                 </div>
                 <span className="font-Inter text-[14px] font-[600] tracking-[0.01em] leading-[17px]">QA Tester</span>
                 <p className="font-Inter text-[14px] font-[500] tracking-[0.01em] leading-[17px] text-justify mx-[15px]">Un QA tester, se encarga de probar y evaluar la calidad de un software o aplicación antes de su lanzamiento, trabajan en estrecha colaboración con los desarrolladores de software y otros miembros del equipo de desarrollo.</p>

@@ -22,7 +22,7 @@ function Footer() {
                 <div className="flex flex-row w-full justify-between items-center">
                     <div className="flex flex-col h-full justify-between py-[20px]">
                         <div className="flex flex-row w-[300px] items-center" >
-                            <img src="../../public/Puzzle_NC.png" alt="NC_Logo" width={"24.54px"} height={"26.5px"} />
+                            <img src="../../Puzzle_NC.png" alt="NC_Logo" width={"24.54px"} height={"26.5px"} />
                             <span className="font-Geogrotesque text-[34px] font-[600] text-white px-[10px] tracking-[-0.03em]">TeamBoard</span>
                         </div>
 
@@ -49,8 +49,8 @@ function Footer() {
                             <div className="w-1/2 flex flex-row items-center ml-auto">
                                 <span className="font-Inter text-[16px] font-[500] text-text-color-white tracking-[-0.03em]  px-[20px]">info@TeamBoard.tech</span>
                                 <div className="flex flex-row justify-between w-[120px]">
-                                    <img src="../../public/github_white.png" alt="github" width={"48px"} height={"45px"}/>
-                                    <img src="../../public/linkedin_white.png" alt="linkedin" width={"50px"} height={"50px"}/>
+                                    <img src="../../github_white.png" alt="github" width={"48px"} height={"45px"}/>
+                                    <img src="../../linkedin_white.png" alt="linkedin" width={"50px"} height={"50px"}/>
                                 </div>
                             </div>
 

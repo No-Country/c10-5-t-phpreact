@@ -163,11 +163,11 @@ function Dashboard() {
                             Participantes
                         </h2>
                        <div className="flex flex-row">
-                            <img src="../../public/participante.png" alt="pic" className="z-0"/>
-                            <img src="../../public/participante.png" alt="pic" className="z-10 ml-[-15px]"/>
-                            <img src="../../public/participante.png" alt="pic" className="z-20 ml-[-15px]"/>
-                            <img src="../../public/participante.png" alt="pic" className="z-30 ml-[-15px]"/>
-                            <img src="../../public/participante.png" alt="pic" className="z-40 ml-[-15px]"/>
+                            <img src="../../participante.png" alt="pic" className="z-0"/>
+                            <img src="../../participante.png" alt="pic" className="z-10 ml-[-15px]"/>
+                            <img src="../../participante.png" alt="pic" className="z-20 ml-[-15px]"/>
+                            <img src="../../participante.png" alt="pic" className="z-30 ml-[-15px]"/>
+                            <img src="../../participante.png" alt="pic" className="z-40 ml-[-15px]"/>
                        </div>
                     </div>
 

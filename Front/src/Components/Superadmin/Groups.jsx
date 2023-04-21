@@ -40,11 +40,11 @@ function Groups() {
                                 </th>
                                 <td class="px-6 py-4">
                                     <div className="flex flex-row">
-                                        <img src="../../public/participante.png" alt="pic" className="z-0" />
-                                        <img src="../../public/participante.png" alt="pic" className="z-10 ml-[-15px]" />
-                                        <img src="../../public/participante.png" alt="pic" className="z-20 ml-[-15px]" />
-                                        <img src="../../public/participante.png" alt="pic" className="z-30 ml-[-15px]" />
-                                        <img src="../../public/participante.png" alt="pic" className="z-40 ml-[-15px]" />
+                                        <img src="../../participante.png" alt="pic" className="z-0" />
+                                        <img src="../../participante.png" alt="pic" className="z-10 ml-[-15px]" />
+                                        <img src="../../participante.png" alt="pic" className="z-20 ml-[-15px]" />
+                                        <img src="../../participante.png" alt="pic" className="z-30 ml-[-15px]" />
+                                        <img src="../../participante.png" alt="pic" className="z-40 ml-[-15px]" />
                                     </div>
                                 </td>
                                 <td class="px-6 py-4">
@@ -55,7 +55,7 @@ function Groups() {
                                 </td>
                                 <td class="px-6 py-4">
                                     <button>
-                                        <img src="../../public/delete_2.png" alt="trash" className="" width={"18px"} height={"18px"} />
+                                        <img src="../../delete_2.png" alt="trash" className="" width={"18px"} height={"18px"} />
                                     </button>
                                 </td>
                             </tr>

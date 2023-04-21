@@ -8,7 +8,7 @@ function Navbar() {
                 <ul className="flex flex-row justify-between items-center w-full px-[15px]">
                     <a href="/">
                         <div className="flex flex-row items-center">
-                        <img src="../../public/Puzzle_NC.png" alt="NC_Logo" className="px-[10px]"/>
+                        <img src="../../Puzzle_NC.png" alt="NC_Logo" className="px-[10px]"/>
                         <li className="font-Geogrotesque text-[60px] font-[600] text-white px-[10px] tracking-[-0.03em]">TeamBoard</li>
                         </div>
                     </a>

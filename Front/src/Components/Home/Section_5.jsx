@@ -29,7 +29,7 @@ function Section_5(){
                       <div className="flex items-center" onClick={() => toggle(index)}>
                           <div className="w-full font-Inter text-[16px] font-[600] tracking-[-0.03em] leading-[56px] indent-4">{e.question}</div>
                           <div className={`${active !== index ? 'font-Inter text-[20px] font-[600] rotate-90 mr-[15px]' : 'font-Inter text-[20px] font-[600] rotate-270 mr-[15px]' }`}>&gt;</div>
-                          {/* <img src="../../public/vector.png" alt="vector" className="mr-[15px] group-[.is-active]:rotate-[180deg]" /> */}
+                          {/* <img src="../../vector.png" alt="vector" className="mr-[15px] group-[.is-active]:rotate-[180deg]" /> */}
                       </div>
           
                       <div className={`${active !== index ? 'overflow-hidden max-h-0 group-[is.active]:max-h-auto' : 'overflow-visible h-auto px-[15px] py-[15px]'}`}>
@@ -41,7 +41,7 @@ function Section_5(){
             </div>
 
             <div className="absolute bottom-0 right-20">
-                <img src="../../public/selfie_boy.png" alt="boy"/>
+                <img src="../../selfie_boy.png" alt="boy"/>
             </div>
         </div>
     )

@@ -42,15 +42,15 @@ function Reportes() {
 
                         <div className="grid grid-cols-3 gap-4 justify-between items-center w-[250px] h-auto py-[15px] rounded-[10px] bg-[#F7F7F7]">
                             <div>
-                                <img src="../../public/React_icon.png" alt="react" />
+                                <img src="../../React_icon.png" alt="react" />
                             </div>
 
                             <div>
-                                <img src="../../public/php_icon.png" alt="react" />
+                                <img src="../../php_icon.png" alt="react" />
                             </div>
 
                             <div>
-                                <img src="../../public/figma_icon.png" alt="react" />
+                                <img src="../../figma_icon.png" alt="react" />
                             </div>
 
                         </div>
