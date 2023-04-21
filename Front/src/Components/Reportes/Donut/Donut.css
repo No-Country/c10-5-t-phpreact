@@ -1,4 +1,4 @@
-:root {
+/* :root {
     --pi: 3.14159265359;
     --a1: 60;
     --a2: 25;
@@ -80,5 +80,21 @@
   .donut:nth-child(4) {
     transform: rotateZ(calc(90deg  + calc(var(--a1) * 360deg / 100) + calc(var(--a2) * 360deg / 100) + calc(var(--a3) * 360deg / 100)));
     animation: percent4 1s ease-in-out forwards;
+  } */
+
+
+
+
+  .progress {
+    display: flex;
+  }
+  
+  .progress-circle {
+    stroke-dasharray: 502;
+    stroke-dashoffset: 75;
+  }
+
+  .text{
+    font: bold 30px sans-serif;
   }
  

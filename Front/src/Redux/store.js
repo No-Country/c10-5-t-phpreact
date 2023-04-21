@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { testCounterSlice } from './counter-test'
+import { getAllTeams } from './getTeams'
 
 export const store = configureStore({
   reducer: {
-    dog: testCounterSlice.reducer
+    dog: testCounterSlice.reducer,
+    getTeams: getAllTeams.reducer
   },
 })
 

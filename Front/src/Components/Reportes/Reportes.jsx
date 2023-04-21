@@ -2,6 +2,7 @@ import React from "react";
 import Chart_1 from "./Chart_1";
 import Chart_2 from "./Chart_2";
 import Donut from "./Donut/Donut";
+import { studentNames, studentNames2 } from "../Dashboard/form_data";
 
 function Reportes() {
     return (
@@ -19,25 +20,13 @@ function Reportes() {
                         </div>
                         <div className="flex flex-col h-auto justify-around items-center py-[15px] rounded-[10px] bg-[#F7F7F7]">
                             <div className="grid grid-cols-2 gap-4 w-full place-items-center h-full">
-                                <div className="flex flex-row justify-around items-center w-[350px]">
-                                    <img src="../../src/assets/participante.png" alt="selfie" />
-                                    <h3 className="font-Inter text-[14px] font-[400]">Diego Alberto Juarez&nbsp;(Frontend Developer)</h3>
-                                </div>
 
-                                <div className="flex flex-row justify-around items-center w-[350px]">
-                                    <img src="../../src/assets/participante.png" alt="selfie" />
-                                    <h3 className="font-Inter text-[14px] font-[400]">Diego Alberto Juarez&nbsp;(Frontend Developer)</h3>
-                                </div>
-
-                                <div className="flex flex-row justify-around items-center w-[350px]">
-                                    <img src="../../src/assets/participante.png" alt="selfie" />
-                                    <h3 className="font-Inter text-[14px] font-[400]">Diego Alberto Juarez&nbsp;(Frontend Developer)</h3>
-                                </div>
-
-                                <div className="flex flex-row justify-around items-center w-[350px]">
-                                    <img src="../../src/assets/participante.png" alt="selfie" />
-                                    <h3 className="font-Inter text-[14px] font-[400]">Diego Alberto Juarez&nbsp;(Frontend Developer)</h3>
-                                </div>
+                                {studentNames2.map((e, index) => (
+                                    <div className="flex flex-row items-center w-[350px] px-2" key={index}>
+                                        <img src={e.image} alt="selfie" />
+                                        <h3 className="font-Inter text-[14px] font-[400] pl-[10px]">{e.nombre}&nbsp;({e.role})</h3>
+                                    </div>
+                                ))}
 
                             </div>
                         </div>

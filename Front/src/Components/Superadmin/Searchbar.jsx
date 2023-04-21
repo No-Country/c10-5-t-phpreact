@@ -19,9 +19,9 @@ function handleSubmit(e){
 }
     
     return(        
-        <div className="flex flex-row justify-evenly items-center py-[15px] w-[280px]">
+        <div className="flex flex-row justify-around items-center py-[15px] w-[380px]">
             <input 
-            className="w-[180px] h-[45px] rounded-[10px] shadow-dark indent-4"
+            className="w-[280px] h-[45px] rounded-[10px] shadow-dark indent-4"
             type="text" 
             placeholder="Nombre..." 
             onChange={e => handleInputChange(e)}>
