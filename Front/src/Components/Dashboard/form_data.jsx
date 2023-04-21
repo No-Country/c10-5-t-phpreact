@@ -115,6 +115,130 @@ const studentNames2 =
         },
     ]
 
+
+
+    const students3 = [
+        {
+          name: "Juan Pablo Garcia Perez",
+          justificacion: null,
+          asistencia: null,
+          role: "Developer",
+          image: "../../profile_pics/no_pic.png",
+          roleUser: "TeamLead"
+        },
+        {
+          name: "Ana Sofia Rodriguez Gomez",
+          justificacion: null,
+          asistencia: null,
+          role: "Designer",
+          image: "../../profile_pics/no_pic.png",
+          roleUser: "Developer"
+        },
+        {
+          name: "Luis Eduardo Martinez Ruiz",
+          justificacion: null,
+          asistencia: null,
+          role: "QA Engineer",
+          image: "../../profile_pics/no_pic.png",
+          roleUser: "Developer"
+        },
+        {
+          name: "Valentina Torres Hernandez",
+          justificacion: null,
+          asistencia: null,
+          role: "Developer",
+          image: "../../profile_pics/no_pic.png",
+          roleUser: "Designer"
+        },
+        {
+          name: "Diego Andres Gonzalez Ramirez",
+          justificacion: null,
+          asistencia: null,
+          role: "Designer",
+          image: "../../profile_pics/no_pic.png",
+          roleUser: "QA Engineer"
+        },
+        {
+          name: "Camila Alejandra Flores Perez",
+          justificacion: null,
+          asistencia: null,
+          role: "QA Engineer",
+          image: "../../profile_pics/no_pic.png",
+          roleUser: "Designer"
+        },
+        {
+          name: "Santiago Jose Ramirez Diaz",
+          justificacion: null,
+          asistencia: null,
+          role: "Developer",
+          image: "../../profile_pics/no_pic.png",
+          roleUser: "QA Engineer"
+        },
+        {
+          name: "Isabella Maria Hernandez Torres",
+          justificacion: null,
+          asistencia: null,
+          role: "Designer",
+          image: "../../profile_pics/no_pic.png",
+          roleUser: "TeamLead"
+        },
+        {
+          name: "Lucas Antonio Gomez Ramirez",
+          justificacion: null,
+          asistencia: null,
+          role: "QA Engineer",
+          image: "../../profile_pics/no_pic.png",
+          roleUser: "Developer"
+        },
+        {
+          name: "Sofia Fernanda Perez Flores",
+          justificacion: null,
+          asistencia: null,
+          role: "Developer",
+          image: "../../profile_pics/no_pic.png",
+          roleUser: "Designer"
+        },
+        {
+          name: "Mateo Alejandro Sanchez Gonzalez",
+          justificacion: null,
+          asistencia: null,
+          role: "Designer",
+          image: "../../profile_pics/no_pic.png",
+          roleUser: "QA Engineer"
+        },
+        {
+          name: "Natalia Andrea Diaz Hernandez",
+          justificacion: null,
+          asistencia: null,
+          role: "QA Engineer",
+          image: "../../profile_pics/no_pic.png",
+          roleUser: "TeamLead"
+        },
+        {
+          name: "Gabriel Andres Castro Lopez",
+          justificacion: null,
+          asistencia: null,
+          role: "Developer",
+          image: "../../profile_pics/no_pic.png",
+          roleUser: "QA Engineer"
+        },
+        {
+          name: "Ana Paula Martinez Gonzalez",
+          justificacion: null,
+          asistencia: null,
+          role: "Designer",
+          image: "../../profile_pics/no_pic.png",
+          roleUser: "Developer"
+        },
+        {
+          name: "Andres Felipe Torres Ruiz",
+          justificacion: null,
+          asistencia: null,
+          role: "Developer"
+        }
+    ]
+      
+
 function getIndex(arr, key, value) {
 
     for (var i = 0; i < arr.length; i++) {
@@ -126,4 +250,4 @@ function getIndex(arr, key, value) {
     return null;
 }
 
-export { aspectos, studentNames, studentNames2, getIndex };
+export { aspectos, studentNames, studentNames2, students3, getIndex };

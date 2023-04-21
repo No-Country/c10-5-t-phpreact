@@ -7,7 +7,7 @@ const CourseItem = ({course}) => {
     <h1 className="py-1">Fecha de inicio | {course.fechaInicio}</h1>
     <h1 className="py-1">Fecha de finalización | {course.fechaFin}</h1>
     <h1 className="py-1">{course.tecnologias.join(" ")}</h1>
-    <button className="font-normal text-base text-white rounded-xl bg-primary p-4 mt-1 w-full hover:invert">IR A COHORTE</button>
+    <a href="/dashboard"><button className="font-normal text-base text-white rounded-xl bg-primary p-4 mt-1 w-full hover:invert">Detalle</button></a>
   </div>)
 }
 

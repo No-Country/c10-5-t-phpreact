@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Navigate, useNavigate, Link } from "react-router-dom";
 
 function Navbar() {
 
     const [url, setUrl] = useState(false)
+    // const navigate = useNavigate()
 
     
 
@@ -13,7 +14,11 @@ function Navbar() {
             return window.location.origin
         }
         const urls = getCurrentURL()
-        if (urls + "/activos" === window.location.href || urls + "/dashboard" === window.location.href) {
+        if (urls + "/activos" === window.location.href
+             || urls + "/dashboard" === window.location.href 
+             || urls + "/reportes" === window.location.href
+             || urls + "/superDashboard" === window.location.href
+             ) {
             setUrl(true)
         } else {
             setUrl(false)
@@ -35,11 +40,15 @@ function Navbar() {
                     <div className="flex flex-row justify-around items-center w-[600px] font-Roboto text-[20px] font-[500] text-text-color-white">
                         {url ?
                             <div className="flex flex-row justify-around items-center w-[600px]">
-                                <li><a href="#section_4">Asistencia</a></li>
-                                <li><a href="#section_4">Reportes</a></li>
+                                <li><a href="/dashboard">Asistencia</a></li>
+                                <li><a href="/reportes">Reportes</a></li>
 
                                 <a href="/login">
                                     <button className="bg-[#5173EB] w-[161px] h-[56px] rounded-[10px] shadow-dark">Cerrar Sesion</button>
+                                </a>
+
+                                <a href="/superDashboard">
+                                    <button className="bg-verde-nc text-black w-[161px] h-[56px] rounded-[10px] shadow-dark">Admin</button>
                                 </a>
                             </div>
                             

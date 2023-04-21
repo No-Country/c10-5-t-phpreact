@@ -15,7 +15,7 @@ function Reportes() {
                 <div className="flex flex-row justify-between items-start w-full py-[5px]">
                     <div className="flex flex-col h-auto justify-around items-center">
                         <div className="items-center w-full py-[10px]">
-                            <h2 className="z-0 font-Inter text-[18px] font-[600]">Name of the Group</h2>
+                            <h2 className="z-0 font-Inter text-[18px] font-[600]">C10-5-T-PHP_REACT</h2>
                             <div className="z-10 w-[180px] h-[11px] bg-morado-1-nc mt-[-10px]"></div>
                         </div>
                         <div className="flex flex-col h-auto justify-around items-center py-[15px] rounded-[10px] bg-[#F7F7F7]">

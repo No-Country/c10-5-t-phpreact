@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import SearchBar from "./Searchbar";
-import { studentNames2 } from "../Dashboard/form_data";
+import { studentNames2, students3 } from "../Dashboard/form_data";
 
 function Users() {
     return (
@@ -21,11 +21,11 @@ function Users() {
             <div class="relative overflow-x-auto w-full">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                     <tbody>
-                        {studentNames2.map((e, index) => (
+                        {students3.map((e, index) => (
                             <tr class="bg-white border-2 border-morado-3-nc border-spacing-2">
                                 <th scope="row" class="flex flex-row items-center px-6 py-4 font-Inter text-[16px] font-[400] tracking-[-0.03em] leading-[19px] text-primary">
                                     <img src={e.image} alt="pic" className="" />
-                                    <Link to={'/perfil'} className="px-[5px]"><u>{e.nombre}</u></Link>
+                                    <Link to={'/perfil'} className="px-[5px]"><u>{e.name}</u></Link>
                                 </th>
 
                                 <td class="px-6 py-4">

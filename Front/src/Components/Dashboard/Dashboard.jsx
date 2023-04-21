@@ -118,17 +118,21 @@ function Dashboard() {
         <div className="flex flex-col w-full h-auto justify-around px-[20px] py-[30px] items-center">
             <div className="flex flex-row justify-around items-center w-11/12 h-[180px] bg-morado-3-nc rounded-[10px]">
                 <div className="flex flex-col w-[400px] h-[130px]">
-                    <h2 className="font-Inter text-[14px] font-[600] tracking-[-0.03em] leading-[60px]">
-                        Teamboard-Gestión de asistencias
+                    <h2 className="font-Inter text-[16px] font-[600] tracking-[-0.03em] leading-[60px]">
+                        <u>C10-5-T-PHP_REACT</u>
                     </h2>
 
                     <div className="flex flex-row w-full justify-start items-center">
-                    <select name="" id="" className="flex flex-row h-[40px] w-[100px] border-[1px] border-primary items-center rounded-[10px] text-center mr-[10px]">
+                    {/* <input type="date" name="" id="" className="flex flex-row h-[40px] w-[150px] border-[1px] border-primary items-center rounded-[10px] text-center mr-[10px]">
                         <option defaultValue={false} className="flex flex-row items-center justify-around border-2 border-primary">Fecha</option>
-                    </select>
+                    </input> */}
 
-                    <select name="" id="" className="flex flex-row h-[40px] w-[100px] items-center border-[1px] border-primary rounded-[10px] text-center ml-[10px]">
+                    <select name="" id="" className="flex flex-row h-[40px] w-[150px] items-center border-[1px] border-primary rounded-[10px] text-center">
                         <option defaultValue={false} className="flex flex-row items-center justify-around">Semana</option>
+                        <option defaultValue={false} className="flex flex-row items-center justify-around">1</option>
+                        <option defaultValue={false} className="flex flex-row items-center justify-around">2</option>
+                        <option defaultValue={false} className="flex flex-row items-center justify-around">3</option>
+                        <option defaultValue={false} className="flex flex-row items-center justify-around">4</option>
                     </select>
 
                     </div>
@@ -162,12 +166,13 @@ function Dashboard() {
                         <h2 className="font-Inter text-[14px] font-[600] tracking-[-0.03em] leading-[60px]">
                             Participantes
                         </h2>
-                       <div className="flex flex-row">
-                            <img src="../../participante.png" alt="pic" className="z-0"/>
+                       <div className="flex flex-col items-center font-Inter text-[20px] font-[600] tracking-[-0.03em] text-primary">
+                            {studentNames2.length}
+                            {/* <img src="../../participante.png" alt="pic" className="z-0"/>
                             <img src="../../participante.png" alt="pic" className="z-10 ml-[-15px]"/>
                             <img src="../../participante.png" alt="pic" className="z-20 ml-[-15px]"/>
                             <img src="../../participante.png" alt="pic" className="z-30 ml-[-15px]"/>
-                            <img src="../../participante.png" alt="pic" className="z-40 ml-[-15px]"/>
+                            <img src="../../participante.png" alt="pic" className="z-40 ml-[-15px]"/> */}
                        </div>
                     </div>
 
