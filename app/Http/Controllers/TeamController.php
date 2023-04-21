@@ -3,13 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Team;
-use App\Models\User;
+use App\Models\Profile\Profile;
 use Illuminate\Http\JsonResponse;
 use App\Http\Requests\TeamRequest;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TeamResource;
 use App\Http\Resources\TeamCollection;
-use App\Http\Resources\UserCollection;
 use App\Contracts\TeamRepositoryInterface;
 
 class TeamController extends Controller
@@ -26,7 +25,7 @@ class TeamController extends Controller
     public function index(): TeamCollection|JsonResponse
     {
         try {
-            $team = $this->teamCache->selectTeam();
+            $team = Team::with('profiles')->get();
             
             return new TeamCollection($team);
         } catch (\Exception $e) {
@@ -81,36 +80,6 @@ class TeamController extends Controller
             $this->teamCache->destroy($team);
 
             return $this->response->success('eliminado');
-        } catch (\Exception $e) {
-            return $this->response->catch($e->getMessage());
-        }
-    }
-
-    public function searchUsersTeams(int $id)
-    {
-        try {
-            $users = User::whereHas('teams', function ($query)  use ($id) {
-                $query->where('team_id', $id);
-            })->get();
-
-            $users = New UserCollection($users);
-
-            return response()->json($users);
-        } catch (\Exception $e) {
-            return $this->response->catch($e->getMessage());
-        }
-    }
-
-    public function searchUserscCohorts(int $id)
-    {
-        try {
-            $users = User::whereHas('cohorts', function ($query)  use ($id) {
-                $query->where('cohort_id', $id);
-            })->get();
-
-            $users = New UserCollection($users);
-            
-            return response()->json($users);
         } catch (\Exception $e) {
             return $this->response->catch($e->getMessage());
         }

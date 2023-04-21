@@ -11,19 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('team_user', function (Blueprint $table) {
+        Schema::create('cohort_profile', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('team_id');
+            $table->unsignedBigInteger('cohort_id');
+            $table->unsignedBigInteger('profile_id');
 
-            $table->foreign('user_id')
+            $table->foreign('cohort_id')
                 ->references('id')
-                ->on('users');
+                ->on('cohorts');
 
-            $table->foreign('team_id')
+            $table->foreign('profile_id')
             ->references('id')
-                ->on('teams');
+                ->on('profiles');
 
             $table->timestamps();
         });
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('team_user');
+        Schema::dropIfExists('cohort_user');
     }
 };

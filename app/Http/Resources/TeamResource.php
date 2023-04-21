@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use App\Http\Resources\Profile\ProfileResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class TeamResource extends JsonResource
@@ -15,8 +16,8 @@ class TeamResource extends JsonResource
             'id' => $this->id,
             'attributes' => [
                 'name' => $this->name,
-                'active' => $this->active,
-                'cohort_id' => $this->cohort_id,
+                'cohort' => $this->cohorts,
+                'profiles' => ProfileResource::collection($this->whenLoaded('profiles')),
                 'created_at' => Carbon::parse($this->created_at)->format('d/m/Y'),
             ],
             'links' => [

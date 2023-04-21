@@ -14,8 +14,8 @@ class CohortRepository extends BaseRepository {
     }
 
 
-    public function ejemplo(Cohort $cohort)
-    {
-        return "esta bien ";
+    public function selectCohort()
+    {   
+        return Cohort::select('id', 'name', 'active', 'created_at')->get();
     }
 }

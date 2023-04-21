@@ -11,22 +11,23 @@ use App\Repositories\CohortRepository;
 
 class CohortsController extends Controller
 {   
-    private $cohortCache;
+    private $cohortRepository;
 
-    public function __construct(CohortRepository $cohortCache)
+    public function __construct(CohortRepository $cohortRepository)
     {
         parent::__construct(); // llamada al constructor del controlador padre
-        $this->cohortCache = $cohortCache;
+        $this->cohortRepository = $cohortRepository;
     }
 
     public function index()
     {
         try {
-            $model = New Cohort;
+            $cohorts = Cohort::with('teams.profiles')->get();
 
-            $cohorts = $this->cohortCache->select($model);
+            $cohort = CohortCollection::make($cohorts);
 
-            return CohortCollection::make($cohorts);
+            return response()->json(['cohorts' => $cohort]);
+            
         } catch (\Exception $e) {
             return $this->response->catch($e->getMessage());
         }
@@ -35,7 +36,7 @@ class CohortsController extends Controller
     public function show(int $id)
     {
         try {
-            $cohort = $this->cohortCache->get($id);
+            $cohort = $this->cohortRepository->get($id);
 
             return new CohortResource($cohort);
         } catch (\Exception $e) {
@@ -48,7 +49,7 @@ class CohortsController extends Controller
         try {  
             $model = new Cohort($request->validated());
 
-            $cohort = $this->cohortCache->save($model);
+            $cohort = $this->cohortRepository->save($model);
 
             $cohort = new CohortResource($cohort);
 
@@ -63,7 +64,7 @@ class CohortsController extends Controller
         try {
             $cohort->fill($request->validated());
 
-            $cohort = $this->cohortCache->save($cohort);
+            $cohort = $this->cohortRepository->save($cohort);
 
             $cohort = new CohortResource($cohort);
 
@@ -76,7 +77,7 @@ class CohortsController extends Controller
     public function destroy(Cohort $cohort)
     {
         try {
-            $this->cohortCache->destroy($cohort);
+            $this->cohortRepository->destroy($cohort);
 
             return $this->response->success('eliminado', $cohort);
         } catch (\Exception $e) {

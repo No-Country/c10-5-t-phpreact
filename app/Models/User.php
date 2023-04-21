@@ -17,10 +17,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Spatie\Permission\Models\Role;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, HasRoles;
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
     protected $fillable = [
         'name',
@@ -39,20 +40,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function cohorts(): BelongsToMany
-    {
-        return $this->belongsToMany(Cohort::class, 'cohort_user');
-    }
-
-    public function teams(): BelongsToMany
-    {
-        return $this->belongsToMany(Team::class, 'team_user')->withTimestamps();
-    }
 
     public function teamAttendances(): HasMany
     {
         return $this->hasMany(TeamAttendance::class);
     }
+
 
     public function teamRatings(): HasMany
     {

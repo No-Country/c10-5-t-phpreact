@@ -2,17 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Cohort;
+use App\Models\TeamRating;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class CohortSeeder extends Seeder
+class RatingTeamsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Cohort::factory(2)->create();
+        TeamRating::factory(20)->create();
     }
 }

@@ -17,7 +17,6 @@ class ProfileCollection extends ResourceCollection
         return [
             'data' => $this->resource,
             'links' => [
-                'self' => route('userOnly')
             ]
         ];
     }

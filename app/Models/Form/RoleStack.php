@@ -2,6 +2,7 @@
 
 namespace App\Models\Form;
 
+use App\Models\Profile\Profile;
 use App\Models\Form\FormRegister;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -19,4 +20,10 @@ class RoleStack extends Model
     {
         return $this->hasOne(FormRegister::class);
     }
+
+    public function profiles()
+    {
+        return $this->hasMany(Profile::class);
+    }
+
 }

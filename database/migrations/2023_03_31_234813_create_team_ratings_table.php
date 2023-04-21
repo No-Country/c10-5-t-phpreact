@@ -28,13 +28,9 @@ return new class extends Migration
 
             $table->tinyInteger('sprint_rating')->nullable();
 
-            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('team_id');
 
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users');
-
+       
             $table->foreign('team_id')
                 ->references('id')
                 ->on('teams');

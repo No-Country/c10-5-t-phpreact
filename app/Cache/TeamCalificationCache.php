@@ -47,10 +47,11 @@ class TeamCalificationCache extends BaseCache implements TeamCalificationReposit
         return $this->repository->destroy($model);
     }
 
-    public function searchUserTeam($team_id)
+    public function searchUserTeam($profile_id)
     {
-        return $this->repository->searchUserTeam($team_id);
+        return $this->repository->searchUserTeam($profile_id);
     }
+
 
     public function whereCalification(string $column, int $value)
     {

@@ -17,16 +17,18 @@ class CohortFactory extends Factory
     public function definition(): array
     {
         $cohorts = [
-            'cohorte-1',
-            'cohorte-2',
-            'cohorte-3',
-            'cohorte-4',
-            'cohorte-5',
-            'cohorte-6'
+            'cohorte-2021',
+            'cohorte-2022',
+        ];
+
+        $active = [
+            'current',
+            'terminated'
         ];
 
         return [
-            'name' => fake()->unique()->randomElement($cohorts)
+            'name' => fake()->unique()->randomElement($cohorts),
+            'active' => fake()->unique()->randomElement($active)
         ];
     }
 }

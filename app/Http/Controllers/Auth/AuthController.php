@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\repositories\AuthRepository;
 use Illuminate\Http\JsonResponse;
+use App\Http\Controllers\Controller;
+use App\Repositories\AuthRepository;
 use App\Jobs\RegisterInstructionsJob;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Jobs\ResetPasswordInstructionsJob;

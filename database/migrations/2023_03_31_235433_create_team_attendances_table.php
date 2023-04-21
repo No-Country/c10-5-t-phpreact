@@ -18,12 +18,12 @@ return new class extends Migration
             $table->boolean('attended')->default(false);
             $table->boolean('justification')->default(false);
 
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('profile_id');
             $table->unsignedBigInteger('team_id');
 
-            $table->foreign('user_id')
+            $table->foreign('profile_id')
                 ->references('id')
-                ->on('users');
+                ->on('profiles');
 
             $table->foreign('team_id')
                 ->references('id')

@@ -2,9 +2,10 @@
 
 namespace App\Http\Resources\Profile;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\Profile\TechnologyResource;
+use App\Http\Resources\TeamResource;
 
 class ProfileResource extends JsonResource
 {
@@ -19,7 +20,8 @@ class ProfileResource extends JsonResource
             'type' => 'profile',
             'id' => $this->id,
             'attributes' => [
-                'user_id' => $this->user_id,
+                'user' => $this->users,
+                'role' => $this->roles->first()->name,
                 'specialty' => $this->specialty,
                 'url' => $this->url,
                 'linkedin' => $this->linkedin,
@@ -28,12 +30,20 @@ class ProfileResource extends JsonResource
                 'country' => $this->country->name,
                 'vertical' => $this->vertical->name,
                 'horary' => $this->horary->name,
+                'roleStack' => $this->roleStack->name,
+                'englishLevel' => $this->englishLevel->level,
                 'led_teams_quantity' => $this->led_teams_quantity,
                 'simulations_quantity' => $this->simulations_quantity,
+                'technologies' => TechnologyResource::collection($this->technologies),
                 'created_at' => Carbon::parse($this->created_at)->format('d/m/Y')
             ],
+            'relationships' => [
+                'teams' => [
+                    'data' => TeamResource::collection($this->teams)
+                ]
+            ],
             'links' => [
-                'self' => url('userAll')
+                'self' => url('profile/'.$this->id)
             ]
         ];
     }

@@ -30,6 +30,8 @@ class TeamFactory extends Factory
             'nestjs-postgres',
         ];
 
+        
+        
         return [
             'name' => fake()->unique()->randomElement($teams),
             'cohort_id' => Cohort::all()->random()->id

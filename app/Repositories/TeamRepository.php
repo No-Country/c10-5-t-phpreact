@@ -18,6 +18,6 @@ class TeamRepository extends BaseRepository implements TeamRepositoryInterface
     
     public function selectTeam()
     {   
-        return Team::select('id', 'name', 'active', 'cohort_id', 'created_at')->get();
+        return Team::select('id', 'name', 'cohort_id', 'created_at')->get();
     }
 }

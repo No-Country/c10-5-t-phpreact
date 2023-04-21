@@ -9,7 +9,6 @@ use App\Models\TeamAttendance;
 use Illuminate\Http\JsonResponse;
 use App\Http\Resources\TeamCalificationResource;
 use App\Http\Requests\postTeamCalificationRequest;
-use App\Http\Resources\TeamCalificationCollection;
 use App\Contracts\TeamCalificationRepositoryInterface;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -23,7 +22,6 @@ class TeamCalificationController extends Controller
         parent::__construct();
         $this->teamCalification = $teamCalification;
     }
-
 
     /**
      * obtener equipo para retornar semanas y usuarios que estan en el equipo
@@ -76,16 +74,6 @@ class TeamCalificationController extends Controller
         } catch (\Exception $e) {
             return $this->response->catch($e->getMessage(), 500);
         }
-
-        // "week": 1,
-        // "date": "2023-04-12",
-        // "compromise": 1,
-        // "attended": 1
-        // "communication": 1,
-        // "initiative": 0
-        // "feedback": "todo estubo bien",
-        // "user_id": 1,
-        // "team_id": 10  
     }
 
     /**
@@ -121,9 +109,9 @@ class TeamCalificationController extends Controller
     public function searchRatingUser(Request $request)
     {
         try {
-            $user_id = $request->user_id;
+            $profile_id = $request->profile_id;
 
-            $rating = $this->teamCalification->whereCalification('user_id', $user_id);
+            $rating = $this->teamCalification->whereCalification('profile_id', $profile_id);
 
             return response()->json(['assistencias de un usuario' => $rating]);
         } catch (ModelNotFoundException $e) {
@@ -139,39 +127,16 @@ class TeamCalificationController extends Controller
      * @param Request $request
      * @return JsonResponse
      */
-    public function searchRatingTeam(Request $request): JsonResponse
+    public function ratingTeamCalifification(int $id): JsonResponse
     {
         try {
-            $team_id = $request->team_id;
+            $teamRating = $this->teamCalification->whereCalification('team_id', $id);
 
-            $teamRating = $this->teamCalification->whereCalification('team_id', $team_id);
-
-            $calification = TeamCalificationCollection::make($teamRating);
+            $calification = TeamCalificationResource::collection($teamRating);
 
             return response()->json(['calificacion por equipo' => $calification]);
         } catch (ModelNotFoundException $e) {
             return $this->response->ModelError($e->getMessage(), "team id");
-        } catch (\Exception $e) {
-            return $this->response->catch($e->getMessage(), 500);
-        }
-    }
-
-    /**
-     * para ver las calificaciones y asistencias de un equipo
-     *
-     * @param TeamRating $TeamRating
-     * @return JsonResponse
-     */
-    public function show(TeamRating $TeamRating): JsonResponse
-    {
-        try {
-            $teamRating = $this->teamCalification->get($TeamRating);
-
-            $calification = new TeamCalificationResource($teamRating);
-
-            return response()->json(['ver calificiacion de equipo' => $calification]);
-        } catch (ModelNotFoundException $e) {
-            return $this->response->ModelError($e->getMessage(), "calificaion del team");
         } catch (\Exception $e) {
             return $this->response->catch($e->getMessage(), 500);
         }

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable()->unique();
 
             $table->string('specialty', 100)->nullable();
             $table->string('url')->nullable();
@@ -27,6 +27,8 @@ return new class extends Migration
             $table->unsignedBigInteger('country_id')->nullable();
             $table->unsignedBigInteger('vertical_id')->nullable();
             $table->unsignedBigInteger('horary_id')->nullable();
+            $table->unsignedBigInteger('role_stack_id')->nullable();
+            $table->unsignedBigInteger('english_level_id')->nullable();
 
             $table->timestamps();
 
@@ -41,6 +43,14 @@ return new class extends Migration
             $table->foreign('vertical_id')
                 ->references('id')
                 ->on('vertical');
+
+            $table->foreign('role_stack_id')
+                ->references('id')
+                ->on('role_stacks');
+
+            $table->foreign('english_level_id')
+                ->references('id')
+                ->on('english_levels');
 
             $table->foreign('horary_id')
                 ->references('id')

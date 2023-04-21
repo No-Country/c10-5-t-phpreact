@@ -15,6 +15,7 @@ use Database\Seeders\VerticalSeeder;
 use Database\Seeders\RoleStackSeeder;
 use Database\Seeders\ExperienceSeeder;
 use Database\Seeders\TechnologySeeder;
+use Database\Seeders\RatingTeamsSeeder;
 use Database\Seeders\EnglishLevelSeeder;
 use Database\Seeders\Profile\ProfileSeeder;
 use Database\Seeders\Profile\SoftSkillSeeder;
@@ -38,5 +39,7 @@ class DatabaseSeeder extends Seeder
         $this->call(FormRegisterSeeder::class);
         $this->call(ProfileSeeder::class);
         $this->call(SoftSkillSeeder::class);
+        $this->call(RatingTeamsSeeder::class);
+        $this->call(TeamAttendaceSeeder::class);
     }
 }
