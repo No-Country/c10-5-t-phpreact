@@ -6,15 +6,15 @@ function Equipos() {
     return (
         <div className="flex flex-col w-full h-auto justify-evenly px-[20px] py-[30px] items-center">
             <div className="flex flex-row justify-around items-center w-full h-[100px] bg-morado-3-nc rounded-[10px]">
-                <select name="" id="" className="flex flex-row h-[40px] w-[200px] border-[1px] border-primary items-center rounded-[10px]">
+                <select name="" id="" className="flex flex-row h-[40px] w-[200px] border-[1px] border-primary items-center rounded-[10px] text-center">
                     <option selected className="flex flex-row items-center justify-around border-2 border-primary">Cohorte</option>
                 </select>
 
-                <select name="" id="" className="flex flex-row h-[40px] w-[200px] border-[1px] border-primary items-center rounded-[10px]">
+                <select name="" id="" className="flex flex-row h-[40px] w-[200px] border-[1px] border-primary items-center rounded-[10px] text-center">
                     <option selected className="flex flex-row items-center justify-around border-2 border-primary">Equipo</option>
                 </select>
 
-                <select name="" id="" className="flex flex-row h-[40px] w-[200px] border-[1px] border-primary items-center rounded-[10px]">
+                <select name="" id="" className="flex flex-row h-[40px] w-[200px] border-[1px] border-primary items-center rounded-[10px] text-center">
                     <option selected className="flex flex-row items-center justify-around border-2 border-primary">Team Leader</option>
                 </select>
             </div>

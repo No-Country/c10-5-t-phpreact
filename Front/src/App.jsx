@@ -19,13 +19,13 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route index element={<Home />} />
-          <Route  path='/dashboard' element={<Dashboard />} />
+          <Route  path='/dashboard/:id' element={<Dashboard />} />
           <Route path='/reportes' element={<Reportes />} />
           <Route path='/donut' element={<Donut />}/>
 
           <Route path='/superDashboard' element={<SuperDashboard />} />
 
-          <Route path='/equipos' element={<Equipos />} />
+          <Route path='/equipos/:id' element={<Equipos />} />
         </Routes>
       </BrowserRouter>
     </div>

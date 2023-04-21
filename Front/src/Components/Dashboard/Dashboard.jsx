@@ -122,16 +122,12 @@ function Dashboard() {
                         Teamboard-Gestión de asistencias
                     </h2>
 
-                    <div className="flex flex-row w-full justify-between">
-                    <select name="" id="" className="flex flex-row h-[40px] w-[100px] border-[1px] border-primary items-center rounded-[10px]">
+                    <div className="flex flex-row w-full justify-start items-center">
+                    <select name="" id="" className="flex flex-row h-[40px] w-[100px] border-[1px] border-primary items-center rounded-[10px] text-center mr-[10px]">
                         <option defaultValue={false} className="flex flex-row items-center justify-around border-2 border-primary">Fecha</option>
                     </select>
 
-                    <select name="" id="" className="flex flex-row h-[40px] w-[100px] items-center border-[1px] border-primary rounded-[10px]">
-                        <option defaultValue={false} className="flex flex-row items-center justify-around">Grupo</option>
-                    </select>
-
-                    <select name="" id="" className="flex flex-row h-[40px] w-[100px] items-center border-[1px] border-primary rounded-[10px]">
+                    <select name="" id="" className="flex flex-row h-[40px] w-[100px] items-center border-[1px] border-primary rounded-[10px] text-center ml-[10px]">
                         <option defaultValue={false} className="flex flex-row items-center justify-around">Semana</option>
                     </select>
 
