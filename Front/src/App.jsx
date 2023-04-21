@@ -31,7 +31,7 @@ function App() {
 
           <Route path='/equipos/:id' element={<Equipos />} />
 
-          <Route index element={<DashboardContainer />} />
+          <Route path='/activos' element={<DashboardContainer />} />
 
         </Routes>
       </BrowserRouter>

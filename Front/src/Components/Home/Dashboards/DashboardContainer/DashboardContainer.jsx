@@ -24,15 +24,6 @@ const DashboardContainer = () => {
   return (
     <>
       <div className="flex flex-col h-screen font-Inter mb-10">
-        <div className="bg-primary h-1/12 p-2 text-white text-6xl font-Geogrotesque font-semibold flex justify-between">
-          <img src={Logo}></img>
-          <div className="flex text-xl justify-center items-center">
-            <h1 className="p-2">Asistencia</h1>
-            <h1 className="p-2">Reportes</h1>
-            <h1 className="p-2">Notificacion</h1>
-            <h1 className="p-2">Perfil</h1>
-          </div>
-        </div>
         <div className="h-1/12">
           <div className="flex p-4 font-normal">
             <button
