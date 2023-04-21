@@ -45,7 +45,7 @@ function Section_4() {
                 </div>
 
                 <div className="flex justify-center">
-                    <img src="../../src/assets/test_tree_s4-removed.png" alt="webapp" />
+                    <img src="../../public/test_tree_s4-removed.png" alt="webapp" />
                 </div>
             </div>
 
@@ -86,7 +86,7 @@ function Section_4() {
                 </div>
 
                 <div className="flex justify-center">
-                    <img src="../../src/assets/test_nocode-removed.png" alt="nocode" />
+                    <img src="../../public/test_nocode-removed.png" alt="nocode" />
                 </div>
             </div>
 

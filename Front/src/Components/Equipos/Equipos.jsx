@@ -28,7 +28,7 @@ function Equipos() {
 
                         <div className="flex flex-row justify-around items-center">
                         <div className="flex flex-col justify-center items-center z-10 mt-[-80px]">
-                            <img src="../../src/assets/card_picture.png" alt="pic" className="" width={"159px"} height={"159px"} />
+                            <img src="../../public/card_picture.png" alt="pic" className="" width={"159px"} height={"159px"} />
                             <span className="font-Inter text-[16px] font-[600]">Name of Student</span>
                             <span className="font-Inter text-[16px] font-[600]">Cohort of student</span>
                         </div>
@@ -46,7 +46,7 @@ function Equipos() {
 
 
                     <div className="flex flex-row justify-start items-center w-full px-[30px]">
-                        <img src="../../src/assets/location.png" alt="pic" width={"25px"} height={"25px"}/>
+                        <img src="../../public/location.png" alt="pic" width={"25px"} height={"25px"}/>
                         <span className="font-Inter text-[16px] font-[400] mx-[10px]">City, Country</span>
                     </div>
 
@@ -54,8 +54,8 @@ function Equipos() {
                     <div className="flex flex-col w-full px-[30px]">
                         <span className="font-Inter text-[18px] font-[400]">Tecnologias</span>
                         <div className="flex flex-row justify-start items-center">
-                        <img src="../../src/assets/React_icon.png" alt="pic" width={"45px"} height={"45px"}/>
-                        <img src="../../src/assets/React_icon.png" alt="pic" width={"45px"} height={"45px"}/>
+                        <img src="../../public/React_icon.png" alt="pic" width={"45px"} height={"45px"}/>
+                        <img src="../../public/React_icon.png" alt="pic" width={"45px"} height={"45px"}/>
                         </div>
                     </div>
 
@@ -74,7 +74,7 @@ function Equipos() {
 
                    <div className="flex flex-col justify-between items-center h-full w-full">
                    <div className="flex flex-row w-full justify-start items-center px-[15px] py-[5px]">
-                        <img src="../../src/assets/participante.png" alt="pic" className="" />
+                        <img src="../../public/participante.png" alt="pic" className="" />
                         <label for="student_1" className="font-Inter text-[16px] font-[400] tracking-[-0.03em] leading-[19px] hover:text-primary px-[5px]">
                             <Link to={'/perfil'}>Diego Alberto Juarez Ramirez&nbsp;(Front-End)</Link>
                         </label>
@@ -102,14 +102,14 @@ function Equipos() {
 
                     <div className="flex flex-row justify-center items-center w-full">
                         <div className="relative">
-                        <img src="../../src/assets/ring.png" alt="pic" width={"20px"} height={"20px"} className="relative top-0 left-0"/>
-                        <img src="../../src/assets/checkmark.png" alt="pic" width={"20px"} height={"20px"} className="absolute top-0 left-1"/>
+                        <img src="../../public/ring.png" alt="pic" width={"20px"} height={"20px"} className="relative top-0 left-0"/>
+                        <img src="../../public/checkmark.png" alt="pic" width={"20px"} height={"20px"} className="absolute top-0 left-1"/>
                         </div>
                         <span className="font-Inter text-[16px] font-[400] px-[10px]">Name of Team</span>
                     </div>
 
                     <div className="flex flex-row justify-center items-center w-full">
-                        <img src="../../src/assets/document.png" alt="pic" width={"20px"} height={"20px"}/>
+                        <img src="../../public/document.png" alt="pic" width={"20px"} height={"20px"}/>
                         <Link><span className="font-Inter text-[16px] font-[400] px-[10px] hover:text-primary">Gestión de asistencias para TL´s</span></Link>
                     </div>
 

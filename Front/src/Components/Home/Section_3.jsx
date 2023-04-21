@@ -5,7 +5,7 @@ function Section_3(){
         <div className="flex flex-row w-full justify-evenly px-[20px] py-[30px] items-center">
             <div className="">
                 <div>
-                    <img src="../../src/assets/test_circle_resized.png" alt="circle" />
+                    <img src="../../public/test_circle_resized.png" alt="circle" />
                 </div>
             </div>
 
@@ -21,13 +21,13 @@ function Section_3(){
 
                 <div className="flex flex-col">
                     <div className="flex flex-row w-full">
-                        <img src="../../src/assets/purple_bell.png" alt="bell" />
+                        <img src="../../public/purple_bell.png" alt="bell" />
                         <h2 className="font-Inter text-[20px] font-[600] tracking-[0.01em]">Desarrola tu liderazgo</h2>
                     </div>
 
 
                     <div className="flex flex-row w-full">
-                        <img src="../../src/assets/purple_bell.png" alt="bell" />
+                        <img src="../../public/purple_bell.png" alt="bell" />
                         <h2 className="font-Inter text-[20px] font-[600] tracking-[0.01em]">Acelera tu seniority</h2>
                     </div>
                 </div>

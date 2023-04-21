@@ -29,7 +29,7 @@ function Users() {
                                 </th>
 
                                 <td class="px-6 py-4">
-                                    <img src="../../src/assets/user.png" alt="pic" title="Team Leader" className="" width={"18px"} height={"18px"} />
+                                    <img src="../../public/user.png" alt="pic" title="Team Leader" className="" width={"18px"} height={"18px"} />
                                 </td>
 
                                 <td class="px-6 py-4">
@@ -38,7 +38,7 @@ function Users() {
 
                                 <td class="px-6 py-4">
                                     <button>
-                                        <img src="../../src/assets/delete_2.png" alt="trash" className="" width={"18px"} height={"18px"} />
+                                        <img src="../../public/delete_2.png" alt="trash" className="" width={"18px"} height={"18px"} />
                                     </button>
                                 </td>
 
@@ -56,17 +56,17 @@ function Users() {
                 {studentNames2.map((e, index) => (
                     <div className="flex flex-row justify-evenly items-center rounded-[4px] border-2 border-morado-3-nc" key={index}>
                         <div className="flex flex-row justify-center items-center">
-                            <img src="../../src/assets/participante.png" alt="pic" className="" />
+                            <img src="../../public/participante.png" alt="pic" className="" />
                             <label for="student_1" className="font-Inter text-[16px] font-[400] tracking-[-0.03em] leading-[19px] hover:text-primary">
                                 <Link to={'/perfil'}>{e.nombre}</Link>
                             </label>
                         </div>
 
-                        <img src="../../src/assets/user.png" alt="pic" title="Team Leader" className="" width={"18px"} height={"18px"} />
+                        <img src="../../public/user.png" alt="pic" title="Team Leader" className="" width={"18px"} height={"18px"} />
 
                         <span className="font-Inter text-[16px] font-[600] tracking-[-0.03em] leading-[19px]">Nombre del Cohorte</span>
                         <button>
-                            <img src="../../src/assets/delete_2.png" alt="trash" className="" width={"18px"} height={"18px"} />
+                            <img src="../../public/delete_2.png" alt="trash" className="" width={"18px"} height={"18px"} />
                         </button>
                     </div>
                 ))}

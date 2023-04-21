@@ -27,7 +27,7 @@ function accordion() {
             <div className="w-[609px] h-[56px] bg-secondary rounded-[10px] shadow-dark items-center group is-active cursor-pointer">
             <div className="flex items-center">
                 <div className="w-full group-[.is-active]:text-white">{e.question}</div>
-                {/* <img src="../../src/assets/vector.png" alt="vector" className="mr-[15px] group-[.is-active]:rotate-[180deg]" /> */}
+                {/* <img src="../../public/vector.png" alt="vector" className="mr-[15px] group-[.is-active]:rotate-[180deg]" /> */}
             </div>
 
             <div className='overflow-hidden max-h-0 group-[is.active]:max-h-auto'>

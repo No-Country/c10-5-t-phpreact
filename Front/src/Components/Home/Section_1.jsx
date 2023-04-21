@@ -25,7 +25,7 @@ function Section_1() {
 
 
             <div>
-                <img src="../../src/assets/section_1.png" alt="s1" />
+                <img src="../../public/section_1.png" alt="s1" />
             </div>
         </div>
     )
