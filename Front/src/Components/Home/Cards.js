@@ -1,0 +1,48 @@
+let cardsInfo = [
+    {
+      title: "Diseñador UX/UI",
+      image: "../../diseñador.png",
+      description: "Un diseñador de UX/UI es un profesional que se especializa en crear la experiencia de usuario (UX) y la interfaz de usuario (UI) de productos digitales, como sitios web, aplicaciones móviles y software.",
+      objective: "El objetivo principal de un diseñador de UX/UI es garantizar que el producto sea fácil de usar, intuitivo y visualmente atractivo."
+    },
+    {
+      title: "Product Manager",
+      image: "../../product_manager.png",
+      description: "Un Product Manager es un profesional responsable de liderar un equipo y administrar los recursos y actividades necesarios para completar un proyecto específico dentro de un marco de tiempo y presupuesto establecidos.",
+      objective: "El PM garantiza que el proyecto se complete con éxito, cumpliendo con los objetivos y requisitos establecidos por las partes interesadas."
+    },
+    {
+      title: "Desarrollo Front End",
+      image: "../../frontend.png",
+      description: "Es un profesional de tecnología de la información que se enfoca en el diseño, desarrollo y mantenimiento de la parte visual y funcional de un sitio web o aplicación. ",
+      objective: "El objetivo principal de un desarrollador front-end es garantizar que la interfaz de usuario sea atractiva, fácil de usar y esté optimizada para diferentes dispositivos y navegadores."
+    },
+    {
+      title: "Desarrollo Back End",
+      image: "../../backend.png",
+      description: "Un desarrollador backend es un profesional de tecnología de la información que se enfoca en la creación y mantenimiento de la lógica del servidor de una aplicación o sitio web.",
+      objective: "El objetivo principal de un desarrollador backend es crear y mantener la lógica del servidor de una aplicación o sitio web."
+    },
+    {
+      title: "QA Tester",
+      image: "../../qa_tester.png",
+      description: "Un QA tester, se encarga de probar y evaluar la calidad de un software o aplicación antes de su lanzamiento, trabajan en estrecha colaboración con los desarrolladores de software y otros miembros del equipo de desarrollo.",
+      objective: "El objetivo principal de un QA tester es asegurarse de que la aplicación o software cumpla con los requisitos del usuario, funcione sin errores y tenga una alta calidad."
+    }
+  ]
+
+function createCards(){
+    cardsInfo.map(e => {
+        return (
+            <div className="flex flex-col justify-evenly items-center bg-[#F4F4F4] w-[270px] h-[480px] rounded-[10px] shadow-dark">
+                <div>
+                    <img src={e.image} alt="profile" width={"180px"} height={"120px"}/>
+                </div>
+                <span className="font-Inter text-[14px] font-[600] tracking-[0.01em] leading-[17px]">{e.title}</span>
+                <p className="font-Inter text-[14px] font-[500] tracking-[0.01em] leading-[17px] text-justify mx-[15px]">{e.description}</p>
+                <p className="font-Inter text-[14px] font-[500] tracking-[0.01em] leading-[17px] text-justify mx-[15px]">{e.objective}</p>
+            </div>
+        )
+    })
+}
+

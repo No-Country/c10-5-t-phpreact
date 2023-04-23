@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Geogrotesque';
+    src: local('Geogrotesque Regular'), local('Geogrotesque-Regular'),
+        url('GeogrotesqueCyr-Regular.woff2') format('woff2'),
+        url('GeogrotesqueCyr-Regular.woff') format('woff'),
+        url('GeogrotesqueCyr-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+  }
